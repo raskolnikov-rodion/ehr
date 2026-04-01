@@ -2,7 +2,20 @@
   "name": "@ehr/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve EHR",
+    "build": "nx build EHR",
+    "build:prod": "nx build EHR --configuration=production",
+    "test": "nx test EHR",
+    "lint": "nx lint EHR",
+    "lint:all": "nx run-many -t lint",
+    "e2e": "nx e2e EHR-e2e",
+    "affected:test": "nx affected -t test",
+    "affected:lint": "nx affected -t lint",
+    "affected:e2e": "nx affected -t e2e",
+    "affected:build": "nx affected -t build",
+    "graph": "nx graph"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~21.2.0",
