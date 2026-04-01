@@ -10,7 +10,10 @@
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/EHR",
+        "outputPath": {
+          "base": "dist/apps/EHR",
+          "browser": ""
+        },
         "browser": "apps/EHR/src/main.ts",
         "tsConfig": "apps/EHR/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
