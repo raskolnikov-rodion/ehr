@@ -17,15 +17,24 @@ npx nx test EHR                         # All unit tests
 npx nx test EHR --testFile=path/to/foo.spec.ts  # Single file
 
 # Lint
-npx nx lint EHR                         # Lint one project
-npx nx run-many -t lint                 # Lint all projects
+npx nx lint EHR                         # ESLint one project
+npx nx run-many -t lint                 # ESLint all projects
+npx nx stylelint EHR                    # Stylelint one project
+npx nx run-many -t stylelint            # Stylelint all projects
 
 # E2E (Playwright — starts dev server automatically)
 npx nx e2e EHR-e2e
 
+# Affected only (used in CI)
+npx nx affected -t lint
+npx nx affected -t test
+npx nx affected -t build
+
 # Project graph
 npx nx graph
 ```
+
+Commits must follow Conventional Commits (`feat:`, `fix:`, `chore:`, etc.) — enforced by commitlint. Pre-commit hooks run Prettier, ESLint, and Stylelint via lint-staged.
 
 ## Architecture
 
