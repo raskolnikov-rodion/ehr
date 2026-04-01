@@ -26,6 +26,8 @@ jobs:
 
       - run: npx nx affected -t lint
 
+      - run: npx nx affected -t stylelint
+
   test:
     name: Test
     runs-on: ubuntu-latest

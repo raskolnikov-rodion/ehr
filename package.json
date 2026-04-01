@@ -9,9 +9,12 @@
     "test": "nx test EHR",
     "lint": "nx lint EHR",
     "lint:all": "nx run-many -t lint",
+    "stylelint": "nx stylelint EHR",
+    "stylelint:all": "nx run-many -t stylelint",
     "e2e": "nx e2e EHR-e2e",
     "affected:test": "nx affected -t test",
     "affected:lint": "nx affected -t lint",
+    "affected:stylelint": "nx affected -t stylelint",
     "affected:e2e": "nx affected -t e2e",
     "affected:build": "nx affected -t build",
     "graph": "nx graph"
@@ -59,6 +62,8 @@
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "vitest": "^4.0.8"
   }
 }

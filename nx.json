@@ -29,6 +29,13 @@
     "@angular/build:unit-test": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "stylelint": {
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/**/*.scss",
+        "{workspaceRoot}/.stylelintrc.json"
+      ]
     }
   },
   "plugins": [

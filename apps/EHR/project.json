@@ -62,6 +62,12 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     },
+    "stylelint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "stylelint apps/EHR/src/**/*.scss"
+      }
+    },
     "test": {
       "executor": "@angular/build:unit-test",
       "options": {}
