@@ -73,7 +73,9 @@
     },
     "test": {
       "executor": "@angular/build:unit-test",
-      "options": {}
+      "options": {
+        "setupFiles": ["apps/EHR/src/vitest-setup.ts"]
+      }
     },
     "serve-static": {
       "continuous": true,
