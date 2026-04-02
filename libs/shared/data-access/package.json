@@ -1,0 +1,11 @@
+{
+  "name": "@ehr/data-access",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^21.2.0",
+    "vitest": "^4.0.8",
+    "@angular/common": "~21.2.0",
+    "rxjs": "~7.8.0"
+  },
+  "sideEffects": false
+}
