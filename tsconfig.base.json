@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ehr/color-palette": ["libs/features/color-palette/src/index.ts"],
       "@ehr/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@ehr/color-palette": ["libs/features/color-palette/src/index.ts"]
+      "@ehr/dashboard": ["libs/features/dashboard/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
