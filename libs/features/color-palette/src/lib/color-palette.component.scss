@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-700);
+
+  &__heading {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-700);
+  }
+
+  &__toggle {
+    padding: var(--space-200) var(--space-400);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-300);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-bg-muted);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.group {
+  margin-bottom: var(--space-700);
+
+  &__heading {
+    margin-bottom: var(--space-300);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-500);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-300);
+  }
+}
+
+.swatch {
+  &__card {
+    overflow: hidden;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+  }
+
+  &__preview {
+    height: 64px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-50);
+    padding: var(--space-200);
+  }
+}
+
+.shadow {
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-200);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-600) var(--space-400);
+    background: var(--color-bg-surface);
+    border-radius: var(--border-radius-md);
+  }
+}
+
+.swatch,
+.shadow {
+  &__label {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-200);
+  }
+
+  &__var {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-100);
+    word-break: break-all;
+  }
+}

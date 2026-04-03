@@ -1,0 +1,31 @@
+@use 'breakpoints' as bp;
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap';
+
+:root {
+  --font-family-heading: 'Lora', georgia, serif;
+  --font-family-body: 'Inter', system-ui, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-100: 0.625rem;
+  --font-size-200: 0.75rem;
+  --font-size-300: 0.875rem;
+  --font-size-400: 1rem;
+  --font-size-500: 1.125rem;
+  --font-size-600: 1.25rem;
+  --font-size-700: 1.5rem;
+  --font-size-800: 2rem;
+  --font-size-900: 3.75rem;
+  --font-size-1000: 3.75rem;
+
+  @include bp.up(md) {
+    --font-size-500: 1.25rem;
+    --font-size-600: 1.5rem;
+    --font-size-700: 2rem;
+    --font-size-800: 3rem;
+    --font-size-900: 5rem;
+    --font-size-1000: 7.5rem;
+  }
+}

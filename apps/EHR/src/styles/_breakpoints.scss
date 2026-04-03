@@ -1,0 +1,101 @@
+// Breakpoints
+// EHR apps are primarily used on clinical workstations and tablets.
+// Breakpoint scale: xs → sm → md → lg → xl → 2xl
+// Usage:
+//   @use 'breakpoints' as bp;
+//   @include bp.up(md)   { … }   // min-width: 768px
+//   @include bp.down(md) { … }   // max-width: 767px
+//   @include bp.only(md) { … }   // 768px – 1023px
+
+@use 'sass:map';
+
+$breakpoints: (
+  xs: 0px,
+  // phones (rare in clinical settings, but supported)
+  sm: 576px,
+  // large phones / small tablets in portrait
+  md: 768px,
+  // tablets (iPad, bedside devices)
+  lg: 1024px,
+  // small desktops / tablets in landscape
+  xl: 1280px,
+  // standard clinical workstations
+  2xl: 1536px, // large / dual-monitor workstations
+) !default;
+
+// Returns the lower bound for a named breakpoint.
+@function bp-min($name) {
+  $value: map.get($breakpoints, $name);
+
+  @if not $value {
+    @error 'Unknown breakpoint: #{$name}. Available: #{map-keys($breakpoints)}';
+  }
+
+  @return $value;
+}
+
+// Returns the upper bound (lower bound of next step minus 1px), or null for the largest.
+@function bp-max($name) {
+  $keys: map.keys($breakpoints);
+  $index: list.index($keys, $name);
+
+  @if not $index {
+    @error 'Unknown breakpoint: #{$name}. Available: #{$keys}';
+  }
+
+  @if $index == list.length($keys) {
+    @return null; // no upper bound for the largest breakpoint
+  }
+
+  $next: list.nth($keys, $index + 1);
+
+  @return bp-min($next) - 1px;
+}
+
+// min-width — styles apply at this breakpoint and wider.
+@mixin up($name) {
+  $min: bp-min($name);
+
+  @if $min == 0 {
+    @content;
+  } @else {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+}
+
+// max-width — styles apply below this breakpoint.
+@mixin down($name) {
+  $max: bp-max($name);
+
+  @if not $max {
+    @content; // largest breakpoint has no upper bound — always applies
+  } @else {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+}
+
+// Range — styles apply only within this breakpoint band.
+@mixin only($name) {
+  $min: bp-min($name);
+  $max: bp-max($name);
+
+  @if not $min and not $max {
+    @content;
+  } @else if $min == 0 {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}

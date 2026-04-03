@@ -1,0 +1,52 @@
+<header class="header">
+  <h2 class="header__heading" [attr.test-id]="'header-heading'">
+    EHR Color Palette
+  </h2>
+  <button
+    class="header__toggle"
+    (click)="toggleTheme()"
+    [attr.test-id]="'theme-toggle'"
+  >
+    {{ darkTheme() ? '☀️ Light Mode' : '🌘 Dark Mode' }}
+  </button>
+</header>
+
+@for (group of groups; track group.title) {
+  <section class="group">
+    <h3 class="group__heading" [attr.test-id]="'group-heading'">
+      {{ group.title }}
+    </h3>
+    <div class="group__grid">
+      @for (swatch of group.swatches; track swatch.var) {
+        <div class="swatch__card" [attr.test-id]="'swatch-card'">
+          <div
+            class="swatch__preview"
+            [style.background-color]="'var(' + swatch.var + ')'"
+          ></div>
+          <div class="swatch__info">
+            <span class="swatch__label">{{ swatch.label }}</span>
+            <code class="swatch__var">{{ swatch.var }}</code>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
+
+<section class="group">
+  <h3 class="group__heading" [attr.test-id]="'shadow-group-heading'">
+    Shadows / Elevation
+  </h3>
+  <div class="group__grid">
+    @for (shadow of shadows; track shadow.var) {
+      <div
+        class="shadow__card"
+        [style.box-shadow]="'var(' + shadow.var + ')'"
+        [attr.test-id]="'shadow-card'"
+      >
+        <span class="shadow__label">{{ shadow.label }}</span>
+        <code class="shadow__var">{{ shadow.var }}</code>
+      </div>
+    }
+  </div>
+</section>

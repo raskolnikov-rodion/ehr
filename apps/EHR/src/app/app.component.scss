@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+header,
+main,
+footer {
+  padding: var(--space-700) var(--space-600);
+}
+
+header,
+footer {
+  display: flex;
+  align-items: center;
+}
+
+header {
+  justify-content: space-between;
+}
+
+footer {
+  justify-content: center;
+}
+
+h1 {
+  font-size: var(--font-size-800);
+}
