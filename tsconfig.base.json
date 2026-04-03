@@ -18,7 +18,8 @@
       "@ehr/color-palette": ["libs/features/color-palette/src/index.ts"],
       "@ehr/dashboard": ["libs/features/dashboard/src/index.ts"],
       "@ehr/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@ehr/login": ["libs/features/login/src/index.ts"]
+      "@ehr/login": ["libs/features/login/src/index.ts"],
+      "@ehr/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
