@@ -1,10 +1,9 @@
 @use 'breakpoints' as bp;
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap';
 
 :root {
   --font-family-heading: 'Lora', georgia, serif;
   --font-family-body: 'Inter', system-ui, sans-serif;
-  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
