@@ -42,14 +42,15 @@ Nx monorepo. The app shell lives in `apps/EHR`.
 
 ### Library map
 
-| Path alias           | Location                      | Purpose                                        |
-| -------------------- | ----------------------------- | ---------------------------------------------- |
-| `@ehr/core`          | `libs/core`                   | Route guards and main services                 |
-| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers |
-| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
-| `@ehr/login`         | `libs/features/login`         | Login page + form                              |
-| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
-| `@ehr/color-palette` | `libs/features/color-palette` | Design-system color reference                  |
+| Path alias           | Location                      | Purpose                                                |
+| -------------------- | ----------------------------- | ------------------------------------------------------ |
+| `@ehr/core`          | `libs/core`                   | Route guards and main services                         |
+| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers         |
+| `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |
+| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |
+| `@ehr/login`         | `libs/features/login`         | Login page + form                                      |
+| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                         |
+| `@ehr/color-palette` | `libs/features/color-palette` | Design-system color reference                          |
 
 ### Mock API
 

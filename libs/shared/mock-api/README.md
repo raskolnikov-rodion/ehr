@@ -14,9 +14,21 @@ Configures an Angular app to intercept all HTTP requests to `/api/` and route th
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMockApi } from '@ehr/shared/mock-api';
+import { provideMockApi } from '@ehr/mock-api';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideMockApi()],
 };
+```
+
+## Public API
+
+| Export           | Description                                                            |
+| ---------------- | ---------------------------------------------------------------------- |
+| `provideMockApi` | Registers the HTTP interceptor and initialises all mock route handlers |
+
+## Running unit tests
+
+```bash
+npx nx test mock-api
 ```

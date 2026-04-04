@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService, ThemeService } from '@ehr/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'ehr-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
