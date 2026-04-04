@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '@ehr/core';
 
 @Component({
   imports: [RouterLink, RouterOutlet],
@@ -8,4 +9,14 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  readonly isLoggedIn = this.auth.isLoggedIn;
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+}
