@@ -1,0 +1,13 @@
+:host {
+  padding: var(--space-600);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.card {
+  &__heading {
+    margin-bottom: var(--space-500);
+  }
+}
