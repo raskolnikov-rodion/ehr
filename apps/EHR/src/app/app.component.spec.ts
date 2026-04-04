@@ -4,6 +4,7 @@ import { axe } from 'vitest-axe';
 import { Router, provideRouter } from '@angular/router';
 import { AuthService } from '@ehr/core';
 import { AppComponent } from './app.component';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   let mockAuthService: {
@@ -11,6 +12,7 @@ describe('AppComponent', () => {
     logout: ReturnType<typeof vi.fn>;
   };
   let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
 
   beforeEach(async () => {
     mockAuthService = { isLoggedIn: () => false, logout: vi.fn() };
@@ -23,6 +25,7 @@ describe('AppComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
   it('should render title', async () => {
@@ -48,7 +51,7 @@ describe('AppComponent', () => {
       loggedInFixture.detectChanges();
       const button = getLogoutButton(loggedInFixture);
       expect(button).not.toBeNull();
-      expect(button.textContent.trim()).toBe('Log out');
+      expect(button.nativeElement.textContent.trim()).toBe('Log out');
     });
 
     it('should call auth.logout and navigate to /login when logout() is called', async () => {
@@ -64,7 +67,58 @@ describe('AppComponent', () => {
     });
 
     function getLogoutButton(fxtr: ComponentFixture<AppComponent>) {
-      return fxtr.nativeElement.querySelector('button');
+      return fxtr.debugElement.query(By.css("[test-id='logout-button']"));
     }
+  });
+
+  describe('theme toggle', () => {
+    it('should show Dark Mode button when theme is light (default)', async () => {
+      await fixture.whenStable();
+      const btn = getThemeToggleElement();
+      expect(btn.textContent).toContain('Dark Mode');
+    });
+
+    it('should toggle dark signal and update button text on click', async () => {
+      await fixture.whenStable();
+      const btn = getThemeToggleElement();
+
+      btn.click();
+      await fixture.whenStable();
+
+      expect(component.darkTheme()).toBe(true);
+      expect(btn.textContent).toContain('Light Mode');
+    });
+
+    it('should set data-theme="dark" on the document root when toggled on', async () => {
+      await fixture.whenStable();
+      const btn = getThemeToggleElement();
+
+      btn.click();
+      await fixture.whenStable();
+
+      expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    });
+
+    it('should set data-theme="light" when toggled back to light', async () => {
+      await fixture.whenStable();
+      const btn = getThemeToggleElement();
+
+      btn.click();
+      await fixture.whenStable();
+      btn.click();
+      await fixture.whenStable();
+
+      expect(component.darkTheme()).toBe(false);
+      expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+    });
+
+    function getThemeToggleElement() {
+      return fixture.debugElement.query(By.css("[test-id='theme-toggle']"))
+        .nativeElement as HTMLButtonElement;
+    }
+
+    afterEach(() => {
+      document.documentElement.setAttribute('data-theme', '');
+    });
   });
 });

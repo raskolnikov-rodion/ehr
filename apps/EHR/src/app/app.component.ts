@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '@ehr/core';
 
@@ -15,8 +20,20 @@ export class AppComponent {
 
   readonly isLoggedIn = this.auth.isLoggedIn;
 
+  readonly darkTheme = signal(
+    document.documentElement.getAttribute('data-theme') === 'dark',
+  );
+
   logout(): void {
     this.auth.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    this.darkTheme.update((v) => !v);
+    document.documentElement.setAttribute(
+      'data-theme',
+      this.darkTheme() ? 'dark' : 'light',
+    );
   }
 }
