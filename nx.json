@@ -13,12 +13,10 @@
   },
   "targetDefaults": {
     "@angular/build:application": {
-      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
     "@nx/eslint:lint": {
-      "cache": true,
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
@@ -27,20 +25,16 @@
       ]
     },
     "@angular/build:unit-test": {
-      "cache": true,
       "inputs": ["default", "^production"]
     },
     "stylelint": {
-      "cache": true,
       "inputs": ["{projectRoot}/**/*.scss", "{workspaceRoot}/.stylelintrc.json"]
     },
     "@nx/angular:ng-packagr-lite": {
-      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
     "@nx/angular:unit-test": {
-      "cache": true,
       "inputs": ["default", "^production"]
     }
   },

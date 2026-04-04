@@ -41,7 +41,7 @@ The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpos
 | Alias                | Location                      | Purpose                                        |
 | -------------------- | ----------------------------- | ---------------------------------------------- |
 | `@ehr/core`          | `libs/core`                   | Route guards and main services                 |
-| `@ehr/data-access`   | `libs/shared/data-access`     | Mock API provider, interceptor, route handlers |
+| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers |
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
 | `@ehr/login`         | `libs/features/login`         | Login page + form                              |
 | `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
@@ -75,7 +75,7 @@ Route access is controlled by two functional guards: `authGuard` (blocks unauthe
 
 ### Backend-independent data layer
 
-There is no real backend. `provideMockApi()` (in `@ehr/data-access`) registers an `HttpInterceptorFn` that intercepts all `/api/*` requests and dispatches them to typed handler functions registered in a route table. Responses include a randomised 200–1000 ms delay to simulate real network conditions.
+There is no real backend. `provideMockApi()` (in `@ehr/mock-api`) registers an `HttpInterceptorFn` that intercepts all `/api/*` requests and dispatches them to typed handler functions registered in a route table. Responses include a randomised 200–1000 ms delay to simulate real network conditions.
 
 This design means:
 

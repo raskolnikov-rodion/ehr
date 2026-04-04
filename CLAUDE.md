@@ -45,7 +45,7 @@ Nx monorepo. The app shell lives in `apps/EHR`.
 | Path alias           | Location                      | Purpose                                        |
 | -------------------- | ----------------------------- | ---------------------------------------------- |
 | `@ehr/core`          | `libs/core`                   | Route guards and main services                 |
-| `@ehr/data-access`   | `libs/shared/data-access`     | Mock API provider, interceptor, route handlers |
+| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers |
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
 | `@ehr/login`         | `libs/features/login`         | Login page + form                              |
 | `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
@@ -53,9 +53,9 @@ Nx monorepo. The app shell lives in `apps/EHR`.
 
 ### Mock API
 
-There is no real backend. `provideMockApi()` (from `@ehr/data-access`) registers an `HttpInterceptorFn` that intercepts all `/api/*` requests and dispatches them to handlers registered in `MockRouteService`. Responses include a randomised 200–1000 ms delay. To add a new endpoint, create a `MockHandlerFn` and add it to `libs/shared/data-access/src/lib/provider/routes.ts`. Removing `provideMockApi()` is the only change needed to switch to a real backend.
+There is no real backend. `provideMockApi()` (from `@ehr/mock-api`) registers an `HttpInterceptorFn` that intercepts all `/api/*` requests and dispatches them to handlers registered in `MockRouteService`. Responses include a randomised 200–1000 ms delay. To add a new endpoint, create a `MockHandlerFn` and add it to `libs/shared/mock-api/src/lib/provider/routes.ts`. Removing `provideMockApi()` is the only change needed to switch to a real backend.
 
-Demo credentials (defined in `libs/shared/data-access/src/lib/auth/constants.ts`):
+Demo credentials (defined in `libs/shared/mock-api/src/lib/auth/constants.ts`):
 
 - `doctor@ehr.demo` / `doctorPassword`
 - `nurse@ehr.demo` / `nursePassword`

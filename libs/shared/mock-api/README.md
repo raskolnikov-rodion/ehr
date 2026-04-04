@@ -1,4 +1,4 @@
-# data-access
+# mock-api
 
 Configures an Angular app to intercept all HTTP requests to `/api/` and route them to in-memory handler functions, with no backend required.
 
@@ -14,7 +14,7 @@ Configures an Angular app to intercept all HTTP requests to `/api/` and route th
 
 ```ts
 import { ApplicationConfig } from '@angular/core';
-import { provideMockApi } from '@ehr/shared/data-access';
+import { provideMockApi } from '@ehr/shared/mock-api';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideMockApi()],
