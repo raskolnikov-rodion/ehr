@@ -1,0 +1,25 @@
+<ehr-card class="card" title="Welcome!">
+  <div ngProjectAs="card-content" class="card__content">
+    <ehr-login-form (formSubmit)="onFormSubmit($event)" />
+
+    @if (isLoggingIn()) {
+      <p
+        class="card__loading-message body-text-sm"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        [attr.test-id]="'login-loading'"
+      >
+        Authenticating credentials, please wait...
+      </p>
+    } @else if (loginError()) {
+      <p
+        class="card__error-message body-text-sm"
+        role="alert"
+        [attr.test-id]="'login-error'"
+      >
+        {{ loginError() }}
+      </p>
+    }
+  </div>
+</ehr-card>

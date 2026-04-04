@@ -1,0 +1,27 @@
+:host {
+  display: grid;
+  flex: 1;
+  place-items: center;
+}
+
+.card {
+  &__content {
+    display: grid;
+    grid-template-rows: auto 20px;
+    row-gap: var(--space-200);
+    width: 20.625rem;
+  }
+
+  &__loading-message {
+    color: var(--color-text-secondary);
+  }
+
+  &__error-message {
+    color: var(--color-error);
+  }
+
+  &__error-message,
+  &__loading-message {
+    text-align: center;
+  }
+}
