@@ -56,13 +56,13 @@
 .swatch,
 .shadow {
   &__label {
-    font-weight: var(--font-weight-semibold);
     font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
   }
 
   &__var {
-    color: var(--color-text-muted);
     font-size: 0.625rem;
+    color: var(--color-text-muted);
     word-break: break-all;
   }
 }
