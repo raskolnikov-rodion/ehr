@@ -19,6 +19,7 @@
       "@ehr/core": ["libs/core/src/index.ts"],
       "@ehr/dashboard": ["libs/features/dashboard/src/index.ts"],
       "@ehr/mock-api": ["libs/shared/mock-api/src/index.ts"],
+      "@ehr/layout": ["libs/shared/layout/src/index.ts"],
       "@ehr/login": ["libs/features/login/src/index.ts"],
       "@ehr/ui": ["libs/shared/ui/src/index.ts"]
     }
