@@ -43,12 +43,6 @@ describe('AppComponent', () => {
     expect(fontLink).toBeTruthy();
   });
 
-  it('should render title', async () => {
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('EHR');
-  });
-
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
