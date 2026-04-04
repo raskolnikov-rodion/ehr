@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { THEME_KEY } from './constants';
 import { APP_THEME } from './models';
+import { setInitialThemeOnDocument } from './helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,7 @@ export class ThemeService {
   }
 
   private setInitialTheme(): void {
-    const initialTheme = localStorage.getItem(THEME_KEY) || APP_THEME.LIGHT;
-    document.documentElement.setAttribute(THEME_KEY, initialTheme);
+    const initialTheme = setInitialThemeOnDocument();
     this.theme.set(initialTheme);
   }
 }
