@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  flex: 1;
+  place-items: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 24rem;
+}
