@@ -2,9 +2,10 @@
   "name": "@ehr/dashboard",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^21.2.0",
     "vitest-axe": "^0.1.0",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "@angular/core": "~21.2.0",
+    "@ehr/ui": "0.0.1"
   },
   "sideEffects": false
 }
