@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { AuthService, ThemeService } from '@ehr/core';
+import { AuthService } from '@ehr/core';
 import { axe } from 'vitest-axe';
 import { ShellLayoutComponent } from './shell-layout.component';
+import { ThemeService } from '@ehr/theme';
 
 describe('ShellLayoutComponent', () => {
   let fixture: ComponentFixture<ShellLayoutComponent>;

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router } from '@angular/router';
-import { AuthService, ThemeService } from '@ehr/core';
+import { AuthService } from '@ehr/core';
+import { ThemeService } from '@ehr/theme';
 import { axe } from 'vitest-axe';
 import { HeaderComponent } from './header.component';
 
