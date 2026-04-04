@@ -7,7 +7,7 @@ Shared layout library for the EHR application. Provides the application shell an
 | Component              | Selector           | Description                                                |
 | ---------------------- | ------------------ | ---------------------------------------------------------- |
 | `ShellLayoutComponent` | `ehr-shell-layout` | Top-level route wrapper: header, `<router-outlet>`, footer |
-| `HeaderComponent`      | `ehr-header`       | App bar with home link and sign-out button                 |
+| `HeaderComponent`      | `ehr-header`       | App bar with home link, sign-out button, and theme toggle  |
 | `FooterComponent`      | `ehr-footer`       | Bottom bar with site-wide navigation links                 |
 
 ## Usage
@@ -30,4 +30,4 @@ import { ShellLayoutComponent } from '@ehr/layout';
 
 ## Running unit tests
 
-Run `nx test layout` to execute the unit tests.
+Run `npx nx test layout` to execute the unit tests.

@@ -38,14 +38,15 @@ npm install && npm start   # → http://localhost:4200
 
 The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
 
-| Alias                | Location                      | Purpose                                        |
-| -------------------- | ----------------------------- | ---------------------------------------------- |
-| `@ehr/core`          | `libs/core`                   | Route guards and main services                 |
-| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers |
-| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
-| `@ehr/login`         | `libs/features/login`         | Login page + form                              |
-| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
-| `@ehr/color-palette` | `libs/features/color-palette` | Design-system color reference                  |
+| Alias                | Location                      | Purpose                                                |
+| -------------------- | ----------------------------- | ------------------------------------------------------ |
+| `@ehr/core`          | `libs/core`                   | Route guards and main services                         |
+| `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers         |
+| `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |
+| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |
+| `@ehr/login`         | `libs/features/login`         | Login page + form                                      |
+| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                         |
+| `@ehr/color-palette` | `libs/features/color-palette` | Design-system color reference                          |
 
 This separation accomplishes the following:
 
