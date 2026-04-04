@@ -68,53 +68,6 @@ describe('ColorPaletteComponent', () => {
     expect(cards.length).toBe(component.shadows.length);
   });
 
-  describe('theme toggle', () => {
-    it('should show Dark Mode button when theme is light', async () => {
-      await fixture.whenStable();
-      const btn = getButtonElement();
-      expect(btn.textContent).toContain('Dark Mode');
-    });
-
-    it('should toggle dark signal and update button text on click', async () => {
-      await fixture.whenStable();
-      const btn = getButtonElement();
-
-      btn.click();
-      await fixture.whenStable();
-
-      expect(component.darkTheme()).toBe(true);
-      expect(btn.textContent).toContain('Light Mode');
-    });
-
-    it('should set data-theme="dark" on the document root when toggled on', async () => {
-      await fixture.whenStable();
-      const btn = getButtonElement();
-
-      btn.click();
-      await fixture.whenStable();
-
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
-    });
-
-    it('should set data-theme="light" when toggled back to light', async () => {
-      await fixture.whenStable();
-      const btn = getButtonElement();
-
-      btn.click();
-      await fixture.whenStable();
-      btn.click();
-      await fixture.whenStable();
-
-      expect(component.darkTheme()).toBe(false);
-      expect(document.documentElement.getAttribute('data-theme')).toBe('light');
-    });
-
-    function getButtonElement() {
-      return fixture.debugElement.query(By.css("[test-id='theme-toggle']"))
-        .nativeElement as HTMLButtonElement;
-    }
-  });
-
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();

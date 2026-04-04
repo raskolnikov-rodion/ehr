@@ -1,14 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-
-interface GroupItem {
-  label: string;
-  var: string;
-}
-
-interface ColorGroup {
-  title: string;
-  swatches: GroupItem[];
-}
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ColorGroup, GroupItem } from './models';
 
 @Component({
   selector: 'ehr-color-palette',
@@ -17,8 +8,6 @@ interface ColorGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColorPaletteComponent {
-  readonly darkTheme = signal(false);
-
   readonly groups: ColorGroup[] = [
     {
       title: 'Primary',
@@ -108,12 +97,4 @@ export class ColorPaletteComponent {
     { label: 'Medium', var: '--shadow-md' },
     { label: 'Large', var: '--shadow-lg' },
   ];
-
-  toggleTheme(): void {
-    this.darkTheme.update((v) => !v);
-    document.documentElement.setAttribute(
-      'data-theme',
-      this.darkTheme() ? 'dark' : 'light',
-    );
-  }
 }

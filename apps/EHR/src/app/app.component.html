@@ -1,28 +1,5 @@
-<header class="header">
-  <h1 class="header__home-link">
-    <a routerLink="/">EHR</a>
-  </h1>
-  <nav>
-    <ul role="list">
-      <li>
-        <a routerLink="/docs/color-palette">Color Palette</a>
-      </li>
-    </ul>
-  </nav>
-  @if (isLoggedIn()) {
-    <button
-      class="header__logout-button"
-      type="button"
-      (click)="logout()"
-      [attr.test-id]="'logout-button'"
-    >
-      Log out
-    </button>
-  }
-</header>
+<app-header class="header" />
 <main class="main">
   <router-outlet />
 </main>
-<footer class="footer">
-  <p>Thanks for visiting!</p>
-</footer>
+<app-footer class="footer" />
