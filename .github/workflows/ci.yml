@@ -43,11 +43,15 @@ jobs:
 
       - run: npm ci
 
+      - run: npx playwright install
+
       - uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: 'master'
 
       - run: npx nx affected -t test
+
+      - run: npx nx affected -t e2e
 
   build:
     name: Build

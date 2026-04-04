@@ -1,5 +1,7 @@
-<header>
-  <h1>EHR</h1>
+<header class="header">
+  <h1 class="header__home-link">
+    <a routerLink="/">EHR</a>
+  </h1>
   <nav>
     <ul role="list">
       <li>
@@ -7,10 +9,20 @@
       </li>
     </ul>
   </nav>
+  @if (isLoggedIn()) {
+    <button
+      class="header__logout-button"
+      type="button"
+      (click)="logout()"
+      [attr.test-id]="'logout-button'"
+    >
+      Log out
+    </button>
+  }
 </header>
-<main>
+<main class="main">
   <router-outlet />
 </main>
-<footer>
+<footer class="footer">
   <p>Thanks for visiting!</p>
 </footer>
