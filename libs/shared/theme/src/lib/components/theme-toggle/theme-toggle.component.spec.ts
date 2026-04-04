@@ -1,0 +1,66 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ThemeToggleComponent } from './theme-toggle.component';
+import { ThemeService } from '../../service/theme.service';
+import { axe } from 'vitest-axe';
+import { By } from '@angular/platform-browser';
+
+describe('ThemeToggleComponent', () => {
+  let fixture: ComponentFixture<ThemeToggleComponent>;
+  let component: ThemeToggleComponent;
+  let mockThemeService: {
+    darkTheme: () => boolean;
+    toggleTheme: ReturnType<typeof vi.fn>;
+  };
+
+  beforeEach(async () => {
+    mockThemeService = { darkTheme: () => false, toggleTheme: vi.fn() };
+
+    await TestBed.configureTestingModule({
+      imports: [ThemeToggleComponent],
+      providers: [{ provide: ThemeService, useValue: mockThemeService }],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ThemeToggleComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have no accessibility violations', async () => {
+    await fixture.whenStable();
+    expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+  });
+
+  it('should always render the theme toggle button', () => {
+    fixture.detectChanges();
+    expect(getToggleButton(fixture)).not.toBeNull();
+  });
+
+  it('should show "Dark Mode" label when light theme is active', () => {
+    fixture.detectChanges();
+    expect(getToggleButton(fixture).nativeElement.textContent.trim()).toBe(
+      '🌘 Dark Mode',
+    );
+  });
+
+  it('should show "Light Mode" label when dark theme is active', () => {
+    mockThemeService.darkTheme = () => true;
+    const darkFixture = TestBed.createComponent(ThemeToggleComponent);
+    darkFixture.detectChanges();
+    expect(getToggleButton(darkFixture).nativeElement.textContent.trim()).toBe(
+      '☀️ Light Mode',
+    );
+  });
+
+  it('should call themeService.toggleTheme() when clicked', () => {
+    fixture.detectChanges();
+    getToggleButton(fixture).nativeElement.click();
+    expect(mockThemeService.toggleTheme).toHaveBeenCalledOnce();
+  });
+
+  function getToggleButton(fxtr: ComponentFixture<ThemeToggleComponent>) {
+    return fxtr.debugElement.query(By.css("[test-id='theme-toggle']"));
+  }
+});

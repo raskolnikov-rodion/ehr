@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router } from '@angular/router';
-import { AuthService, ThemeService } from '@ehr/core';
+import { AuthService } from '@ehr/core';
+import { ThemeService } from '@ehr/theme';
 import { axe } from 'vitest-axe';
 import { HeaderComponent } from './header.component';
 
@@ -72,38 +73,5 @@ describe('HeaderComponent', () => {
     function getLogoutButton(fxtr: ComponentFixture<HeaderComponent>) {
       return fxtr.debugElement.query(By.css("[test-id='logout-button']"));
     }
-  });
-
-  describe('Theme toggle', () => {
-    function getToggleButton(fxtr: ComponentFixture<HeaderComponent>) {
-      return fxtr.debugElement.query(By.css("[test-id='theme-toggle']"));
-    }
-
-    it('should always render the theme toggle button', () => {
-      fixture.detectChanges();
-      expect(getToggleButton(fixture)).not.toBeNull();
-    });
-
-    it('should show "Dark Mode" label when light theme is active', () => {
-      fixture.detectChanges();
-      expect(getToggleButton(fixture).nativeElement.textContent.trim()).toBe(
-        '🌘 Dark Mode',
-      );
-    });
-
-    it('should show "Light Mode" label when dark theme is active', () => {
-      mockThemeService.darkTheme = () => true;
-      const darkFixture = TestBed.createComponent(HeaderComponent);
-      darkFixture.detectChanges();
-      expect(
-        getToggleButton(darkFixture).nativeElement.textContent.trim(),
-      ).toBe('☀️ Light Mode');
-    });
-
-    it('should call themeService.toggleTheme() when clicked', () => {
-      fixture.detectChanges();
-      getToggleButton(fixture).nativeElement.click();
-      expect(mockThemeService.toggleTheme).toHaveBeenCalledOnce();
-    });
   });
 });

@@ -2,13 +2,7 @@
   <h1 class="header__home-link">
     <a routerLink="/">EHR</a>
   </h1>
-  <button
-    class="header__toggle"
-    (click)="toggleTheme()"
-    [attr.test-id]="'theme-toggle'"
-  >
-    {{ darkTheme() ? '☀️ Light Mode' : '🌘 Dark Mode' }}
-  </button>
+  <ehr-theme-toggle />
   @if (isLoggedIn()) {
     <button
       class="header__logout-button"

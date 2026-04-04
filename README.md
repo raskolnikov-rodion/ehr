@@ -40,7 +40,8 @@ The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpos
 
 | Alias                | Location                      | Purpose                                                |
 | -------------------- | ----------------------------- | ------------------------------------------------------ |
-| `@ehr/core`          | `libs/core`                   | Route guards and main services                         |
+| `@ehr/core`          | `libs/core`                   | Route guards and auth service                          |
+| `@ehr/theme`         | `libs/shared/theme`           | ThemeService, ThemeToggleComponent, theme initialiser  |
 | `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers         |
 | `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |

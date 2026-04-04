@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { provideRouter } from '@angular/router';
-import { AuthService, ThemeService } from '@ehr/core';
+import { AuthService } from '@ehr/core';
+import { ThemeService } from '@ehr/theme';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {

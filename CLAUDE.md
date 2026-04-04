@@ -15,8 +15,9 @@ npx nx build EHR
 npx nx build EHR --configuration=production
 
 # Test (unit — Vitest)
-npx nx test EHR                         # All unit tests
-npx nx test EHR --testFile=path/to/foo.spec.ts  # Single file
+npx nx run-many -t test                 # All projects
+npx nx test <project>                   # Single project (e.g. core, theme, layout)
+npx nx test <project> --testFile=path/to/foo.spec.ts  # Single file
 
 # Lint
 npx nx lint EHR                         # ESLint one project
@@ -44,7 +45,8 @@ Nx monorepo. The app shell lives in `apps/EHR`.
 
 | Path alias           | Location                      | Purpose                                                |
 | -------------------- | ----------------------------- | ------------------------------------------------------ |
-| `@ehr/core`          | `libs/core`                   | Route guards and main services                         |
+| `@ehr/core`          | `libs/core`                   | Route guards and auth service                          |
+| `@ehr/theme`         | `libs/shared/theme`           | ThemeService, ThemeToggleComponent, theme initialiser  |
 | `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers         |
 | `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |
@@ -64,6 +66,10 @@ Demo credentials (defined in `libs/shared/mock-api/src/lib/auth/constants.ts`):
 ### Auth state
 
 `AuthService` (in `@ehr/core`) holds auth state via Angular signals. `isLoggedIn` is a computed signal derived from an `accessToken` signal. The token is persisted to `localStorage` under the key `ehr_access_token`. Route access is controlled by `authGuard` (requires login) and `noAuthGuard` (redirects away if already logged in).
+
+### Theme state
+
+`ThemeService` (in `@ehr/theme`) manages light/dark mode. It reads/writes `data-theme` on `<html>` and persists the choice to `localStorage`. `setInitialThemeOnDocument` is called via `provideAppInitializer` (wired in `apps/EHR/src/app/initializers/theme.initializer.ts`) to apply the saved theme before first render, preventing flash. `ThemeToggleComponent` (`ehr-theme-toggle`) is the UI entry point.
 
 ### Module boundaries
 
