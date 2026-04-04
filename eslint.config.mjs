@@ -18,7 +18,11 @@ export default [
           depConstraints: [
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['type:feature', 'type:core', 'type:shared'],
+              onlyDependOnLibsWithTags: [
+                'type:feature',
+                'type:core',
+                'type:shared',
+              ],
             },
             {
               sourceTag: 'type:feature',
@@ -26,11 +30,11 @@ export default [
             },
             {
               sourceTag: 'type:core',
-              onlyDependOnLibsWithTags: ['type:shared'],
+              onlyDependOnLibsWithTags: ['type:shared', 'type:core'],
             },
             {
               sourceTag: 'type:shared',
-              onlyDependOnLibsWithTags: ['type:shared'],
+              onlyDependOnLibsWithTags: ['type:shared', 'type:core'],
             },
           ],
         },
