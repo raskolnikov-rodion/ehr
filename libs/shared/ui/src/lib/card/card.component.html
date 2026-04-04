@@ -1,0 +1,9 @@
+<ng-content select="card-title">
+  @let cardTitle = title();
+  @if (cardTitle) {
+    <h2 class="card__heading" [attr.test-id]="'card-heading'">
+      {{ cardTitle }}
+    </h2>
+  }
+</ng-content>
+<ng-content select="card-content" />

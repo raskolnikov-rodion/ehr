@@ -1,1 +1,1 @@
-export * from './lib/ui/ui';
+export { CardComponent } from './lib/card/card.component';
