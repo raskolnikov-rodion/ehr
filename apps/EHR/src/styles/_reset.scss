@@ -15,14 +15,12 @@ html {
 }
 
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 /* https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */
 [role='list'] {
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -54,8 +52,8 @@ li {
 
 img,
 picture {
-  max-inline-size: 100%;
   display: block;
+  max-inline-size: 100%;
 }
 
 input,
