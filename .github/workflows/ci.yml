@@ -43,6 +43,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npx playwright install
+
       - uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: 'master'
