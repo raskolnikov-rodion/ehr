@@ -3,7 +3,6 @@ import { By } from '@angular/platform-browser';
 import { provideRouter, Router } from '@angular/router';
 import { AuthService, ThemeService } from '@ehr/core';
 import { axe } from 'vitest-axe';
-import { AppComponent } from '../../app/app.component';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -51,7 +50,7 @@ describe('HeaderComponent', () => {
 
     it('should display log out button when logged in', () => {
       mockAuthService.isLoggedIn = () => true;
-      const loggedInFixture = TestBed.createComponent(AppComponent);
+      const loggedInFixture = TestBed.createComponent(HeaderComponent);
       loggedInFixture.detectChanges();
       const button = getLogoutButton(loggedInFixture);
       expect(button).not.toBeNull();
@@ -70,13 +69,13 @@ describe('HeaderComponent', () => {
       expect(navigateSpy).toHaveBeenCalledWith(['/login']);
     });
 
-    function getLogoutButton(fxtr: ComponentFixture<AppComponent>) {
+    function getLogoutButton(fxtr: ComponentFixture<HeaderComponent>) {
       return fxtr.debugElement.query(By.css("[test-id='logout-button']"));
     }
   });
 
   describe('Theme toggle', () => {
-    function getToggleButton(fxtr: ComponentFixture<AppComponent>) {
+    function getToggleButton(fxtr: ComponentFixture<HeaderComponent>) {
       return fxtr.debugElement.query(By.css("[test-id='theme-toggle']"));
     }
 
@@ -94,7 +93,7 @@ describe('HeaderComponent', () => {
 
     it('should show "Light Mode" label when dark theme is active', () => {
       mockThemeService.darkTheme = () => true;
-      const darkFixture = TestBed.createComponent(AppComponent);
+      const darkFixture = TestBed.createComponent(HeaderComponent);
       darkFixture.detectChanges();
       expect(
         getToggleButton(darkFixture).nativeElement.textContent.trim(),
