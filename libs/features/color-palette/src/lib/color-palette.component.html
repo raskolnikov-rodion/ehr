@@ -1,15 +1,4 @@
-<header class="header">
-  <h2 class="header__heading" [attr.test-id]="'header-heading'">
-    EHR Color Palette
-  </h2>
-  <button
-    class="header__toggle"
-    (click)="toggleTheme()"
-    [attr.test-id]="'theme-toggle'"
-  >
-    {{ darkTheme() ? '☀️ Light Mode' : '🌘 Dark Mode' }}
-  </button>
-</header>
+<h2 class="header" [attr.test-id]="'header-heading'">EHR Color Palette</h2>
 
 @for (group of groups; track group.title) {
   <section class="group">
