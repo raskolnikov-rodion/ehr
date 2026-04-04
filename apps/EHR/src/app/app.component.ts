@@ -1,29 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { AuthService, ThemeService } from '@ehr/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from '../components/header/header.component';
 
 @Component({
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterOutlet, HeaderComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  private readonly auth = inject(AuthService);
-  private readonly themeService = inject(ThemeService);
-  private readonly router = inject(Router);
-
-  readonly isLoggedIn = this.auth.isLoggedIn;
-
-  readonly darkTheme = this.themeService.darkTheme;
-
-  logout(): void {
-    this.auth.logout();
-    this.router.navigate(['/login']);
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
-  }
-}
+export class AppComponent {}
