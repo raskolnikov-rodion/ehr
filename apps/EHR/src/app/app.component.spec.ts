@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { Router, provideRouter } from '@angular/router';
-import { AuthService } from '@ehr/core';
+import { AuthService, ThemeService } from '@ehr/core';
 import { AppComponent } from './app.component';
 import { By } from '@angular/platform-browser';
 
@@ -11,21 +11,25 @@ describe('AppComponent', () => {
     isLoggedIn: () => boolean;
     logout: ReturnType<typeof vi.fn>;
   };
+  let mockThemeService: {
+    darkTheme: () => boolean;
+    toggleTheme: ReturnType<typeof vi.fn>;
+  };
   let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
 
   beforeEach(async () => {
     mockAuthService = { isLoggedIn: () => false, logout: vi.fn() };
+    mockThemeService = { darkTheme: () => false, toggleTheme: vi.fn() };
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [
         provideRouter([]),
         { provide: AuthService, useValue: mockAuthService },
+        { provide: ThemeService, useValue: mockThemeService },
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
   });
 
   it('should render title', async () => {
@@ -71,54 +75,36 @@ describe('AppComponent', () => {
     }
   });
 
-  describe('theme toggle', () => {
-    it('should show Dark Mode button when theme is light (default)', async () => {
-      await fixture.whenStable();
-      const btn = getThemeToggleElement();
-      expect(btn.textContent).toContain('Dark Mode');
-    });
-
-    it('should toggle dark signal and update button text on click', async () => {
-      await fixture.whenStable();
-      const btn = getThemeToggleElement();
-
-      btn.click();
-      await fixture.whenStable();
-
-      expect(component.darkTheme()).toBe(true);
-      expect(btn.textContent).toContain('Light Mode');
-    });
-
-    it('should set data-theme="dark" on the document root when toggled on', async () => {
-      await fixture.whenStable();
-      const btn = getThemeToggleElement();
-
-      btn.click();
-      await fixture.whenStable();
-
-      expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
-    });
-
-    it('should set data-theme="light" when toggled back to light', async () => {
-      await fixture.whenStable();
-      const btn = getThemeToggleElement();
-
-      btn.click();
-      await fixture.whenStable();
-      btn.click();
-      await fixture.whenStable();
-
-      expect(component.darkTheme()).toBe(false);
-      expect(document.documentElement.getAttribute('data-theme')).toBe('light');
-    });
-
-    function getThemeToggleElement() {
-      return fixture.debugElement.query(By.css("[test-id='theme-toggle']"))
-        .nativeElement as HTMLButtonElement;
+  describe('Theme toggle', () => {
+    function getToggleButton(fxtr: ComponentFixture<AppComponent>) {
+      return fxtr.debugElement.query(By.css("[test-id='theme-toggle']"));
     }
 
-    afterEach(() => {
-      document.documentElement.setAttribute('data-theme', '');
+    it('should always render the theme toggle button', () => {
+      fixture.detectChanges();
+      expect(getToggleButton(fixture)).not.toBeNull();
+    });
+
+    it('should show "Dark Mode" label when light theme is active', () => {
+      fixture.detectChanges();
+      expect(getToggleButton(fixture).nativeElement.textContent.trim()).toBe(
+        '🌘 Dark Mode',
+      );
+    });
+
+    it('should show "Light Mode" label when dark theme is active', () => {
+      mockThemeService.darkTheme = () => true;
+      const darkFixture = TestBed.createComponent(AppComponent);
+      darkFixture.detectChanges();
+      expect(
+        getToggleButton(darkFixture).nativeElement.textContent.trim(),
+      ).toBe('☀️ Light Mode');
+    });
+
+    it('should call themeService.toggleTheme() when clicked', () => {
+      fixture.detectChanges();
+      getToggleButton(fixture).nativeElement.click();
+      expect(mockThemeService.toggleTheme).toHaveBeenCalledOnce();
     });
   });
 });

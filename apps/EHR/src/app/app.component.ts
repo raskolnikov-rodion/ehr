@@ -1,11 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { AuthService } from '@ehr/core';
+import { AuthService, ThemeService } from '@ehr/core';
 
 @Component({
   imports: [RouterLink, RouterOutlet],
@@ -16,13 +11,12 @@ import { AuthService } from '@ehr/core';
 })
 export class AppComponent {
   private readonly auth = inject(AuthService);
+  private readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
 
   readonly isLoggedIn = this.auth.isLoggedIn;
 
-  readonly darkTheme = signal(
-    document.documentElement.getAttribute('data-theme') === 'dark',
-  );
+  readonly darkTheme = this.themeService.darkTheme;
 
   logout(): void {
     this.auth.logout();
@@ -30,10 +24,6 @@ export class AppComponent {
   }
 
   toggleTheme(): void {
-    this.darkTheme.update((v) => !v);
-    document.documentElement.setAttribute(
-      'data-theme',
-      this.darkTheme() ? 'dark' : 'light',
-    );
+    this.themeService.toggleTheme();
   }
 }
