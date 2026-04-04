@@ -2,13 +2,6 @@
   <h1 class="header__home-link">
     <a routerLink="/">EHR</a>
   </h1>
-  <nav>
-    <ul role="list">
-      <li>
-        <a routerLink="/docs/color-palette">Color Palette</a>
-      </li>
-    </ul>
-  </nav>
   @if (isLoggedIn()) {
     <button
       class="header__logout-button"
@@ -25,4 +18,11 @@
 </main>
 <footer class="footer">
   <p>Thanks for visiting!</p>
+  <nav>
+    <ul role="list">
+      <li>
+        <a routerLink="/docs/color-palette">Color Palette</a>
+      </li>
+    </ul>
+  </nav>
 </footer>
