@@ -1,5 +1,5 @@
 {
-  "name": "@ehr/data-access",
+  "name": "@ehr/mock-api",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^21.2.0",

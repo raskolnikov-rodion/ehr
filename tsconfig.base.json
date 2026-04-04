@@ -18,7 +18,7 @@
       "@ehr/color-palette": ["libs/features/color-palette/src/index.ts"],
       "@ehr/core": ["libs/core/src/index.ts"],
       "@ehr/dashboard": ["libs/features/dashboard/src/index.ts"],
-      "@ehr/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@ehr/mock-api": ["libs/shared/mock-api/src/index.ts"],
       "@ehr/login": ["libs/features/login/src/index.ts"],
       "@ehr/ui": ["libs/shared/ui/src/index.ts"]
     }
