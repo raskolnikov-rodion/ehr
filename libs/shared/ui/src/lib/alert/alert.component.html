@@ -1,0 +1,23 @@
+<span
+  class="alert__icon"
+  aria-hidden="true"
+  [style.mask-image]="'url(' + iconUrl() + ')'"
+></span>
+<div class="alert__body">
+  @let alertTitle = title();
+  @if (alertTitle) {
+    <strong class="alert__title">{{ alertTitle }}</strong>
+  }
+  <span class="alert__message">{{ message() }}</span>
+</div>
+@if (dismissible()) {
+  <button
+    type="button"
+    class="alert__dismiss"
+    aria-label="Dismiss"
+    (click)="dismissed.emit('alert-' + id())"
+    test-id="alert-dismiss-button"
+  >
+    <span class="alert__dismiss-icon" aria-hidden="true"></span>
+  </button>
+}
