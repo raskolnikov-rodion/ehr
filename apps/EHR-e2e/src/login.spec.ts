@@ -35,7 +35,7 @@ test.describe('Login journey', () => {
     await page.getByTestId('password-input').fill('wrongPassword');
     await page.getByTestId('submit-button').click();
 
-    await expect(page.getByTestId('login-error')).toContainText(
+    await expect(page.getByTestId('alert-login-error')).toContainText(
       'Incorrect email or password.',
     );
   });

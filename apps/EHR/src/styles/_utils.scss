@@ -1,0 +1,14 @@
+.divider {
+  display: flex;
+  gap: var(--space-400);
+  align-items: center;
+  font-size: var(--font-size-300);
+  color: var(--color-text-muted);
+
+  &::before,
+  &::after {
+    flex: 1;
+    content: '';
+    border-top: 1px solid var(--color-border-light);
+  }
+}

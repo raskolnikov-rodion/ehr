@@ -1,6 +1,4 @@
 @use './styles/reset';
-
-// Utilities
 @use './styles/breakpoints';
 
 // Variables
@@ -10,5 +8,6 @@
 @use './styles/spacing';
 @use './styles/typography';
 
-// Base stylying
+// App styling
 @use './styles/base';
+@use './styles/utils';

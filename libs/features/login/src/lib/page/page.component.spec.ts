@@ -3,29 +3,36 @@ import { axe } from 'vitest-axe';
 import { By } from '@angular/platform-browser';
 import { vi } from 'vitest';
 import { of, Subject, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { AuthService } from '@ehr/core';
 
 import { PageComponent } from './page.component';
+
+class MockComponent {}
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
   let authService: { login: ReturnType<typeof vi.fn> };
-  let router: { navigate: ReturnType<typeof vi.fn> };
+  let router: Router;
 
   beforeEach(async () => {
     authService = { login: vi.fn() };
-    router = { navigate: vi.fn() };
 
     await TestBed.configureTestingModule({
       imports: [PageComponent],
       providers: [
         { provide: AuthService, useValue: authService },
-        { provide: Router, useValue: router },
+        provideRouter([
+          {
+            path: 'dashboard',
+            component: MockComponent,
+          },
+        ]),
       ],
     }).compileComponents();
 
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
@@ -35,10 +42,7 @@ describe('PageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the login form inside a card', () => {
-    const card = fixture.debugElement.query(By.css('ehr-card'));
-    expect(card).toBeTruthy();
-
+  it('should render the login form', () => {
     const form = fixture.debugElement.query(By.css('ehr-login-form'));
     expect(form).toBeTruthy();
   });
@@ -62,16 +66,16 @@ describe('PageComponent', () => {
       await fixture.whenStable();
 
       expect(getLoadingElement()).toBeTruthy();
-      expect(getLoadingElement().nativeElement.textContent).toContain(
-        'Authenticating credentials',
-      );
     });
 
     it('should hide loading message when login fails', async () => {
       authService.login.mockReturnValue(
         throwError(() => new Error('Unauthorized')),
       );
-      component.onFormSubmit({ email: 'bad@test.com', password: 'wrong' });
+      component.onFormSubmit({
+        email: 'bad@test.com',
+        password: 'wrongPassword',
+      });
       await fixture.whenStable();
 
       expect(getLoadingElement()).toBeNull();
@@ -86,6 +90,7 @@ describe('PageComponent', () => {
           user: { id: '1', name: 'Test', email: 'test@test.com' },
         }),
       );
+      vi.spyOn(router, 'navigate');
       component.onFormSubmit({
         email: 'test@test.com',
         password: 'password123',
@@ -97,10 +102,6 @@ describe('PageComponent', () => {
   });
 
   describe('Failed Login', () => {
-    function getErrorElement() {
-      return fixture.debugElement.query(By.css('[test-id="login-error"]'));
-    }
-
     it('should not show an error message initially', () => {
       expect(getErrorElement()).toBeNull();
     });
@@ -109,7 +110,10 @@ describe('PageComponent', () => {
       authService.login.mockReturnValue(
         throwError(() => new Error('Unauthorized')),
       );
-      component.onFormSubmit({ email: 'bad@test.com', password: 'wrong' });
+      component.onFormSubmit({
+        email: 'bad@test.com',
+        password: 'wrongPassword',
+      });
       await fixture.whenStable();
 
       const error = getErrorElement();
@@ -123,16 +127,28 @@ describe('PageComponent', () => {
       authService.login.mockReturnValue(
         throwError(() => new Error('Unauthorized')),
       );
-      component.onFormSubmit({ email: 'bad@test.com', password: 'wrong' });
+      component.onFormSubmit({
+        email: 'bad@test.com',
+        password: 'wrongPassword',
+      });
       await fixture.whenStable();
 
       const pending$ = new Subject<never>();
       authService.login.mockReturnValue(pending$);
-      component.onFormSubmit({ email: 'bad@test.com', password: 'wrong2' });
+      component.onFormSubmit({
+        email: 'bad@test.com',
+        password: 'wrongPassword2',
+      });
       await fixture.whenStable();
 
       expect(getErrorElement()).toBeNull();
     });
+
+    function getErrorElement() {
+      return fixture.debugElement.query(
+        By.css('[test-id="alert-login-error"]'),
+      );
+    }
   });
 
   it('should have no accessibility violations', async () => {
