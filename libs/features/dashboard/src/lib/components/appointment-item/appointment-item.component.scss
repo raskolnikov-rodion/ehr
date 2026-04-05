@@ -1,0 +1,63 @@
+:host {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: var(--space-300);
+  align-items: center;
+  padding: var(--space-400) var(--space-600);
+}
+
+.appt {
+  &__time {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
+  }
+
+  &__info {
+    display: grid;
+    gap: var(--space-50);
+  }
+
+  &__patient {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  &__type {
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-50) var(--space-200);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: capitalize;
+  white-space: nowrap;
+  border-radius: var(--border-radius-sm);
+
+  &--confirmed {
+    color: var(--color-success);
+    background: var(--color-success-bg);
+  }
+
+  &--pending {
+    color: var(--color-warning);
+    background: var(--color-warning-bg);
+  }
+
+  &--in-progress {
+    color: var(--color-primary-700);
+    background: var(--color-primary-100);
+  }
+
+  &--done {
+    color: var(--color-text-muted);
+    background: var(--color-bg-muted);
+  }
+}
