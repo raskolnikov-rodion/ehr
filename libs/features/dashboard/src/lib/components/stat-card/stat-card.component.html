@@ -1,0 +1,14 @@
+<ehr-card>
+  <div ngProjectAs="card-content" class="stat-card">
+    <div class="stat-card__header">
+      <span class="stat-card__label">{{ label() }}</span>
+      <span
+        class="stat-card__icon"
+        aria-hidden="true"
+        [style.mask-image]="'url(' + iconUrl() + ')'"
+      ></span>
+    </div>
+    <div class="stat-card__value">{{ value() }}</div>
+    <div [class]="trendCssClass()">{{ trend() }}</div>
+  </div>
+</ehr-card>
