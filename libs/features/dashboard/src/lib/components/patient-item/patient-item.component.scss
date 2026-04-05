@@ -1,0 +1,63 @@
+:host {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr auto;
+  gap: var(--space-300);
+  align-items: center;
+  padding: var(--space-400) var(--space-600);
+}
+
+.patient-item {
+  &__avatar {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-on-primary);
+    border-radius: 50%;
+
+    &--blue {
+      background: var(--color-primary-500);
+    }
+
+    &--teal {
+      background: var(--color-secondary-500);
+    }
+
+    &--amber {
+      background: var(--color-error);
+    }
+
+    &--green {
+      background: var(--color-success);
+    }
+
+    &--gray {
+      background: var(--color-neutral-500);
+    }
+  }
+
+  &__body {
+    display: grid;
+    gap: var(--space-50);
+  }
+
+  &__name {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  &__detail {
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+  }
+
+  &__visit {
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+}
