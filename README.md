@@ -71,7 +71,7 @@ For a project of this size the monorepo tooling is heavier than strictly necessa
 
 Auth state is managed with Angular signals rather than a third-party store. `isLoggedIn` is a `computed` signal derived from an `accessToken` signal in `AuthService`, persisted to `localStorage`. There is no imperative mutation — state flows reactively from a single source of truth.
 
-Route access is controlled by two functional guards: `authGuard` (blocks unauthenticated access) and `noAuthGuard` (redirects authenticated users away from the login page).
+Route access is controlled by two functional guards: `authGuard` (blocks unauthenticated access) and `noAuthGuard` (redirects authenticated users away from the login page). Both are pure functions that compose cleanly with Angular's `canActivate` API — no class-based guards, no service wrapping.
 
 **Signals over NgRx.** NgRx would be the conventional choice for shared state in a large Angular app, but it comes with real costs: boilerplate (actions, reducers, selectors, effects), a non-trivial learning curve, and a heavier production bundle. For the complexity level of this project, that overhead is not justified. Angular signals achieve the same reactive, unidirectional data flow with no extra dependencies, less code, and a smaller bundle. NgRx remains a natural upgrade path if the state model grows, without paying its price upfront.
 
@@ -88,6 +88,10 @@ This design means:
 ### Lazy-loaded routes
 
 Feature routes are lazy-loaded using Angular's `loadComponent` API. The login and dashboard pages are never bundled into the initial chunk — they are fetched on demand when the user first navigates to each route. This keeps the initial bundle small and reduces time-to-interactive, which matters most on slow connections or low-end devices.
+
+### Theme system
+
+`ThemeService` manages light/dark mode by reading and writing a `data-theme` attribute on `<html>`, with the user's preference persisted to `localStorage`. A `provideAppInitializer` call applies the saved theme synchronously before the first render, preventing a flash of the wrong theme on page load. `ThemeToggleComponent` is the sole UI entry point, keeping the service decoupled from layout concerns.
 
 ---
 
@@ -121,31 +125,56 @@ Accessibility is treated as a first-class concern rather than an afterthought:
 
 ---
 
+## Security
+
+### Route protection
+
+Feature routes are guarded at the router level. `authGuard` redirects unauthenticated users to `/login`; `noAuthGuard` redirects already-authenticated users away from `/login`, preventing redundant re-authentication.
+
+### Branch protection
+
+The `master` branch has a GitHub ruleset that requires all three CI jobs (Lint, Test, Build) to pass before a pull request can merge. Direct pushes to `master` are blocked. No code reaches production without passing the full automated quality gate.
+
+### Dependency security
+
+Dependabot is configured (`.github/dependabot.yml`) to open weekly pull requests for outdated npm packages and GitHub Actions version pins. Combined with the CI gate, dependency updates are tested automatically before they can be merged.
+
+---
+
 ## CI/CD
 
-Every pull request runs `nx affected` to lint, test, and build only the projects touched by that change. This keeps CI fast while still enforcing quality on everything that matters. Merges to `master` trigger an automatic deploy to Netlify, so the live demo always reflects the current state of the main branch.
+The CI pipeline runs as three parallel jobs on every pull request and push to `master`:
+
+| Job   | Steps                                                         |
+| ----- | ------------------------------------------------------------- |
+| Lint  | `nx affected -t lint`, `nx affected -t stylelint`             |
+| Test  | `nx affected -t test`, `nx affected -t e2e` (with Playwright) |
+| Build | `nx affected -t build`                                        |
+
+Each job uses `nrwl/nx-set-shas` to calculate the affected set relative to the last successful commit on `master`, so only the projects touched by a change are processed. Merges to `master` trigger an automatic deploy to Netlify, so the live demo always reflects the current state of the main branch.
 
 ---
 
 ## Tech Stack
 
-| Concern   | Tool                             |
-| --------- | -------------------------------- |
-| Framework | Angular (signals, standalone)    |
-| Monorepo  | Nx                               |
-| Styling   | SCSS                             |
-| Unit/int. | Vitest + Angular Testing Library |
-| E2E       | Playwright                       |
-| Linting   | ESLint + Stylelint               |
+| Concern     | Tool                                     |
+| ----------- | ---------------------------------------- |
+| Framework   | Angular (signals, standalone components) |
+| Monorepo    | Nx                                       |
+| Styling     | SCSS                                     |
+| Unit / int. | Vitest + Angular Testing Library         |
+| E2E         | Playwright                               |
+| Linting     | ESLint + `@angular-eslint` + Stylelint   |
+| CI          | GitHub Actions                           |
+| Deployment  | Netlify                                  |
 
 ---
 
-## Commands
+## Commands Sample
 
 ```bash
-npx nx build EHR --configuration=production   # Production build
+npx nx build EHR --configuration=production    # Production build
 npx nx run-many -t lint                        # Lint all projects
-npx nx run-many -t stylelint                   # Stylelint all projects
 npx nx affected -t test                        # Test affected projects (CI)
 npx nx graph                                   # Visualise dependency graph
 ```
