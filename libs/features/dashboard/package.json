@@ -5,7 +5,8 @@
     "vitest-axe": "^0.1.0",
     "vitest": "^4.0.8",
     "@angular/core": "~21.2.0",
-    "@ehr/ui": "0.0.1"
+    "@ehr/ui": "0.0.1",
+    "@angular/common": "~21.2.0"
   },
   "sideEffects": false
 }

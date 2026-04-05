@@ -1,0 +1,49 @@
+:host {
+  display: contents;
+}
+
+.greeting {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-400);
+  align-items: center;
+  justify-content: space-between;
+
+  &__title {
+    font-size: var(--font-size-700);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+  }
+
+  &__subtitle {
+    margin-top: var(--space-100);
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+  }
+
+  &__date-badge {
+    display: flex;
+    gap: var(--space-200);
+    align-items: center;
+    padding: var(--space-200) var(--space-400);
+    font-size: var(--font-size-300);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+  }
+
+  &__calendar-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: currentcolor;
+    mask-image: url('/icons/calendar.svg');
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+}
