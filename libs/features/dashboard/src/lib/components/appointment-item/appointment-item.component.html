@@ -1,0 +1,7 @@
+@let appt = appointment();
+<span class="appt__time">{{ appt.time }}</span>
+<div class="appt__info">
+  <span class="appt__patient">{{ appt.patient }}</span>
+  <span class="appt__type">{{ appt.type }}</span>
+</div>
+<span [class]="badgeCssClass()">{{ appt.status }}</span>
