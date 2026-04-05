@@ -1,30 +1,29 @@
 # @ehr/layout
 
-Shared layout library for the EHR application. Provides the application shell and its structural components.
+Shared layout library. Provides the application shell and its structural components. Import alias: `@ehr/layout`.
+
+`ShellLayoutComponent` is used as a layout route wrapper in the router config — it renders the header and footer around a `<router-outlet>`, so all authenticated pages share a consistent shell without each page needing to declare it.
 
 ## Components
 
-| Component              | Selector           | Description                                                |
-| ---------------------- | ------------------ | ---------------------------------------------------------- |
-| `ShellLayoutComponent` | `ehr-shell-layout` | Top-level route wrapper: header, `<router-outlet>`, footer |
-| `HeaderComponent`      | `ehr-header`       | App bar with home link, sign-out button, and theme toggle  |
-| `FooterComponent`      | `ehr-footer`       | Bottom bar with site-wide navigation links                 |
+| Component              | Selector           | Description                                                                                                    |
+| ---------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `ShellLayoutComponent` | `ehr-shell-layout` | Top-level route wrapper: renders `HeaderComponent`, `<router-outlet>`, and `FooterComponent`                   |
+| `HeaderComponent`      | `ehr-header`       | App bar with home link, `LogoutButtonComponent` from `@ehr/core`, and `ThemeToggleComponent` from `@ehr/theme` |
+| `FooterComponent`      | `ehr-footer`       | Bottom bar with site-wide navigation links                                                                     |
 
 ## Usage
 
-Import from `@ehr/layout`:
-
 ```typescript
 import { ShellLayoutComponent } from '@ehr/layout';
-```
 
-`ShellLayoutComponent` is typically used as a layout route wrapper in the router config:
-
-```typescript
+// In your route config:
 {
   path: '',
   component: ShellLayoutComponent,
-  children: [...],
+  children: [
+    { path: 'dashboard', canActivate: [authGuard], loadComponent: () => ... },
+  ],
 }
 ```
 
