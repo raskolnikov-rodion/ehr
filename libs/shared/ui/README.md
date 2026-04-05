@@ -4,9 +4,10 @@ Shared presentational components with no business logic dependencies. Import ali
 
 ## Public API
 
-| Export          | Selector   | Inputs                     | Description                                               |
-| --------------- | ---------- | -------------------------- | --------------------------------------------------------- |
-| `CardComponent` | `ehr-card` | `title: string` (optional) | Generic card container; projects content via `ng-content` |
+| Export           | Selector    | Description                                                     |
+| ---------------- | ----------- | --------------------------------------------------------------- |
+| `AlertComponent` | `ehr-alert` | Generic alert box; can display a title, an action and a message |
+| `CardComponent`  | `ehr-card`  | Generic card container; projects content via `ng-content`       |
 
 ## Running unit tests
 
