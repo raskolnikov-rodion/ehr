@@ -1,6 +1,8 @@
 # color-palette
 
-A design-system reference library. Exposes a component that renders CSS custom properties defined in the EHR app's theme — colors, semantic tokens, backgrounds, text, borders, focus/interaction states, and shadows/elevation — as a visual swatch grid.
+Design-system color reference library. Import alias: `@ehr/color-palette`.
+
+Exposes a component that renders CSS custom properties defined in the EHR app's theme — colors, semantic tokens, backgrounds, text, borders, focus/interaction states, and shadows/elevation — as a visual swatch grid.
 
 ## Features
 
@@ -13,3 +15,9 @@ A design-system reference library. Exposes a component that renders CSS custom p
 | Export                  | Description                                                              |
 | ----------------------- | ------------------------------------------------------------------------ |
 | `ColorPaletteComponent` | Standalone component; import directly or re-export from a feature module |
+
+## Running unit tests
+
+```bash
+npx nx test color-palette
+```

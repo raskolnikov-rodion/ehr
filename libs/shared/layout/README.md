@@ -30,4 +30,6 @@ import { ShellLayoutComponent } from '@ehr/layout';
 
 ## Running unit tests
 
-Run `npx nx test layout` to execute the unit tests.
+```bash
+npx nx test layout
+```
