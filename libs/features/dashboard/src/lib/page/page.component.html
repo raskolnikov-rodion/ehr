@@ -1,3 +1,59 @@
-<ehr-card class="card" title="Dashboard">
-  <p ngProjectAs="card-content">No tasks, enjoy the day!</p>
-</ehr-card>
+<div class="dashboard">
+  <ehr-dashboard-greeting name="Dr. Demo User" />
+
+  @if (!alertDismissed()) {
+    <ehr-alert
+      [type]="alertType"
+      title="2 critical lab results require your review"
+      message="Margaret Collins (MRN 004821) and James Okafor (MRN 007134) have abnormal results flagged by the lab since yesterday."
+      [dismissible]="true"
+      (dismissed)="alertDismissed.set(true)"
+    />
+  }
+
+  <section class="stats" aria-label="Today's summary">
+    @for (stat of stats; track stat.label) {
+      <ehr-stat-card [statistic]="stat" />
+    }
+  </section>
+
+  <div class="columns">
+    <ehr-card title="Today's Schedule" action="View all">
+      <ul
+        ngProjectAs="card-content"
+        class="appt-list"
+        aria-label="Today's appointments"
+      >
+        @for (appt of appointments; track appt.time) {
+          <ehr-appointment-item class="appt-list__item" [appointment]="appt" />
+        }
+      </ul>
+    </ehr-card>
+
+    <div class="right-col">
+      <ehr-card title="Pending Actions" action="View all">
+        <ul
+          ngProjectAs="card-content"
+          class="action-list"
+          aria-label="Pending actions"
+        >
+          @for (item of pendingActions; track item.title) {
+            <ehr-action-item [action]="item" class="action-list__item" />
+          }
+        </ul>
+      </ehr-card>
+
+      <ehr-card title="Recent Patients" action="All patients">
+        <ul
+          ngProjectAs="card-content"
+          class="patient-list"
+          aria-label="Recent patients"
+        >
+          @for (patient of recentPatients; track patient.name) {
+            <ehr-patient-item [patient]="patient" class="patient-list__item" />
+          }
+        </ul>
+      </ehr-card>
+    </div>
+  </div>
+</div>

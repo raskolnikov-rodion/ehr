@@ -22,7 +22,40 @@ describe('PageComponent', () => {
   });
 
   it('should have no accessibility violations', async () => {
-    await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+  });
+
+  it('should render the alert initially', () => {
+    expect(fixture.nativeElement.querySelector('ehr-alert')).toBeTruthy();
+  });
+
+  it('should hide the alert when dismissed', () => {
+    component.alertDismissed.set(true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('ehr-alert')).toBeNull();
+  });
+
+  it('should render 4 stat cards', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('ehr-stat-card'),
+    ).toHaveLength(4);
+  });
+
+  it('should render all 9 appointments', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('ehr-appointment-item'),
+    ).toHaveLength(9);
+  });
+
+  it('should render all 5 pending actions', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('ehr-action-item'),
+    ).toHaveLength(5);
+  });
+
+  it('should render all 5 recent patients', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('ehr-patient-item'),
+    ).toHaveLength(5);
   });
 });
