@@ -1,27 +1,66 @@
+@use 'breakpoints' as bp;
+
 :host {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  display: block;
 }
 
-.card {
-  &__content {
+.page {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 100dvh;
+
+  @include bp.up(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-panel {
+  display: grid;
+  place-items: center;
+  padding: var(--space-700) var(--space-600);
+
+  &__inner {
     display: grid;
-    grid-template-rows: auto 20px;
-    row-gap: var(--space-200);
-    width: 20.625rem;
+    gap: var(--space-700);
+    width: 100%;
+    max-width: 22rem;
   }
 
-  &__loading-message {
+  &__btn-sso {
+    display: flex;
+    gap: var(--space-300);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--space-300) var(--space-400);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
-  }
+    cursor: pointer;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--border-radius-md);
+    transition:
+      background-color 120ms,
+      border-color 120ms;
 
-  &__error-message {
-    color: var(--color-error);
-  }
+    &:hover {
+      background: var(--color-bg-muted);
+      border-color: var(--color-border-strong);
+    }
 
-  &__error-message,
-  &__loading-message {
-    text-align: center;
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+
+    &-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-color: currentcolor;
+      mask: url('/icons/building.svg') no-repeat center / contain;
+      mask-mode: alpha;
+    }
   }
 }

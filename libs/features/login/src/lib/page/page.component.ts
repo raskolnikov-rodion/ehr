@@ -6,16 +6,23 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@ehr/core';
-import { CardComponent } from '@ehr/ui';
-import { FormComponent } from '../form/form.component';
-import { LoginFormData } from '../form/models';
+import { AlertComponent } from '@ehr/ui';
+import { BrandPanelComponent } from '../components/brand-panel/brand-panel.component';
+import { FormHeaderComponent } from '../components/form-header/form-header.component';
+import { FormComponent } from '../components/form/form.component';
+import { LoginFormData } from '../components/form/models';
 
 @Component({
   selector: 'ehr-login-page',
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
-  imports: [CardComponent, FormComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AlertComponent,
+    BrandPanelComponent,
+    FormComponent,
+    FormHeaderComponent,
+  ],
 })
 export class PageComponent {
   private readonly auth = inject(AuthService);
