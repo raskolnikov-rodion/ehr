@@ -3,3 +3,11 @@ export enum TrendDirection {
   DOWN = 'down',
   NEUTRAL = 'neutral',
 }
+
+export interface Statistic {
+  label: string;
+  value: string;
+  trend: string;
+  trendDirection: TrendDirection;
+  iconUrl: string;
+}
