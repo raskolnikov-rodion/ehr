@@ -137,7 +137,7 @@ The `master` branch has a GitHub ruleset that requires all three CI jobs (Lint, 
 
 ### Dependency security
 
-Dependabot is configured (`.github/dependabot.yml`) to open weekly pull requests for outdated npm packages and GitHub Actions version pins. Combined with the CI gate, dependency updates are tested automatically before they can be merged.
+Dependabot updates are enabled at repository configuration level. It automatically attempts to open pull requests to resolve security alerts.
 
 ---
 
