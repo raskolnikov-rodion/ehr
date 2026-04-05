@@ -47,6 +47,36 @@ describe('CardComponent', () => {
     expect(heading).toBe(null);
   });
 
+  describe('Action', () => {
+    it('should render the action', async () => {
+      const mockAction = 'Review';
+      fixture.componentRef.setInput('action', mockAction);
+
+      await fixture.whenStable();
+
+      const action = getActionElement();
+      expect(action.textContent).toContain(mockAction);
+    });
+
+    it('should emit card id when action is clicked', async () => {
+      let emitted = null;
+
+      component.actionClick.subscribe((value) => (emitted = value));
+
+      fixture.componentRef.setInput('action', 'Review');
+      await fixture.whenStable();
+      const action = getActionElement();
+      action.click();
+
+      expect(emitted).toContain(`card-${component.id()}`);
+    });
+
+    function getActionElement() {
+      return fixture.debugElement.query(By.css("[test-id='card-action']"))
+        .nativeElement as HTMLElement;
+    }
+  });
+
   it('should project card-content', async () => {
     const mockContent = 'Patient details';
 

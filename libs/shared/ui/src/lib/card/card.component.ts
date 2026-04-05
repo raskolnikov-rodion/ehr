@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
 @Component({
   selector: 'ehr-card',
@@ -7,5 +12,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
+  readonly id = input<string>(`${Math.random()}`);
   readonly title = input<string>('');
+  readonly action = input<string>('');
+  readonly bordered = input(true);
+
+  readonly actionClick = output<string>();
 }
