@@ -1,0 +1,9 @@
+@let act = action();
+<span [class]="dotCssClass()" aria-hidden="true"></span>
+<div class="action-item__body">
+  <span class="action-item__title">{{ act.title }}</span>
+  <span class="action-item__meta">{{ act.meta }}</span>
+</div>
+<button type="button" class="action-item__btn">
+  {{ act.actionLabel }}
+</button>
