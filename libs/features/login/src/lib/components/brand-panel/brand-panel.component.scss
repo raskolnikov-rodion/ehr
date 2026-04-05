@@ -1,0 +1,108 @@
+@use 'breakpoints' as bp;
+
+.brand {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: var(--space-800);
+  overflow: hidden;
+  color: var(--color-text-on-primary);
+  background-color: var(--color-primary-900-default);
+  background-image:
+    radial-gradient(
+      ellipse at 20% 80%,
+      color-mix(in srgb, var(--color-secondary-500) 20%, transparent) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 20%,
+      color-mix(in srgb, var(--color-primary-500) 30%, transparent) 0%,
+      transparent 50%
+    );
+
+  @include bp.up(lg) {
+    display: flex;
+  }
+
+  &__logo {
+    display: flex;
+    gap: var(--space-300);
+    align-items: center;
+  }
+
+  &__logo-icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-secondary-500);
+    border-radius: var(--border-radius-md);
+  }
+
+  &__logo-text {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-600);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-500);
+  }
+
+  &__headline {
+    font-size: var(--font-size-800);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-on-primary);
+
+    em {
+      font-style: normal;
+      color: var(--color-secondary-300-default);
+    }
+  }
+
+  &__desc {
+    font-size: var(--font-size-400);
+    line-height: var(--line-height-regular);
+    color: var(--color-text-on-primary);
+  }
+
+  &__features {
+    display: grid;
+    gap: var(--space-400);
+    list-style: none;
+  }
+
+  &__feature {
+    display: flex;
+    gap: var(--space-300);
+    align-items: center;
+    font-size: var(--font-size-300);
+    color: var(--color-text-on-primary);
+  }
+
+  &__feature-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--color-text-on-primary);
+    border-radius: 50%;
+  }
+
+  &__disclaimer {
+    font-size: var(--font-size-300);
+    font-style: italic;
+    line-height: var(--line-height-regular);
+    color: color-mix(in srgb, var(--color-text-on-primary) 85%, transparent);
+  }
+
+  &__footer {
+    font-size: var(--font-size-300);
+    color: color-mix(in srgb, var(--color-text-on-primary) 85%, transparent);
+  }
+}
