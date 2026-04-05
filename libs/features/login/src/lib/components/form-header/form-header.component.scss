@@ -1,0 +1,48 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: contents;
+}
+
+.mobile-logo {
+  display: flex;
+  gap: var(--space-300);
+  align-items: center;
+
+  @include bp.up(lg) {
+    display: none;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-primary-500);
+    border-radius: var(--border-radius-md);
+  }
+
+  &__text {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-500);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+}
+
+.form-header {
+  display: grid;
+  gap: var(--space-200);
+
+  &__title {
+    font-size: var(--font-size-700);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+  }
+
+  &__subtitle {
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+  }
+}
