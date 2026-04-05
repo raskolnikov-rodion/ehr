@@ -1,0 +1,53 @@
+:host {
+  display: contents;
+}
+
+.stat-card {
+  display: grid;
+  gap: var(--space-300);
+  padding: var(--space-500) var(--space-600);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-text-muted);
+    background-color: currentcolor;
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  &__value {
+    font-size: var(--font-size-800);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+  }
+
+  &__trend {
+    font-size: var(--font-size-300);
+    color: var(--color-text-muted);
+
+    &--up {
+      color: var(--color-success);
+    }
+
+    &--down {
+      color: var(--color-error);
+    }
+  }
+}
