@@ -23,7 +23,10 @@
             "input": "apps/EHR/public"
           }
         ],
-        "styles": ["apps/EHR/src/styles.scss"]
+        "styles": ["apps/EHR/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/EHR/src/styles"]
+        }
       },
       "configurations": {
         "production": {
