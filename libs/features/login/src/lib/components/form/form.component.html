@@ -1,0 +1,111 @@
+<form class="form" (submit)="onSubmit($event)" novalidate>
+  <div class="form__fields">
+    <div class="form__field">
+      <div class="form__label-row">
+        <label class="form__label" for="email">Email address</label>
+      </div>
+      @let email = form.email();
+      @let emailInvalid = email.touched() && email.invalid();
+      <div class="form__input-wrap">
+        <input
+          class="form__input"
+          [class.form__input--invalid]="emailInvalid"
+          id="email"
+          type="email"
+          [formField]="form.email"
+          autocomplete="email"
+          placeholder="you@hospital.org"
+          test-id="email-input"
+          [attr.aria-invalid]="emailInvalid || null"
+          aria-describedby="email-error"
+        />
+      </div>
+      @if (emailInvalid) {
+        <span
+          class="form__error body-text-sm"
+          id="email-error"
+          role="alert"
+          test-id="email-error"
+        >
+          {{ email.errors()[0].message }}
+        </span>
+      }
+    </div>
+
+    <div class="form__field">
+      <div class="form__label-row">
+        <label class="form__label" for="password">Password</label>
+        <!-- TODO: Add meaningful behaviour for this link -->
+        <a class="form__link" routerLink="/">Forgot password?</a>
+      </div>
+      @let password = form.password();
+      @let passwordInvalid = password.touched() && password.invalid();
+      @let visiblePassword = showPassword();
+      <div class="form__input-wrap">
+        <input
+          class="form__input form__input--with-toggle"
+          [class.form__input--invalid]="passwordInvalid"
+          id="password"
+          [type]="visiblePassword ? 'text' : 'password'"
+          [formField]="form.password"
+          autocomplete="current-password"
+          placeholder="••••••••"
+          test-id="password-input"
+          [attr.aria-invalid]="passwordInvalid || null"
+          aria-describedby="password-error"
+        />
+        <button
+          type="button"
+          class="form__toggle"
+          [attr.aria-label]="
+            visiblePassword ? 'Hide password' : 'Show password'
+          "
+          (click)="togglePasswordVisibility()"
+        >
+          @if (visiblePassword) {
+            <span class="form__icon-eye-closed" aria-hidden="true"></span>
+          } @else {
+            <span class="form__icon-eye" aria-hidden="true"></span>
+          }
+        </button>
+      </div>
+      @if (passwordInvalid) {
+        <span
+          class="form__error body-text-sm"
+          id="password-error"
+          role="alert"
+          test-id="password-error"
+        >
+          {{ password.errors()[0].message }}
+        </span>
+      }
+    </div>
+  </div>
+
+  <div class="form__extras">
+    <label class="form__extras-label">
+      <!-- TODO: Add meaningful behaviour for this checkbox -->
+      <input type="checkbox" autocomplete="off" />
+      Remember me for 30 days
+    </label>
+  </div>
+
+  <button
+    class="form__submit"
+    type="submit"
+    [disabled]="submitDisabled()"
+    test-id="submit-button"
+  >
+    @if (isLoading()) {
+      <span
+        class="form__spinner"
+        role="status"
+        aria-label="Authenticating credentials, please wait..."
+        test-id="login-loading"
+      ></span>
+    }
+    <span class="form__btn-text" [class.form__btn-text--hidden]="isLoading()"
+      >Sign in</span
+    >
+  </button>
+</form>

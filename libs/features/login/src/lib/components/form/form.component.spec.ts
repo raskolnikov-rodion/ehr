@@ -6,6 +6,7 @@ import { FormComponent } from './form.component';
 import { LoginFormData } from './models';
 import { DebugElement } from '@angular/core';
 import { MIN_PASSWORD_LENGTH } from './constants';
+import { provideRouter } from '@angular/router';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -14,6 +15,7 @@ describe('FormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FormComponent);
@@ -103,6 +105,51 @@ describe('FormComponent', () => {
     });
   });
 
+  describe('Loading state', () => {
+    it('should show the loading spinner when isLoading is true', async () => {
+      fixture.componentRef.setInput('isLoading', true);
+      await fixture.whenStable();
+
+      expect(getLoadingSpinner()).toBeTruthy();
+    });
+
+    it('should hide the loading spinner when isLoading is false', async () => {
+      fixture.componentRef.setInput('isLoading', false);
+      await fixture.whenStable();
+
+      expect(getLoadingSpinner()).toBeNull();
+    });
+
+    it('should disable the submit button when isLoading is true', async () => {
+      fixture.componentRef.setInput('isLoading', true);
+      await fixture.whenStable();
+
+      expect(getSubmitButton().disabled).toBe(true);
+    });
+  });
+
+  describe('Password visibility', () => {
+    it('should render password input as type password by default', () => {
+      expect(getPasswordInput().type).toBe('password');
+    });
+
+    it('should toggle password input to type text when toggle button is clicked', async () => {
+      getPasswordToggleButton().click();
+      await fixture.whenStable();
+
+      expect(getPasswordInput().type).toBe('text');
+    });
+
+    it('should toggle password input back to type password on second click', async () => {
+      getPasswordToggleButton().click();
+      await fixture.whenStable();
+      getPasswordToggleButton().click();
+      await fixture.whenStable();
+
+      expect(getPasswordInput().type).toBe('password');
+    });
+  });
+
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
@@ -129,5 +176,14 @@ describe('FormComponent', () => {
 
   function getPasswordError(): DebugElement {
     return fixture.debugElement.query(By.css("[test-id='password-error']"));
+  }
+
+  function getLoadingSpinner(): DebugElement {
+    return fixture.debugElement.query(By.css("[test-id='login-loading']"));
+  }
+
+  function getPasswordToggleButton(): HTMLButtonElement {
+    return fixture.debugElement.query(By.css('.form__toggle'))
+      .nativeElement as HTMLButtonElement;
   }
 });
