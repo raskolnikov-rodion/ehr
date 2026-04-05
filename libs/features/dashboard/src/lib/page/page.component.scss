@@ -1,10 +1,54 @@
+@use 'breakpoints' as bp;
+
 :host {
-  display: grid;
+  display: block;
   flex: 1;
-  place-items: center;
+  align-self: flex-start;
+  width: 100%;
 }
 
-.card {
+.dashboard {
+  display: grid;
+  gap: var(--space-700);
   width: 100%;
-  max-width: 24rem;
+  padding-block: var(--space-200) var(--space-700);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-400);
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-500);
+
+  @include bp.up(lg) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.right-col {
+  display: grid;
+  gap: var(--space-500);
+}
+
+.appt-list,
+.action-list,
+.patient-list {
+  list-style: none;
+
+  &__item {
+    border-bottom: 1px solid var(--color-border-light);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
