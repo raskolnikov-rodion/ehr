@@ -2,31 +2,22 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { StatCardComponent } from './stat-card.component';
-import { TrendDirection } from './models';
+import { Statistic, TrendDirection } from './models';
+
+const BASE: Statistic = {
+  label: 'Test Label',
+  value: '0',
+  trend: 'No change',
+  trendDirection: TrendDirection.NEUTRAL,
+  iconUrl: '/icons/test.svg',
+};
 
 describe('StatCardComponent', () => {
   let fixture: ComponentFixture<StatCardComponent>;
 
-  function createComponent(
-    inputs: {
-      label?: string;
-      value?: number | string;
-      trend?: string;
-      trendDirection?: TrendDirection;
-      iconUrl?: string;
-    } = {},
-  ) {
+  function createComponent(overrides: Partial<Statistic> = {}) {
     fixture = TestBed.createComponent(StatCardComponent);
-    fixture.componentRef.setInput('label', inputs.label ?? 'Test Label');
-    fixture.componentRef.setInput('value', inputs.value ?? 0);
-    fixture.componentRef.setInput('trend', inputs.trend ?? 'No change');
-    fixture.componentRef.setInput(
-      'iconUrl',
-      inputs.iconUrl ?? '/icons/test.svg',
-    );
-    if (inputs.trendDirection !== undefined) {
-      fixture.componentRef.setInput('trendDirection', inputs.trendDirection);
-    }
+    fixture.componentRef.setInput('statistic', { ...BASE, ...overrides });
     return fixture;
   }
 
@@ -49,7 +40,7 @@ describe('StatCardComponent', () => {
   });
 
   it('should render the value', async () => {
-    createComponent({ value: 12 });
+    createComponent({ value: '12' });
     await fixture.whenStable();
     expect(fixture.nativeElement.textContent).toContain('12');
   });
