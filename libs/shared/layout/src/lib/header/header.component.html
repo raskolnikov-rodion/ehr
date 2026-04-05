@@ -3,14 +3,5 @@
     <a routerLink="/">EHR</a>
   </h1>
   <ehr-theme-toggle />
-  @if (isLoggedIn()) {
-    <button
-      class="header__logout-button"
-      type="button"
-      (click)="logout()"
-      [attr.test-id]="'logout-button'"
-    >
-      Sign out
-    </button>
-  }
+  <ehr-logout-button />
 </header>

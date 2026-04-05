@@ -45,7 +45,7 @@ Nx monorepo. The app shell lives in `apps/EHR`.
 
 | Path alias           | Location                      | Purpose                                                |
 | -------------------- | ----------------------------- | ------------------------------------------------------ |
-| `@ehr/core`          | `libs/core`                   | Route guards and auth service                          |
+| `@ehr/core`          | `libs/core`                   | Route guards, auth service, and logout button          |
 | `@ehr/theme`         | `libs/shared/theme`           | ThemeService, ThemeToggleComponent, theme initialiser  |
 | `@ehr/mock-api`      | `libs/shared/mock-api`        | Mock API provider, interceptor, route handlers         |
 | `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |

@@ -4,29 +4,4 @@
   &__home-link {
     flex: 1;
   }
-
-  &__logout-button {
-    padding: var(--space-200) var(--space-400);
-    margin-left: var(--space-300);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--border-radius-sm);
-
-    &:hover {
-      color: var(--color-text-primary);
-      background: var(--color-hover-overlay);
-      border-color: var(--color-border-strong);
-    }
-
-    &:active {
-      background: var(--color-active-overlay);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-focus-ring);
-      outline-offset: 2px;
-    }
-  }
 }
