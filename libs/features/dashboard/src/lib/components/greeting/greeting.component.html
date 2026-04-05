@@ -1,0 +1,10 @@
+<header class="greeting">
+  <div class="greeting__text">
+    <h1 class="greeting__title">{{ greeting }}, {{ name() }}</h1>
+    <p class="greeting__subtitle">Patient care updates and today's schedule</p>
+  </div>
+  <div class="greeting__date-badge">
+    <span class="greeting__calendar-icon" aria-hidden="true"></span>
+    <span>{{ today | date: 'EEEE, d MMMM y' }}</span>
+  </div>
+</header>
