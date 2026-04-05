@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 960px;
+  max-width: var(--feature-max-width);
   margin: 0 auto;
 }
 
