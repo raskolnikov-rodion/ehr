@@ -1,3 +1,9 @@
+:root {
+  --body-text-sm-font-size: var(--font-size-300);
+  --body-text-sm-line-height: var(--line-height-snug);
+  --body-text-sm-height: calc(var(--font-size-300) * var(--line-height-snug));
+}
+
 body {
   font-family: var(--font-family-body);
   font-size: var(--font-size-400);
@@ -39,6 +45,6 @@ h3 {
 }
 
 .body-text-sm {
-  font-size: var(--font-size-300);
-  line-height: var(--line-height-snug);
+  font-size: var(--body-text-sm-font-size);
+  line-height: var(--body-text-sm-line-height);
 }
