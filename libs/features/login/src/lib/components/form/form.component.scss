@@ -1,19 +1,24 @@
 .form {
   display: grid;
-  gap: var(--space-500);
+  gap: var(--space-400);
 
   &__fields {
     display: grid;
-    gap: var(--space-400);
+    gap: var(--space-200);
   }
 
   &__field {
     display: grid;
+    grid-template-rows:
+      auto
+      auto
+      var(--body-text-sm-height);
     gap: var(--space-200);
   }
 
   &__label-row {
     display: flex;
+    grid-row: 1;
     align-items: baseline;
     justify-content: space-between;
   }
@@ -37,6 +42,7 @@
 
   &__input-wrap {
     position: relative;
+    grid-row: 2;
   }
 
   &__input {
@@ -95,9 +101,9 @@
 
   &__error {
     display: flex;
+    grid-row: 3;
     gap: var(--space-100);
     align-items: center;
-    font-size: var(--font-size-300);
     color: var(--color-error);
   }
 
