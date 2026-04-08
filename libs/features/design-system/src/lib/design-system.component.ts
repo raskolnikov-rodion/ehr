@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ColorGroup, GroupItem } from './models';
 
 @Component({
-  selector: 'ehr-color-palette',
-  templateUrl: './color-palette.component.html',
-  styleUrl: './color-palette.component.scss',
+  selector: 'ehr-design-system',
+  templateUrl: './design-system.component.html',
+  styleUrl: './design-system.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ColorPaletteComponent {
+export class DesignSystemComponent {
   readonly groups: ColorGroup[] = [
     {
       title: 'Primary',

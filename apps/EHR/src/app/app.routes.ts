@@ -24,9 +24,9 @@ export const appRoutes: Route[] = [
           import('@ehr/dashboard').then((m) => m.PageComponent),
       },
       {
-        path: 'docs/color-palette',
+        path: 'docs/design-system',
         loadComponent: () =>
-          import('@ehr/color-palette').then((m) => m.ColorPaletteComponent),
+          import('@ehr/design-system').then((m) => m.DesignSystemComponent),
       },
     ],
   },

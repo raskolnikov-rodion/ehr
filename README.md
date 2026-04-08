@@ -47,7 +47,7 @@ The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpos
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |
 | `@ehr/login`         | `libs/features/login`         | Login page + form                                      |
 | `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                         |
-| `@ehr/color-palette` | `libs/features/color-palette` | Design-system color reference                          |
+| `@ehr/design-system` | `libs/features/design-system` | Design-system reference                                |
 
 This separation accomplishes the following:
 

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
-import { ColorPaletteComponent } from './color-palette.component';
+import { DesignSystemComponent } from './design-system.component';
 import { By } from '@angular/platform-browser';
 
-describe('ColorPaletteComponent', () => {
-  let component: ColorPaletteComponent;
-  let fixture: ComponentFixture<ColorPaletteComponent>;
+describe('DesignSystemComponent', () => {
+  let component: DesignSystemComponent;
+  let fixture: ComponentFixture<DesignSystemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColorPaletteComponent],
+      imports: [DesignSystemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ColorPaletteComponent);
+    fixture = TestBed.createComponent(DesignSystemComponent);
     component = fixture.componentInstance;
   });
 
