@@ -1,0 +1,104 @@
+:host {
+  display: grid;
+  grid-template-rows: auto auto var(--body-text-sm-height);
+  gap: var(--space-200);
+}
+
+.form-input {
+  &__label-row {
+    display: flex;
+    grid-row: 1;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  &__wrap {
+    position: relative;
+    grid-row: 2;
+  }
+
+  &__input {
+    width: 100%;
+    padding: var(--space-300) var(--space-400);
+    font-size: var(--font-size-400);
+    color: var(--color-text-primary);
+    outline: none;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--border-radius-md);
+    transition:
+      border-color 120ms,
+      box-shadow 120ms;
+
+    &:focus-visible {
+      border-color: var(--color-focus-ring);
+      box-shadow: 0 0 0 3px rgb(37 99 235 / 20%);
+    }
+
+    &--invalid {
+      border-color: var(--color-error);
+
+      &:focus-visible {
+        box-shadow: 0 0 0 3px rgb(185 28 28 / 20%);
+      }
+    }
+
+    &--with-toggle {
+      padding-right: 2.75rem;
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 50%;
+    right: var(--space-300);
+    padding: var(--space-100);
+    line-height: 0;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    transform: translateY(-50%);
+
+    &:hover {
+      color: var(--color-text-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  &__error {
+    display: flex;
+    grid-row: 3;
+    gap: var(--space-100);
+    align-items: center;
+    color: var(--color-error);
+  }
+
+  &__icon-eye,
+  &__icon-eye-closed {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: currentcolor;
+    mask-mode: alpha;
+  }
+
+  &__icon-eye {
+    mask: url('/icons/eye.svg') no-repeat center / contain;
+  }
+
+  &__icon-eye-closed {
+    mask: url('/icons/eye-closed.svg') no-repeat center / contain;
+  }
+}
