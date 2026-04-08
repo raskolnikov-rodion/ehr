@@ -23,7 +23,7 @@ import { ICON_URL } from './constants';
 export class AlertComponent {
   readonly id = input<string>(`${Math.random()}`);
   readonly message = input.required<string>();
-  readonly type = input<AlertType>(AlertType.ERROR);
+  readonly type = input<AlertType>('error');
   readonly title = input<string>('');
   readonly dismissible = input(false);
 
@@ -31,7 +31,7 @@ export class AlertComponent {
 
   readonly iconUrl = computed(() => ICON_URL[this.type()]);
   readonly isErrorOrWarning = computed(
-    () => this.type() === AlertType.ERROR || this.type() === AlertType.WARNING,
+    () => this.type() === 'error' || this.type() === 'warning',
   );
   readonly ariaRole = computed(() =>
     this.isErrorOrWarning() ? 'alert' : 'status',

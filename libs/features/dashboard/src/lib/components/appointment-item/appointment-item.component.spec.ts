@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { AppointmentItemComponent } from './appointment-item.component';
-import { Appointment, AppointmentStatus } from './models';
+import { Appointment } from './models';
 
 const BASE: Appointment = {
   time: '09:00',
   patient: 'Jane Doe',
   type: 'Annual check-up · 30 min',
-  status: AppointmentStatus.CONFIRMED,
+  status: 'confirmed',
 };
 
 describe('AppointmentItemComponent', () => {
@@ -53,28 +53,28 @@ describe('AppointmentItemComponent', () => {
   });
 
   it('should apply badge--confirmed class for confirmed status', async () => {
-    createComponent({ status: AppointmentStatus.CONFIRMED });
+    createComponent({ status: 'confirmed' });
     await fixture.whenStable();
     const badge = fixture.nativeElement.querySelector('.badge');
     expect(badge.classList).toContain('badge--confirmed');
   });
 
   it('should apply badge--pending class for pending status', async () => {
-    createComponent({ status: AppointmentStatus.PENDING });
+    createComponent({ status: 'pending' });
     await fixture.whenStable();
     const badge = fixture.nativeElement.querySelector('.badge');
     expect(badge.classList).toContain('badge--pending');
   });
 
   it('should apply badge--in-progress class for in-progress status', async () => {
-    createComponent({ status: AppointmentStatus.IN_PROGRESS });
+    createComponent({ status: 'in-progress' });
     await fixture.whenStable();
     const badge = fixture.nativeElement.querySelector('.badge');
     expect(badge.classList).toContain('badge--in-progress');
   });
 
   it('should apply badge--done class for done status', async () => {
-    createComponent({ status: AppointmentStatus.DONE });
+    createComponent({ status: 'done' });
     await fixture.whenStable();
     const badge = fixture.nativeElement.querySelector('.badge');
     expect(badge.classList).toContain('badge--done');

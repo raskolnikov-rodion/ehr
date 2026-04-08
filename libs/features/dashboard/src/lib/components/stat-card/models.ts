@@ -1,9 +1,4 @@
-export enum TrendDirection {
-  UP = 'up',
-  DOWN = 'down',
-  NEUTRAL = 'neutral',
-}
-
+export type TrendDirection = 'up' | 'down' | 'neutral';
 export interface Statistic {
   label: string;
   value: string;

@@ -1,9 +1,8 @@
-export enum AppointmentStatus {
-  CONFIRMED = 'confirmed',
-  PENDING = 'pending',
-  IN_PROGRESS = 'in-progress',
-  DONE = 'done',
-}
+export type AppointmentStatus =
+  | 'confirmed'
+  | 'pending'
+  | 'in-progress'
+  | 'done';
 
 export interface Appointment {
   time: string;

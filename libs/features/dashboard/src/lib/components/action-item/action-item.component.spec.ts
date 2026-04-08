@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { ActionItemComponent } from './action-item.component';
-import { ActionSeverity, Action } from './models';
+import { Action } from './models';
 
 const BASE: Action = {
-  severity: ActionSeverity.INFO,
+  severity: 'info',
   title: 'Test action',
   meta: 'Some context',
   actionLabel: 'Review',
@@ -55,21 +55,21 @@ describe('ActionItemComponent', () => {
   });
 
   it('should apply urgent dot class for urgent severity', async () => {
-    createComponent({ severity: ActionSeverity.URGENT });
+    createComponent({ severity: 'urgent' });
     await fixture.whenStable();
     const dot = fixture.nativeElement.querySelector('.action-item__dot');
     expect(dot.classList).toContain('action-item__dot--urgent');
   });
 
   it('should apply warning dot class for warning severity', async () => {
-    createComponent({ severity: ActionSeverity.WARNING });
+    createComponent({ severity: 'warning' });
     await fixture.whenStable();
     const dot = fixture.nativeElement.querySelector('.action-item__dot');
     expect(dot.classList).toContain('action-item__dot--warning');
   });
 
   it('should apply info dot class for info severity', async () => {
-    createComponent({ severity: ActionSeverity.INFO });
+    createComponent({ severity: 'info' });
     await fixture.whenStable();
     const dot = fixture.nativeElement.querySelector('.action-item__dot');
     expect(dot.classList).toContain('action-item__dot--info');

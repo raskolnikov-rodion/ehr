@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { THEME_KEY } from './constants';
-import { APP_THEME } from './models';
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {
@@ -24,25 +23,21 @@ describe('ThemeService', () => {
     });
 
     it('sets the data-theme attribute to light on the document element', () => {
-      expect(document.documentElement.getAttribute(THEME_KEY)).toBe(
-        APP_THEME.LIGHT,
-      );
+      expect(document.documentElement.getAttribute(THEME_KEY)).toBe('light');
     });
   });
 
   describe('Initial state (persisted theme)', () => {
     it('restores dark theme from localStorage', () => {
-      localStorage.setItem(THEME_KEY, APP_THEME.DARK);
+      localStorage.setItem(THEME_KEY, 'dark');
       testSetup();
       expect(service.darkTheme()).toBe(true);
     });
 
     it('sets the data-theme attribute to dark when dark theme is persisted', () => {
-      localStorage.setItem(THEME_KEY, APP_THEME.DARK);
+      localStorage.setItem(THEME_KEY, 'dark');
       testSetup();
-      expect(document.documentElement.getAttribute(THEME_KEY)).toBe(
-        APP_THEME.DARK,
-      );
+      expect(document.documentElement.getAttribute(THEME_KEY)).toBe('dark');
     });
   });
 
@@ -64,20 +59,16 @@ describe('ThemeService', () => {
 
     it('persists the new theme to localStorage', () => {
       service.toggleTheme();
-      expect(localStorage.getItem(THEME_KEY)).toBe(APP_THEME.DARK);
+      expect(localStorage.getItem(THEME_KEY)).toBe('dark');
       service.toggleTheme();
-      expect(localStorage.getItem(THEME_KEY)).toBe(APP_THEME.LIGHT);
+      expect(localStorage.getItem(THEME_KEY)).toBe('light');
     });
 
     it('updates the data-theme attribute on the document element', () => {
       service.toggleTheme();
-      expect(document.documentElement.getAttribute(THEME_KEY)).toBe(
-        APP_THEME.DARK,
-      );
+      expect(document.documentElement.getAttribute(THEME_KEY)).toBe('dark');
       service.toggleTheme();
-      expect(document.documentElement.getAttribute(THEME_KEY)).toBe(
-        APP_THEME.LIGHT,
-      );
+      expect(document.documentElement.getAttribute(THEME_KEY)).toBe('light');
     });
   });
 });

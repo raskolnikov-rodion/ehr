@@ -1,10 +1,4 @@
-export enum AvatarColor {
-  BLUE = 'blue',
-  TEAL = 'teal',
-  AMBER = 'amber',
-  GREEN = 'green',
-  GRAY = 'gray',
-}
+export type AvatarColor = 'blue' | 'teal' | 'amber' | 'green' | 'gray';
 
 export interface Patient {
   initials: string;

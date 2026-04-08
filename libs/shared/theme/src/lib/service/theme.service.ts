@@ -7,16 +7,16 @@ import { setInitialThemeOnDocument } from './helpers';
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly theme = signal<string | null>('');
+  private readonly theme = signal<APP_THEME>('light');
 
-  readonly darkTheme = computed(() => this.theme() === APP_THEME.DARK);
+  readonly darkTheme = computed(() => this.theme() === 'dark');
 
   constructor() {
     this.setInitialTheme();
   }
 
   toggleTheme(): void {
-    const newTheme = this.darkTheme() ? APP_THEME.LIGHT : APP_THEME.DARK;
+    const newTheme: APP_THEME = this.darkTheme() ? 'light' : 'dark';
     document.documentElement.setAttribute(THEME_KEY, newTheme);
     localStorage.setItem(THEME_KEY, newTheme);
     this.theme.set(newTheme);

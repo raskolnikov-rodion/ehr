@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
-import { PatientItemComponent } from './patient-item.component';
 import { AvatarColor, Patient } from './models';
+import { PatientItemComponent } from './patient-item.component';
 
 const BASE: Patient = {
   initials: 'JD',
-  avatarColor: AvatarColor.BLUE,
+  avatarColor: 'blue',
   name: 'Jane Doe',
   detail: 'F, 45 · Annual check-up',
   lastVisit: 'Today',
@@ -61,7 +61,14 @@ describe('PatientItemComponent', () => {
   });
 
   it('should apply the correct avatar color class', async () => {
-    for (const color of Object.values(AvatarColor)) {
+    const avatarColor: AvatarColor[] = [
+      'amber',
+      'blue',
+      'gray',
+      'green',
+      'teal',
+    ];
+    for (const color of avatarColor) {
       createComponent({ avatarColor: color });
       await fixture.whenStable();
       const avatar = fixture.nativeElement.querySelector(
