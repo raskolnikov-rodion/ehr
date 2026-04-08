@@ -23,6 +23,50 @@
 }
 
 <section class="group">
+  <h3 class="group__heading" [attr.test-id]="'buttons-group-heading'">
+    Buttons
+  </h3>
+  @for (variant of buttonVariants; track variant.label) {
+    <div class="btn-row">
+      <span class="btn-row__label">{{ variant.label }}</span>
+      <div class="btn-row__states">
+        <button
+          [class]="variant.class"
+          [attr.test-id]="'btn-' + variant.class + '-default'"
+        >
+          Default
+        </button>
+        <button
+          [class]="variant.class + ' btn--hover-demo'"
+          [attr.test-id]="'btn-' + variant.class + '-hover'"
+        >
+          Hover
+        </button>
+        <button
+          [class]="variant.class + ' btn--active-demo'"
+          [attr.test-id]="'btn-' + variant.class + '-active'"
+        >
+          Active
+        </button>
+        <button
+          [class]="variant.class + ' btn--focus-demo'"
+          [attr.test-id]="'btn-' + variant.class + '-focus'"
+        >
+          Focus
+        </button>
+        <button
+          [class]="variant.class"
+          disabled
+          [attr.test-id]="'btn-' + variant.class + '-disabled'"
+        >
+          Disabled
+        </button>
+      </div>
+    </div>
+  }
+</section>
+
+<section class="group">
   <h3 class="group__heading" [attr.test-id]="'shadow-group-heading'">
     Shadows / Elevation
   </h3>

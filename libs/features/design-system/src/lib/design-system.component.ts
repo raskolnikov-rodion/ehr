@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ThemeService } from '@ehr/theme';
 import { ColorGroup, GroupItem } from './models';
 
 @Component({
@@ -6,8 +7,10 @@ import { ColorGroup, GroupItem } from './models';
   templateUrl: './design-system.component.html',
   styleUrl: './design-system.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[class.dark]': 'themeService.darkTheme()' },
 })
 export class DesignSystemComponent {
+  protected readonly themeService = inject(ThemeService);
   readonly groups: ColorGroup[] = [
     {
       title: 'Primary Colors',
@@ -90,6 +93,12 @@ export class DesignSystemComponent {
         { label: 'Active Overlay', var: '--color-active-overlay' },
       ],
     },
+  ];
+
+  readonly buttonVariants = [
+    { label: 'Primary', class: 'btn-primary' },
+    { label: 'Secondary', class: 'btn-secondary' },
+    { label: 'Tertiary', class: 'btn-tertiary' },
   ];
 
   readonly shadows: GroupItem[] = [
