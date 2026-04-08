@@ -1,7 +1,7 @@
 {
-  "name": "color-palette",
+  "name": "design-system",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/features/color-palette/src",
+  "sourceRoot": "libs/features/design-system/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": ["type:feature"],
@@ -10,12 +10,12 @@
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/features/color-palette/ng-package.json",
-        "tsConfig": "libs/features/color-palette/tsconfig.lib.json"
+        "project": "libs/features/design-system/ng-package.json",
+        "tsConfig": "libs/features/design-system/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/features/color-palette/tsconfig.lib.prod.json"
+          "tsConfig": "libs/features/design-system/tsconfig.lib.prod.json"
         },
         "development": {}
       },
@@ -24,7 +24,7 @@
     "test": {
       "executor": "@nx/angular:unit-test",
       "options": {
-        "setupFiles": ["libs/features/color-palette/vitest-setup.ts"],
+        "setupFiles": ["libs/features/design-system/vitest-setup.ts"],
         "coverage": true
       }
     },
@@ -34,7 +34,7 @@
     "stylelint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "stylelint libs/features/color-palette/**/*.scss"
+        "command": "stylelint libs/features/design-system/**/*.scss"
       }
     }
   }

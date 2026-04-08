@@ -28,7 +28,7 @@ Nx monorepo. App shell lives in `apps/EHR`.
 | `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components |
 | `@ehr/login`         | `libs/features/login`         | Login page                       |
 | `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                   |
-| `@ehr/color-palette` | `libs/features/color-palette` | Color reference                  |
+| `@ehr/design-system` | `libs/features/design-system` | Design system reference          |
 
 ### Module boundaries
 

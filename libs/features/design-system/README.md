@@ -1,8 +1,6 @@
-# color-palette
+# design-system
 
-Design-system color reference library. Import alias: `@ehr/color-palette`.
-
-Renders a set of CSS custom properties defined in the EHR theme as a live visual swatch grid. Used during development to verify theme tokens and contrast ratios at a glance.
+Design-system reference library. Import alias: `@ehr/design-system`.
 
 ## Features
 
@@ -14,10 +12,10 @@ Renders a set of CSS custom properties defined in the EHR theme as a live visual
 
 | Export                  | Selector            | Description                                                 |
 | ----------------------- | ------------------- | ----------------------------------------------------------- |
-| `ColorPaletteComponent` | `ehr-color-palette` | Standalone component. Lazy-loaded at `/docs/color-palette`. |
+| `DesignSystemComponent` | `ehr-design-system` | Standalone component. Lazy-loaded at `/docs/design-system`. |
 
 ## Running unit tests
 
 ```bash
-npx nx test color-palette
+npx nx test design-system
 ```

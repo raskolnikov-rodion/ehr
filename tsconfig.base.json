@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ehr/color-palette": ["libs/features/color-palette/src/index.ts"],
+      "@ehr/design-system": ["libs/features/design-system/src/index.ts"],
       "@ehr/core": ["libs/core/src/index.ts"],
       "@ehr/dashboard": ["libs/features/dashboard/src/index.ts"],
       "@ehr/mock-api": ["libs/shared/mock-api/src/index.ts"],

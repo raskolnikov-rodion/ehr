@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
-import { ColorPaletteComponent } from './color-palette.component';
+import { DesignSystemComponent } from './design-system.component';
 import { By } from '@angular/platform-browser';
 
-describe('ColorPaletteComponent', () => {
-  let component: ColorPaletteComponent;
-  let fixture: ComponentFixture<ColorPaletteComponent>;
+describe('DesignSystemComponent', () => {
+  let component: DesignSystemComponent;
+  let fixture: ComponentFixture<DesignSystemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColorPaletteComponent],
+      imports: [DesignSystemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ColorPaletteComponent);
+    fixture = TestBed.createComponent(DesignSystemComponent);
     component = fixture.componentInstance;
   });
 
@@ -25,7 +25,7 @@ describe('ColorPaletteComponent', () => {
     await fixture.whenStable();
     const h1 = fixture.debugElement.query(By.css("[test-id='header-heading']"))
       .nativeElement as HTMLElement;
-    expect(h1.textContent).toContain('EHR Color Palette');
+    expect(h1.textContent).toContain('EHR Design System');
   });
 
   it('should render all color group headings', async () => {
