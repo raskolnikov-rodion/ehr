@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'ehr-logout-button',
   templateUrl: './logout-button.component.html',
-  styleUrl: './logout-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogoutButtonComponent {

@@ -35,24 +35,9 @@
     padding: var(--space-300) var(--space-400);
     font-size: var(--font-size-400);
     font-weight: var(--font-weight-medium);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    background: var(--color-bg-surface);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--border-radius-md);
     transition:
       background-color 120ms,
       border-color 120ms;
-
-    &:hover {
-      background: var(--color-bg-muted);
-      border-color: var(--color-border-strong);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-focus-ring);
-      outline-offset: 2px;
-    }
 
     &-icon {
       display: inline-block;

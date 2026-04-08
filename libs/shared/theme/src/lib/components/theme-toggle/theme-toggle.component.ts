@@ -4,7 +4,6 @@ import { ThemeService } from '../../service/theme.service';
 @Component({
   selector: 'ehr-theme-toggle',
   templateUrl: './theme-toggle.component.html',
-  styleUrl: './theme-toggle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeToggleComponent {

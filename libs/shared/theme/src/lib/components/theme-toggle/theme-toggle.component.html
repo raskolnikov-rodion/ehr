@@ -1,3 +1,8 @@
-<button class="toggle" (click)="toggleTheme()" [attr.test-id]="'theme-toggle'">
+<button
+  class="btn-tertiary"
+  type="button"
+  (click)="toggleTheme()"
+  [attr.test-id]="'theme-toggle'"
+>
   {{ darkTheme() ? '☀️ Light Mode' : '🌘 Dark Mode' }}
 </button>
