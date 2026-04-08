@@ -1,4 +1,1 @@
-export enum APP_THEME {
-  LIGHT = 'light',
-  DARK = 'dark',
-}
+export type APP_THEME = 'light' | 'dark';

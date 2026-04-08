@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
-import { AlertComponent } from './alert.component';
-import { AlertType } from './models';
 import { By } from '@angular/platform-browser';
+import { AlertComponent } from './alert.component';
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -57,12 +56,7 @@ describe('AlertComponent', () => {
   it('should apply the correct class for each type', async () => {
     const host = fixture.nativeElement as HTMLElement;
 
-    for (const type of [
-      AlertType.ERROR,
-      AlertType.WARNING,
-      AlertType.SUCCESS,
-      AlertType.INFO,
-    ] as const) {
+    for (const type of ['error', 'warning', 'success', 'info'] as const) {
       fixture.componentRef.setInput('type', type);
       await fixture.whenStable();
       expect(host.classList).toContain(`alert--${type}`);
@@ -72,7 +66,7 @@ describe('AlertComponent', () => {
   it('should use role="alert" and aria-live="assertive" for error and warning', async () => {
     const host = fixture.nativeElement as HTMLElement;
 
-    for (const type of [AlertType.ERROR, AlertType.WARNING] as const) {
+    for (const type of ['error', 'warning'] as const) {
       fixture.componentRef.setInput('type', type);
       await fixture.whenStable();
       expect(host.getAttribute('role')).toBe('alert');
@@ -83,7 +77,7 @@ describe('AlertComponent', () => {
   it('should use role="status" and aria-live="polite" for success and information', async () => {
     const host = fixture.nativeElement as HTMLElement;
 
-    for (const type of [AlertType.INFO, AlertType.SUCCESS] as const) {
+    for (const type of ['info', 'success'] as const) {
       fixture.componentRef.setInput('type', type);
       await fixture.whenStable();
       expect(host.getAttribute('role')).toBe('status');

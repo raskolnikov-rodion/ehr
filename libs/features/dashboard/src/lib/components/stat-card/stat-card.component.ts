@@ -5,7 +5,7 @@ import {
   input,
 } from '@angular/core';
 import { CardComponent } from '@ehr/ui';
-import { Statistic, TrendDirection } from './models';
+import { Statistic } from './models';
 
 @Component({
   selector: 'ehr-stat-card',
@@ -19,9 +19,9 @@ export class StatCardComponent {
 
   readonly trendCssClass = computed(() => {
     switch (this.statistic().trendDirection) {
-      case TrendDirection.UP:
+      case 'up':
         return 'stat-card__trend stat-card__trend--up';
-      case TrendDirection.DOWN:
+      case 'down':
         return 'stat-card__trend stat-card__trend--down';
       default:
         return 'stat-card__trend';

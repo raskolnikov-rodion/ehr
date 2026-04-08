@@ -29,7 +29,7 @@ import { PatientItemComponent } from '../components/patient-item/patient-item.co
   ],
 })
 export class PageComponent {
-  readonly alertType = AlertType.WARNING;
+  readonly alertType: AlertType = 'warning';
   readonly alertDismissed = signal(false);
 
   readonly stats: Statistic[] = [
@@ -37,28 +37,28 @@ export class PageComponent {
       label: "Today's Appointments",
       value: '9',
       trend: '3 completed · 6 remaining',
-      trendDirection: TrendDirection.NEUTRAL,
+      trendDirection: 'neutral',
       iconUrl: '/icons/calendar.svg',
     },
     {
       label: 'Pending Reviews',
       value: '5',
       trend: '↓ 2 urgent · 3 routine',
-      trendDirection: TrendDirection.DOWN,
+      trendDirection: 'down',
       iconUrl: '/icons/clipboard-list.svg',
     },
     {
       label: 'Prescriptions Due',
       value: '3',
       trend: 'Renewal requests',
-      trendDirection: TrendDirection.NEUTRAL,
+      trendDirection: 'neutral',
       iconUrl: '/icons/users.svg',
     },
     {
       label: 'Patients Seen',
       value: '3',
       trend: '↑ 1 vs. yesterday',
-      trendDirection: TrendDirection.UP,
+      trendDirection: 'up',
       iconUrl: '/icons/alert-check.svg',
     },
   ];
@@ -68,85 +68,85 @@ export class PageComponent {
       time: '08:30',
       patient: 'Sarah Thompson',
       type: 'Annual check-up · 30 min',
-      status: AppointmentStatus.DONE,
+      status: 'done',
     },
     {
       time: '09:15',
       patient: 'Robert Kim',
       type: 'Follow-up: hypertension · 20 min',
-      status: AppointmentStatus.DONE,
+      status: 'done',
     },
     {
       time: '10:00',
       patient: 'Margaret Collins',
       type: 'Lab result review · 15 min',
-      status: AppointmentStatus.DONE,
+      status: 'done',
     },
     {
       time: '10:30',
       patient: 'Daniel Reyes',
       type: 'New patient consultation · 45 min',
-      status: AppointmentStatus.IN_PROGRESS,
+      status: 'in-progress',
     },
     {
       time: '11:30',
       patient: 'Katie Smith',
       type: 'Chronic care: diabetes · 30 min',
-      status: AppointmentStatus.CONFIRMED,
+      status: 'confirmed',
     },
     {
       time: '14:00',
       patient: 'James Okafor',
       type: 'Post-op follow-up · 20 min',
-      status: AppointmentStatus.CONFIRMED,
+      status: 'confirmed',
     },
     {
       time: '15:00',
       patient: 'Linda Williams',
       type: 'Medication review · 15 min',
-      status: AppointmentStatus.PENDING,
+      status: 'pending',
     },
     {
       time: '15:30',
       patient: 'Thomas Becker',
       type: 'Referral assessment · 30 min',
-      status: AppointmentStatus.PENDING,
+      status: 'pending',
     },
     {
       time: '16:15',
       patient: 'Anna Foster',
       type: 'Preventive screening · 20 min',
-      status: AppointmentStatus.PENDING,
+      status: 'pending',
     },
   ];
 
   readonly pendingActions: Action[] = [
     {
-      severity: ActionSeverity.URGENT,
+      severity: 'urgent',
       title: 'Lab results — Margaret Collins',
       meta: 'Abnormal CBC · flagged 18h ago',
       actionLabel: 'Review',
     },
     {
-      severity: ActionSeverity.URGENT,
+      severity: 'urgent',
       title: 'Lab results — James Okafor',
       meta: 'Elevated creatinine · flagged 22h ago',
       actionLabel: 'Review',
     },
     {
-      severity: ActionSeverity.WARNING,
+      severity: 'warning',
       title: 'Prescription renewal — Linda Williams',
       meta: 'Metformin 500mg · expires in 3 days',
       actionLabel: 'Authorise',
     },
     {
-      severity: ActionSeverity.WARNING,
+      severity: 'warning',
       title: 'Prescription renewal — Katie Smith',
       meta: 'Lisinopril 10mg · expires in 5 days',
       actionLabel: 'Authorise',
     },
     {
-      severity: ActionSeverity.INFO,
+      severity: 'info',
       title: 'Referral letter — Thomas Becker',
       meta: 'Cardiology · draft saved',
       actionLabel: 'Complete',
@@ -156,35 +156,35 @@ export class PageComponent {
   readonly recentPatients: Patient[] = [
     {
       initials: 'ST',
-      avatarColor: AvatarColor.BLUE,
+      avatarColor: 'blue',
       name: 'Sarah Thompson',
       detail: 'F, 52 · Annual check-up',
       lastVisit: 'Today',
     },
     {
       initials: 'RK',
-      avatarColor: AvatarColor.TEAL,
+      avatarColor: 'teal',
       name: 'Robert Kim',
       detail: 'M, 61 · Hypertension follow-up',
       lastVisit: 'Today',
     },
     {
       initials: 'MC',
-      avatarColor: AvatarColor.AMBER,
+      avatarColor: 'amber',
       name: 'Margaret Collins',
       detail: 'F, 47 · Lab review',
       lastVisit: 'Today',
     },
     {
       initials: 'PP',
-      avatarColor: AvatarColor.GREEN,
+      avatarColor: 'green',
       name: 'Katie Smith',
       detail: 'F, 38 · Diabetes management',
       lastVisit: '2 Apr',
     },
     {
       initials: 'JO',
-      avatarColor: AvatarColor.GRAY,
+      avatarColor: 'gray',
       name: 'James Okafor',
       detail: 'M, 55 · Post-op follow-up',
       lastVisit: '1 Apr',

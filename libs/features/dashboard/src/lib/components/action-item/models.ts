@@ -1,8 +1,4 @@
-export enum ActionSeverity {
-  URGENT = 'urgent',
-  WARNING = 'warning',
-  INFO = 'info',
-}
+export type ActionSeverity = 'urgent' | 'warning' | 'info';
 
 export interface Action {
   severity: ActionSeverity;

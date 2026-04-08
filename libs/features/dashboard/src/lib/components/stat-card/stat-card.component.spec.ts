@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
+import { Statistic } from './models';
 import { StatCardComponent } from './stat-card.component';
-import { Statistic, TrendDirection } from './models';
 
 const BASE: Statistic = {
   label: 'Test Label',
   value: '0',
   trend: 'No change',
-  trendDirection: TrendDirection.NEUTRAL,
+  trendDirection: 'neutral',
   iconUrl: '/icons/test.svg',
 };
 
@@ -52,7 +52,7 @@ describe('StatCardComponent', () => {
   });
 
   it('should apply trend--up class when trendDirection is up', async () => {
-    createComponent({ trendDirection: TrendDirection.UP });
+    createComponent({ trendDirection: 'up' });
     await fixture.whenStable();
     const trendEl = fixture.nativeElement.querySelector('.stat-card__trend');
     expect(trendEl.classList).toContain('stat-card__trend--up');
@@ -60,7 +60,7 @@ describe('StatCardComponent', () => {
   });
 
   it('should apply trend--down class when trendDirection is down', async () => {
-    createComponent({ trendDirection: TrendDirection.DOWN });
+    createComponent({ trendDirection: 'down' });
     await fixture.whenStable();
     const trendEl = fixture.nativeElement.querySelector('.stat-card__trend');
     expect(trendEl.classList).toContain('stat-card__trend--down');
@@ -68,7 +68,7 @@ describe('StatCardComponent', () => {
   });
 
   it('should not apply a directional class when trendDirection is neutral', async () => {
-    createComponent({ trendDirection: TrendDirection.NEUTRAL });
+    createComponent({ trendDirection: 'neutral' });
     await fixture.whenStable();
     const trendEl = fixture.nativeElement.querySelector('.stat-card__trend');
     expect(trendEl.classList).not.toContain('stat-card__trend--up');
