@@ -128,28 +128,6 @@ describe('FormComponent', () => {
     });
   });
 
-  describe('Password visibility', () => {
-    it('should render password input as type password by default', () => {
-      expect(getPasswordInput().type).toBe('password');
-    });
-
-    it('should toggle password input to type text when toggle button is clicked', async () => {
-      getPasswordToggleButton().click();
-      await fixture.whenStable();
-
-      expect(getPasswordInput().type).toBe('text');
-    });
-
-    it('should toggle password input back to type password on second click', async () => {
-      getPasswordToggleButton().click();
-      await fixture.whenStable();
-      getPasswordToggleButton().click();
-      await fixture.whenStable();
-
-      expect(getPasswordInput().type).toBe('password');
-    });
-  });
-
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
@@ -180,10 +158,5 @@ describe('FormComponent', () => {
 
   function getLoadingSpinner(): DebugElement {
     return fixture.debugElement.query(By.css("[test-id='login-loading']"));
-  }
-
-  function getPasswordToggleButton(): HTMLButtonElement {
-    return fixture.debugElement.query(By.css('.form__toggle'))
-      .nativeElement as HTMLButtonElement;
   }
 });

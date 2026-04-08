@@ -6,30 +6,23 @@ import {
   output,
   signal,
 } from '@angular/core';
-import {
-  email,
-  form,
-  FormField,
-  minLength,
-  required,
-} from '@angular/forms/signals';
+import { email, form, minLength, required } from '@angular/forms/signals';
 import { LoginFormData } from './models';
 import { MIN_PASSWORD_LENGTH } from './constants';
-import { RouterLink } from '@angular/router';
+import { FormInputComponent } from '@ehr/ui';
 
 @Component({
   selector: 'ehr-login-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormField, RouterLink],
+  imports: [FormInputComponent],
 })
 export class FormComponent {
   readonly isLoading = input(false);
   readonly formSubmit = output<LoginFormData>();
 
   readonly model = signal({ email: '', password: '' });
-  readonly showPassword = signal(false);
 
   readonly form = form(this.model, (config) => {
     required(config.email, { message: 'Email is required.' });
@@ -44,10 +37,6 @@ export class FormComponent {
   readonly submitDisabled = computed(
     () => this.form().invalid() || this.isLoading(),
   );
-
-  togglePasswordVisibility(): void {
-    this.showPassword.update((v) => !v);
-  }
 
   onSubmit(event: SubmitEvent): void {
     event.preventDefault();

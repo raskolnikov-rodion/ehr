@@ -1,85 +1,26 @@
 <form class="form" (submit)="onSubmit($event)" novalidate>
   <div class="form__fields">
-    <div class="form__field">
-      <div class="form__label-row">
-        <label class="form__label" for="email">Email address</label>
-      </div>
-      @let email = form.email();
-      @let emailInvalid = email.touched() && email.invalid();
-      <div class="form__input-wrap">
-        <input
-          class="form__input"
-          [class.form__input--invalid]="emailInvalid"
-          id="email"
-          type="email"
-          [formField]="form.email"
-          autocomplete="email"
-          placeholder="you@hospital.org"
-          test-id="email-input"
-          [attr.aria-invalid]="emailInvalid || null"
-          aria-describedby="email-error"
-        />
-      </div>
-      @if (emailInvalid) {
-        <span
-          class="form__error body-text-sm"
-          id="email-error"
-          role="alert"
-          test-id="email-error"
-        >
-          {{ email.errors()[0].message }}
-        </span>
-      }
-    </div>
-
-    <div class="form__field">
-      <div class="form__label-row">
-        <label class="form__label" for="password">Password</label>
-        <!-- TODO: Add meaningful behaviour for this link -->
-        <a class="form__link" routerLink="/">Forgot password?</a>
-      </div>
-      @let password = form.password();
-      @let passwordInvalid = password.touched() && password.invalid();
-      @let visiblePassword = showPassword();
-      <div class="form__input-wrap">
-        <input
-          class="form__input form__input--with-toggle"
-          [class.form__input--invalid]="passwordInvalid"
-          id="password"
-          [type]="visiblePassword ? 'text' : 'password'"
-          [formField]="form.password"
-          autocomplete="current-password"
-          placeholder="••••••••"
-          test-id="password-input"
-          [attr.aria-invalid]="passwordInvalid || null"
-          aria-describedby="password-error"
-        />
-        <button
-          type="button"
-          class="form__toggle"
-          [attr.aria-label]="
-            visiblePassword ? 'Hide password' : 'Show password'
-          "
-          (click)="togglePasswordVisibility()"
-        >
-          @if (visiblePassword) {
-            <span class="form__icon-eye-closed" aria-hidden="true"></span>
-          } @else {
-            <span class="form__icon-eye" aria-hidden="true"></span>
-          }
-        </button>
-      </div>
-      @if (passwordInvalid) {
-        <span
-          class="form__error body-text-sm"
-          id="password-error"
-          role="alert"
-          test-id="password-error"
-        >
-          {{ password.errors()[0].message }}
-        </span>
-      }
-    </div>
+    <ehr-form-input
+      id="email"
+      label="Email address"
+      type="email"
+      [field]="form.email"
+      autocomplete="email"
+      placeholder="you@hospital.org"
+      testId="email-input"
+    />
+    <ehr-form-input
+      id="password"
+      label="Password"
+      type="password"
+      [field]="form.password"
+      autocomplete="current-password"
+      placeholder="••••••••"
+      testId="password-input"
+    >
+      <!-- TODO: Add meaningful behaviour for this link -->
+      <a class="form__link" ngProjectAs="label-sibling">Forgot password?</a>
+    </ehr-form-input>
   </div>
 
   <div class="form__extras">
