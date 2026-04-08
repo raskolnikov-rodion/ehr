@@ -10,7 +10,7 @@ import { ColorGroup, GroupItem } from './models';
 export class DesignSystemComponent {
   readonly groups: ColorGroup[] = [
     {
-      title: 'Primary',
+      title: 'Primary Colors',
       swatches: [
         { label: '100', var: '--color-primary-100' },
         { label: '300', var: '--color-primary-300' },
@@ -20,7 +20,7 @@ export class DesignSystemComponent {
       ],
     },
     {
-      title: 'Secondary',
+      title: 'Secondary Colors',
       swatches: [
         { label: '100', var: '--color-secondary-100' },
         { label: '300', var: '--color-secondary-300' },
@@ -30,7 +30,7 @@ export class DesignSystemComponent {
       ],
     },
     {
-      title: 'Neutrals',
+      title: 'Neutral Colors',
       swatches: [
         { label: '50', var: '--color-neutral-50' },
         { label: '100', var: '--color-neutral-100' },
@@ -45,7 +45,7 @@ export class DesignSystemComponent {
       ],
     },
     {
-      title: 'Semantic',
+      title: 'Semantic Colors',
       swatches: [
         { label: 'Success', var: '--color-success' },
         { label: 'Success BG', var: '--color-success-bg' },
@@ -58,7 +58,7 @@ export class DesignSystemComponent {
       ],
     },
     {
-      title: 'Backgrounds',
+      title: 'Background Colors',
       swatches: [
         { label: 'App', var: '--color-bg-app' },
         { label: 'Surface', var: '--color-bg-surface' },
@@ -66,7 +66,7 @@ export class DesignSystemComponent {
       ],
     },
     {
-      title: 'Text',
+      title: 'Text Colors',
       swatches: [
         { label: 'Primary', var: '--color-text-primary' },
         { label: 'Secondary', var: '--color-text-secondary' },
