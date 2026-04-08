@@ -1,0 +1,40 @@
+<div class="form-input__label-row">
+  <label class="form-input__label" [for]="id()">{{ label() }}</label>
+  <ng-content select="label-sibling" />
+</div>
+<div class="form-input__wrap">
+  <input
+    class="form-input__input"
+    [class.form-input__input--invalid]="isInvalid()"
+    [class.form-input__input--with-toggle]="hasToggle()"
+    [id]="id()"
+    [type]="inputType()"
+    [formField]="field()"
+    [autocomplete]="autocomplete()"
+    [placeholder]="placeholder()"
+    [attr.test-id]="testId()"
+    [attr.aria-invalid]="isInvalid() || null"
+    [attr.aria-describedby]="errorId()"
+  />
+  @if (hasToggle()) {
+    <button
+      type="button"
+      class="form-input__toggle"
+      test-id="form-input-toggle"
+      [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+      (click)="togglePassword()"
+    >
+      <span [class]="toggleIconCssClass()" aria-hidden="true"></span>
+    </button>
+  }
+</div>
+@if (isInvalid()) {
+  <span
+    class="form-input__error body-text-sm"
+    [id]="errorId()"
+    role="alert"
+    [attr.test-id]="errorId()"
+  >
+    {{ fieldState().errors()[0].message }}
+  </span>
+}
