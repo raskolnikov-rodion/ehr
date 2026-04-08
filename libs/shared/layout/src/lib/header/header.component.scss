@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  gap: var(--space-200);
 
   &__home-link {
     flex: 1;
