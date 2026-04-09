@@ -10,7 +10,7 @@ import {
 import { email, form, minLength, required } from '@angular/forms/signals';
 import { FormInputComponent } from '@ehr/ui';
 import { ForgotPasswordModalComponent } from '../forgot-password-modal/forgot-password-modal.component';
-import { MIN_PASSWORD_LENGTH } from './constants';
+import { MIN_PASSWORD_LENGTH, SAMPLE_CREDENTIALS } from './constants';
 import { LoginFormData } from './models';
 
 @Component({
@@ -57,6 +57,6 @@ export class FormComponent {
   }
 
   onCredentialsAccepted(): void {
-    this.model.set({ email: 'doctor@ehr.demo', password: 'doctorPassword' });
+    this.model.set(SAMPLE_CREDENTIALS);
   }
 }

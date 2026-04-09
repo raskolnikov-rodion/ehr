@@ -11,6 +11,7 @@ import { BrandPanelComponent } from '../components/brand-panel/brand-panel.compo
 import { FormHeaderComponent } from '../components/form-header/form-header.component';
 import { FormComponent } from '../components/form/form.component';
 import { LoginFormData } from '../components/form/models';
+import { SAMPLE_CREDENTIALS } from '../components/form/constants';
 
 @Component({
   selector: 'ehr-login-page',
@@ -42,5 +43,9 @@ export class PageComponent {
         this.isLoggingIn.set(false);
       },
     });
+  }
+
+  public onSSOLogin(): void {
+    this.onFormSubmit(SAMPLE_CREDENTIALS);
   }
 }
