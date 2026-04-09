@@ -5,20 +5,26 @@ import {
   input,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
 import { email, form, minLength, required } from '@angular/forms/signals';
-import { LoginFormData } from './models';
-import { MIN_PASSWORD_LENGTH } from './constants';
 import { FormInputComponent } from '@ehr/ui';
+import { ForgotPasswordModalComponent } from '../forgot-password-modal/forgot-password-modal.component';
+import { MIN_PASSWORD_LENGTH } from './constants';
+import { LoginFormData } from './models';
 
 @Component({
   selector: 'ehr-login-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormInputComponent],
+  imports: [FormInputComponent, ForgotPasswordModalComponent],
 })
 export class FormComponent {
+  private readonly forgotPasswordModal = viewChild.required(
+    ForgotPasswordModalComponent,
+  );
+
   readonly isLoading = input(false);
   readonly formSubmit = output<LoginFormData>();
 
@@ -44,5 +50,13 @@ export class FormComponent {
     if (this.submitDisabled()) return;
 
     this.formSubmit.emit(this.model());
+  }
+
+  openForgotPasswordModal(): void {
+    this.forgotPasswordModal().open();
+  }
+
+  onCredentialsAccepted(): void {
+    this.model.set({ email: 'doctor@ehr.demo', password: 'doctorPassword' });
   }
 }

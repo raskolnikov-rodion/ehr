@@ -1,0 +1,11 @@
+<dialog
+  #dialog
+  class="ehr-modal"
+  tabindex="-1"
+  [id]="id()"
+  (click)="onBackdropClick($event)"
+  (keydown)="onKeydown($event)"
+  [attr.test-id]="id()"
+>
+  <ng-content />
+</dialog>

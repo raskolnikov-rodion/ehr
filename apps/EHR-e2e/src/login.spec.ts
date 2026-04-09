@@ -16,6 +16,7 @@ test.describe('Login journey', () => {
     await page.getByTestId('email-input').click();
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
 
     await expect(page.getByTestId('email-error')).toBeVisible();
     await expect(page.getByTestId('password-error')).toBeVisible();

@@ -7,11 +7,13 @@
     gap: var(--space-200);
   }
 
-  &__link {
-    display: none; // TODO: remove when link has behaviour
+  &__forgot-btn {
+    padding: 0;
     font-size: var(--font-size-300);
     color: var(--color-primary-500);
-    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
 
     &:hover {
       text-decoration: underline;

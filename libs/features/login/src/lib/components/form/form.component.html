@@ -18,8 +18,15 @@
       placeholder="••••••••"
       testId="password-input"
     >
-      <!-- TODO: Add meaningful behaviour for this link -->
-      <a class="form__link" ngProjectAs="label-sibling">Forgot password?</a>
+      <button
+        class="form__forgot-btn"
+        type="button"
+        ngProjectAs="label-sibling"
+        test-id="forgot-password-button"
+        (click)="openForgotPasswordModal()"
+      >
+        Forgot password?
+      </button>
     </ehr-form-input>
   </div>
 
@@ -50,3 +57,8 @@
     >
   </button>
 </form>
+
+<ehr-forgot-password-modal
+  #forgotPasswordModal
+  (credentialsAccepted)="onCredentialsAccepted()"
+/>
