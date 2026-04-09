@@ -24,7 +24,7 @@ describe('FormComponent', () => {
     await fixture.whenStable();
 
     // jsdom does not implement HTMLDialogElement methods
-    const modal = getDemoModal();
+    const modal = getModal();
     modal.showModal = vi.fn(() => {
       modal.open = true;
     });
@@ -154,7 +154,7 @@ describe('FormComponent', () => {
       getForgotPasswordButton().click();
       await fixture.whenStable();
 
-      expect(getDemoModal().open).toBe(true);
+      expect(getModal().open).toBe(true);
     });
 
     it('should fill demo credentials and close modal when clicking modal button', async () => {
@@ -166,14 +166,14 @@ describe('FormComponent', () => {
 
       expect(getEmailInput().value).toBe('doctor@ehr.demo');
       expect(getPasswordInput().value).toBe('doctorPassword');
-      expect(getDemoModal().open).toBe(false);
+      expect(getModal().open).toBe(false);
     });
 
     it('should fill demo credentials and close modal when clicking modal backdrop', async () => {
       getForgotPasswordButton().click();
       await fixture.whenStable();
 
-      const modal = getDemoModal();
+      const modal = getModal();
       modal.dispatchEvent(new MouseEvent('click', { bubbles: true }));
       await fixture.whenStable();
 
@@ -186,7 +186,7 @@ describe('FormComponent', () => {
       getForgotPasswordButton().click();
       await fixture.whenStable();
 
-      const modal = getDemoModal();
+      const modal = getModal();
       modal.dispatchEvent(
         new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
       );
@@ -236,9 +236,10 @@ describe('FormComponent', () => {
     ).nativeElement as HTMLButtonElement;
   }
 
-  function getDemoModal(): HTMLDialogElement {
-    return fixture.debugElement.query(By.css("[test-id='demo-modal']"))
-      .nativeElement as HTMLDialogElement;
+  function getModal(): HTMLDialogElement {
+    return fixture.debugElement.query(
+      By.css("[test-id='forgot-password-modal']"),
+    ).nativeElement as HTMLDialogElement;
   }
 
   function getDemoCredentialsButton(): HTMLButtonElement {

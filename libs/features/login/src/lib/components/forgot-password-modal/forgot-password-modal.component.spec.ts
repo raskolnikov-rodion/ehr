@@ -97,7 +97,7 @@ describe('ForgotPasswordModalComponent', () => {
   });
 
   function getDialog(): HTMLDialogElement {
-    return fixture.debugElement.query(By.css("[test-id='demo-modal']"))
+    return fixture.debugElement.query(By.css('dialog'))
       .nativeElement as HTMLDialogElement;
   }
 
