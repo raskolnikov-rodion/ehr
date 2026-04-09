@@ -1,0 +1,16 @@
+.ehr-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: min(22rem, 90vw);
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: var(--radius-lg, 0.75rem);
+  box-shadow: var(--shadow-lg);
+  transform: translate(-50%, -50%);
+
+  &::backdrop {
+    background: var(--color-modal-backdrop);
+  }
+}

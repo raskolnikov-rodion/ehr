@@ -51,12 +51,49 @@ Generic card container that projects content via named slots.
 
 **Content projection:** project body content with `ngProjectAs="card-content"`.
 
+---
+
+### `ModalComponent` — `ehr-modal`
+
+Reusable dialog shell built on the native `<dialog>` element. Manages open/close lifecycle, backdrop-click dismissal, and Escape-key handling. Content is projected freely — the consumer owns all interior layout.
+
+**Inputs:**
+
+| Name | Type     | Default | Description                                                         |
+| ---- | -------- | ------- | ------------------------------------------------------------------- |
+| `id` | `string` | `''`    | Forwarded to the `<dialog>` element's `id` and `test-id` attributes |
+
+**Outputs:**
+
+| Name     | Type   | Description                                                             |
+| -------- | ------ | ----------------------------------------------------------------------- |
+| `closed` | `void` | Emits whenever the dialog closes (backdrop click, Escape, or `close()`) |
+
+**Methods:**
+
+| Name      | Description                                   |
+| --------- | --------------------------------------------- |
+| `open()`  | Opens the dialog as a modal via `showModal()` |
+| `close()` | Closes the dialog and emits `closed`          |
+
+**Content projection:** all projected content renders directly inside the `<dialog>`. The consumer is responsible for padding, layout, and any inner wrapper elements.
+
+```html
+<ehr-modal (closed)="onModalClosed()">
+  <div class="my-modal__content">
+    <p>Modal body goes here.</p>
+    <button type="button" (click)="modalRef.close()">Confirm</button>
+  </div>
+</ehr-modal>
+```
+
 ## Public API
 
 | Export           | Selector    | Description                                 |
 | ---------------- | ----------- | ------------------------------------------- |
 | `AlertComponent` | `ehr-alert` | Accessible alert with configurable type     |
 | `CardComponent`  | `ehr-card`  | Generic card container                      |
+| `ModalComponent` | `ehr-modal` | Native dialog shell with content projection |
 | `AlertType`      | —           | Enum: `ERROR`, `WARNING`, `SUCCESS`, `INFO` |
 
 ## Running unit tests
