@@ -151,6 +151,26 @@ describe('PageComponent', () => {
     }
   });
 
+  describe('SSO Login', () => {
+    it('should login with sample credentials', async () => {
+      authService.login.mockReturnValue(
+        of({
+          accessToken: 'token',
+          user: { id: '1', name: 'Test', email: 'doctor@ehr.demo' },
+        }),
+      );
+      vi.spyOn(router, 'navigate');
+      component.onSSOLogin();
+      await fixture.whenStable();
+
+      expect(authService.login).toHaveBeenCalledWith(
+        'doctor@ehr.demo',
+        'doctorPassword',
+      );
+      expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
+    });
+  });
+
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();

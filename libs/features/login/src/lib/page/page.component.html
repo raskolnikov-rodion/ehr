@@ -16,7 +16,12 @@
 
       <div class="divider" aria-hidden="true">or</div>
 
-      <button class="form-panel__btn-sso btn-tertiary" type="button">
+      <button
+        class="form-panel__btn-sso btn-tertiary"
+        type="button"
+        [disabled]="isLoggingIn()"
+        (click)="onSSOLogin()"
+      >
         <span class="form-panel__btn-sso-icon" aria-hidden="true"></span>
         Continue with Single Sign-On
       </button>
