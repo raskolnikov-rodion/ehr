@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { axe } from 'vitest-axe';
 import { By } from '@angular/platform-browser';
+import { vi } from 'vitest';
+import { axe } from 'vitest-axe';
 
+import { DebugElement } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { MIN_PASSWORD_LENGTH } from './constants';
 import { FormComponent } from './form.component';
 import { LoginFormData } from './models';
-import { DebugElement } from '@angular/core';
-import { MIN_PASSWORD_LENGTH } from './constants';
-import { provideRouter } from '@angular/router';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -21,6 +22,15 @@ describe('FormComponent', () => {
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
+
+    // jsdom does not implement HTMLDialogElement methods
+    const modal = getDemoModal();
+    modal.showModal = vi.fn(() => {
+      modal.open = true;
+    });
+    modal.close = vi.fn(() => {
+      modal.open = false;
+    });
   });
 
   it('should render the email and password inputs', () => {
@@ -103,6 +113,17 @@ describe('FormComponent', () => {
 
       expect(emitted.length).toBe(0);
     });
+
+    it('should not emit formSubmit when form submit is dispatched directly while disabled', async () => {
+      const emitted: LoginFormData[] = [];
+      component.formSubmit.subscribe((data) => emitted.push(data));
+
+      const formEl = fixture.debugElement.query(By.css('form')).nativeElement;
+      formEl.dispatchEvent(new SubmitEvent('submit'));
+      await fixture.whenStable();
+
+      expect(emitted.length).toBe(0);
+    });
   });
 
   describe('Loading state', () => {
@@ -125,6 +146,55 @@ describe('FormComponent', () => {
       await fixture.whenStable();
 
       expect(getSubmitButton().disabled).toBe(true);
+    });
+  });
+
+  describe('Forgot password', () => {
+    it('should open the modal when clicking forgot password button', async () => {
+      getForgotPasswordButton().click();
+      await fixture.whenStable();
+
+      expect(getDemoModal().open).toBe(true);
+    });
+
+    it('should fill demo credentials and close modal when clicking modal button', async () => {
+      getForgotPasswordButton().click();
+      await fixture.whenStable();
+
+      getDemoCredentialsButton().click();
+      await fixture.whenStable();
+
+      expect(getEmailInput().value).toBe('doctor@ehr.demo');
+      expect(getPasswordInput().value).toBe('doctorPassword');
+      expect(getDemoModal().open).toBe(false);
+    });
+
+    it('should fill demo credentials and close modal when clicking modal backdrop', async () => {
+      getForgotPasswordButton().click();
+      await fixture.whenStable();
+
+      const modal = getDemoModal();
+      modal.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      await fixture.whenStable();
+
+      expect(getEmailInput().value).toBe('doctor@ehr.demo');
+      expect(getPasswordInput().value).toBe('doctorPassword');
+      expect(modal.open).toBe(false);
+    });
+
+    it('should fill demo credentials and close modal when pressing Escape', async () => {
+      getForgotPasswordButton().click();
+      await fixture.whenStable();
+
+      const modal = getDemoModal();
+      modal.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+      );
+      await fixture.whenStable();
+
+      expect(getEmailInput().value).toBe('doctor@ehr.demo');
+      expect(getPasswordInput().value).toBe('doctorPassword');
+      expect(modal.open).toBe(false);
     });
   });
 
@@ -158,5 +228,22 @@ describe('FormComponent', () => {
 
   function getLoadingSpinner(): DebugElement {
     return fixture.debugElement.query(By.css("[test-id='login-loading']"));
+  }
+
+  function getForgotPasswordButton(): HTMLButtonElement {
+    return fixture.debugElement.query(
+      By.css("[test-id='forgot-password-button']"),
+    ).nativeElement as HTMLButtonElement;
+  }
+
+  function getDemoModal(): HTMLDialogElement {
+    return fixture.debugElement.query(By.css("[test-id='demo-modal']"))
+      .nativeElement as HTMLDialogElement;
+  }
+
+  function getDemoCredentialsButton(): HTMLButtonElement {
+    return fixture.debugElement.query(
+      By.css("[test-id='demo-credentials-button']"),
+    ).nativeElement as HTMLButtonElement;
   }
 });
