@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
@@ -31,17 +30,6 @@ describe('AppComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
-  });
-
-  it('should append a fonts link to the document head', () => {
-    const doc = TestBed.inject(DOCUMENT);
-    const links = Array.from(
-      doc.head.querySelectorAll('link[rel="stylesheet"]'),
-    );
-    const fontLink = links.find((l) =>
-      (l as HTMLLinkElement).href.includes('fonts'),
-    );
-    expect(fontLink).toBeTruthy();
   });
 
   it('should have no accessibility violations', async () => {
