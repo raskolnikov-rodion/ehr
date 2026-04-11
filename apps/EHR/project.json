@@ -87,8 +87,16 @@
       "options": {
         "buildTarget": "EHR:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/EHR/browser",
+        "staticFilePath": "dist/apps/EHR",
         "spa": true
+      }
+    },
+    "lighthouse": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx lhci autorun",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

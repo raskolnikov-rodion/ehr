@@ -75,3 +75,36 @@ jobs:
           main-branch-name: 'master'
 
       - run: npx nx affected -t build
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install chromium
+
+      - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: 'master'
+
+      - name: Run Lighthouse CI
+        run: npx nx run EHR:lighthouse
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 30

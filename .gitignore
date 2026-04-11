@@ -54,3 +54,5 @@ Thumbs.db
 __screenshots__/
 
 .nx/polygraph
+
+.lighthouseci/
