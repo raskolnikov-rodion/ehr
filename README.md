@@ -10,7 +10,7 @@ Intended to provide a simplified EHR experience. The focus is on **architectural
 - backend-independent data layer
 - deliberate multi-layer testing strategy
 - accessibility as a first-class concern
-- performance through lazy loading
+- performance through lazy loading and self-hosted fonts, with scores enforced by Lighthouse CI
 - automated quality gates and continuous deployment
 
 Internationalisation, server-side rendering, and role-based access control are intentionally out of scope for this demo.
@@ -85,9 +85,23 @@ This design means:
 - The mock layer can be swapped for a real API by removing a single provider — no component or service changes required
 - Handler functions are independently testable
 
-### Lazy-loaded routes
+### Performance
 
-Feature routes are lazy-loaded using Angular's `loadComponent` API. The login and dashboard pages are never bundled into the initial chunk — they are fetched on demand when the user first navigates to each route. This keeps the initial bundle small and reduces time-to-interactive, which matters most on slow connections or low-end devices.
+Several deliberate choices keep the app fast on first load:
+
+- **Lazy-loaded routes** — feature routes use Angular's `loadComponent` API. The login and dashboard pages are never bundled into the initial chunk; they are fetched on demand when first navigated to. This keeps the initial bundle small and reduces time-to-interactive.
+- **Self-hosted fonts** — app fonts are served from the same origin rather than a third-party CDN, eliminating the render-blocking cross-origin DNS lookup and connection that Google Fonts would introduce.
+
+These choices are validated on every CI run by Lighthouse CI (LHCI), which audits a production build of the app and enforces minimum scores:
+
+| Category       | Minimum score |
+| -------------- | ------------- |
+| Performance    | 80            |
+| Accessibility  | 90            |
+| Best practices | 90            |
+| SEO            | 90            |
+
+LHCI runs the audit three times and averages the results to reduce noise from variance in CI runners. The full HTML reports are uploaded as a CI artifact and retained for 30 days.
 
 ### Theme system
 
@@ -133,7 +147,7 @@ Feature routes are guarded at the router level. `authGuard` redirects unauthenti
 
 ### Branch protection
 
-The `master` branch has a GitHub ruleset that requires all three CI jobs (Lint, Test, Build) to pass before a pull request can merge. Direct pushes to `master` are blocked. No code reaches production without passing the full automated quality gate.
+The `master` branch has a GitHub ruleset that requires all four CI jobs (Lint, Test, Build, Lighthouse) to pass before a pull request can merge. Direct pushes to `master` are blocked. No code reaches production without passing the full automated quality gate.
 
 ### Dependency security
 
@@ -143,15 +157,16 @@ Dependabot updates are enabled at repository configuration level. It automatical
 
 ## CI/CD
 
-The CI pipeline runs as three parallel jobs on every pull request and push to `master`:
+The CI pipeline runs as four parallel jobs on every pull request and push to `master`:
 
-| Job   | Steps                                                         |
-| ----- | ------------------------------------------------------------- |
-| Lint  | `nx affected -t lint`, `nx affected -t stylelint`             |
-| Test  | `nx affected -t test`, `nx affected -t e2e` (with Playwright) |
-| Build | `nx affected -t build`                                        |
+| Job        | Steps                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------- |
+| Lint       | `nx affected -t lint`, `nx affected -t stylelint`                                             |
+| Test       | `nx affected -t test`, `nx affected -t e2e` (with Playwright)                                 |
+| Build      | `nx affected -t build`                                                                        |
+| Lighthouse | `nx run EHR:lighthouse` — audits performance, accessibility, best practices, and SEO via LHCI |
 
-Each job uses `nrwl/nx-set-shas` to calculate the affected set relative to the last successful commit on `master`, so only the projects touched by a change are processed. Merges to `master` trigger an automatic deploy to Netlify, so the live demo always reflects the current state of the main branch.
+The Lint, Test, and Build jobs use `nrwl/nx-set-shas` to calculate the affected set relative to the last successful commit on `master`, so only the projects touched by a change are processed. The Lighthouse job always runs against a production build of the app shell and uploads the HTML reports as a CI artifact (retained for 30 days). Merges to `master` trigger an automatic deploy to Netlify, so the live demo always reflects the current state of the main branch.
 
 ---
 
