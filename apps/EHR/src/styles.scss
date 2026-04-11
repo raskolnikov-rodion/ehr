@@ -1,4 +1,15 @@
+// Self-hosted fonts
+@use '@fontsource-variable/inter';
+@use '@fontsource/lora/400' as lora-400;
+@use '@fontsource/lora/400-italic' as lora-400-italic;
+@use '@fontsource/lora/500' as lora-500;
+@use '@fontsource/lora/600' as lora-600;
+@use '@fontsource/lora/700' as lora-700;
+
+// Reset
 @use './styles/reset';
+
+// Breakpoints
 @use './styles/breakpoints';
 
 // Variables
