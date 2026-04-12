@@ -46,6 +46,15 @@ export const mockApiInterceptor: HttpInterceptorFn = (req, _next) => {
     url: req.url,
     method: req.method,
     body: req.body,
+    headers: req.headers
+      .keys()
+      .reduce(
+        (acc, key) => ({
+          ...acc,
+          [key.toLowerCase()]: req.headers.get(key) ?? '',
+        }),
+        {} as Record<string, string>,
+      ),
   };
 
   return delay$.pipe(

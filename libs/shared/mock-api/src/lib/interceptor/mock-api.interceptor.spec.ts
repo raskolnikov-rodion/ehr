@@ -89,4 +89,35 @@ describe('mockApiInterceptor', () => {
     expect(error).toBeInstanceOf(HttpErrorResponse);
     expect(error?.status).toBe(500);
   });
+
+  it('passes request headers to the handler with lowercased keys', async () => {
+    let captured: Record<string, string> | undefined;
+    registry.register('GET', '/api/secured', (req) => {
+      captured = req.headers;
+      return { status: 200, body: null };
+    });
+    httpClient
+      .get('/api/secured', {
+        headers: {
+          Authorization: 'Bearer token123',
+          'X-Custom-Header': 'value',
+        },
+      })
+      .subscribe();
+    await vi.advanceTimersByTimeAsync(MAX_RESPONSE_DELAY_MS);
+    expect(captured?.['authorization']).toBe('Bearer token123');
+    expect(captured?.['x-custom-header']).toBe('value');
+  });
+
+  it('passes an empty headers object when the request has no custom headers', async () => {
+    let captured: Record<string, string> | undefined;
+    registry.register('GET', '/api/open', (req) => {
+      captured = req.headers;
+      return { status: 200, body: null };
+    });
+    httpClient.get('/api/open').subscribe();
+    await vi.advanceTimersByTimeAsync(MAX_RESPONSE_DELAY_MS);
+    expect(captured).toBeDefined();
+    expect(Object.keys(captured as Record<string, string>).length).toBe(0);
+  });
 });

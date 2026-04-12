@@ -11,6 +11,7 @@ describe('loginHandler', () => {
         url: '/api/login',
         method: 'POST',
         body: { email: DOCTOR.email, password: DOCTOR.password },
+        headers: {},
       });
 
       expect(result.status).toBe(200);
@@ -32,6 +33,7 @@ describe('loginHandler', () => {
         url: '/api/login',
         method: 'POST',
         body: { email: NURSE.email, password: NURSE.password },
+        headers: {},
       });
 
       expect(result.status).toBe(200);
@@ -44,6 +46,7 @@ describe('loginHandler', () => {
         url: '/api/login',
         method: 'POST',
         body: { email: DOCTOR.email, password: DOCTOR.password },
+        headers: {},
       });
 
       const user = (result.body as { user: Record<string, unknown> }).user;
@@ -57,6 +60,7 @@ describe('loginHandler', () => {
         url: '/api/login',
         method: 'POST',
         body: { email: 'unknown@ehr.demo', password: DOCTOR.password },
+        headers: {},
       });
 
       expect(result.status).toBe(401);
@@ -68,6 +72,7 @@ describe('loginHandler', () => {
         url: '/api/login',
         method: 'POST',
         body: { email: DOCTOR.email, password: 'wrongPassword' },
+        headers: {},
       });
 
       expect(result.status).toBe(401);
