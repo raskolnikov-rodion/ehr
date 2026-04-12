@@ -8,7 +8,7 @@ Lazy-loaded at `/dashboard` and protected by `authGuard`. The page composes four
 
 ### `PageComponent` (smart, public)
 
-Owns all data for the page as typed arrays declared directly on the class. Wires the data to the presentational components below. Manages alert dismissal state via a signal.
+Fetches data via `DashboardService` and converts the observable to a signal with `toSignal`. Derives `isLoading` (signal is `undefined`) and `hasError` (signal is `null`) computed signals. Wires the response fields to the presentational components below. Manages alert dismissal state via a signal.
 
 ### Internal presentational components
 
@@ -28,6 +28,23 @@ Owns all data for the page as typed arrays declared directly on the class. Wires
 | `Appointment`   | `appointment-item/models.ts` | `time`, `patient`, `type`, `status: AppointmentStatus`                |
 | `PendingAction` | `action-item/models.ts`      | `severity: ActionSeverity`, `title`, `meta`, `actionLabel`            |
 | `Patient`       | `patient-item/models.ts`     | `initials`, `avatarColor: AvatarColor`, `name`, `detail`, `lastVisit` |
+
+## Services
+
+### `DashboardService` (internal)
+
+Calls `GET /api/dashboard` via `HttpClient`. Returns `Observable<DashboardResponse | null>` — errors are caught and mapped to `null`.
+
+### `DashboardResponse`
+
+| Field          | Type                                                          | Description                    |
+| -------------- | ------------------------------------------------------------- | ------------------------------ |
+| `greeting`     | `{ name: string }`                                            | Name used in the page greeting |
+| `alert`        | `{ type: AlertType; title: string; message: string } \| null` | Optional dismissible alert     |
+| `stats`        | `Statistic[]`                                                 | Summary stat cards             |
+| `appointments` | `Appointment[]`                                               | Daily schedule rows            |
+| `actions`      | `Action[]`                                                    | Pending action rows            |
+| `patients`     | `Patient[]`                                                   | Recent patient rows            |
 
 ## Public API
 
