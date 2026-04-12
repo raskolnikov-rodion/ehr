@@ -2,6 +2,7 @@ export interface MockRequest {
   url: string;
   method: string;
   body: unknown;
+  headers: Record<string, string>;
 }
 
 interface MockResponse {
