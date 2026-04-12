@@ -13,7 +13,7 @@ export const loginHandler: MockHandlerFn = (req) => {
     return {
       status: 200,
       body: {
-        accessToken: 'mock.jwt.ehr-demo.' + Math.random(),
+        accessToken: `mock-token.${user.id}.${Math.random()}`,
         user: {
           id: user.id,
           name: user.name,

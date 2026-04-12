@@ -18,7 +18,8 @@ describe('loginHandler', () => {
         accessToken: string;
         user: { id: string; name: string; email: string };
       };
-      expect(body.accessToken).toContain('mock.jwt.ehr-demo.');
+      expect(body.accessToken).toContain('mock-token.');
+      expect(body.accessToken).toContain(DOCTOR.id);
       expect(body.user).toEqual({
         id: DOCTOR.id,
         name: DOCTOR.name,
