@@ -1,7 +1,16 @@
 import { MockHandlerFn } from '../service/models';
 import { MOCK_DASHBOARD_DOCTOR, MOCK_DASHBOARD_NURSE } from './dashboard.data';
 
+export const FAILURE_RATE = 0.15;
+
 export const dashboardHandler: MockHandlerFn = (req) => {
+  if (Math.random() < FAILURE_RATE) {
+    return {
+      status: 503,
+      body: { message: 'Service temporarily unavailable' },
+    };
+  }
+
   const authHeader = req.headers['authorization'] ?? '';
   const token = authHeader.replace('Bearer ', '');
   const userId = token.split('.')?.[1];
