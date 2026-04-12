@@ -4,7 +4,9 @@ Application-wide authentication services and route guards. Import alias: `@ehr/c
 
 ## How it works
 
-`AuthService` holds auth state in a private `accessToken` signal initialised from `localStorage`. `isLoggedIn` is a `computed` signal derived from that token — there is no imperative state mutation. Login and logout methods update the signal and sync to `localStorage` under the key `ehr_access_token`.
+`AuthService` holds auth state in a private `accessToken` signal initialised from `localStorage`. `isLoggedIn` is a `computed` signal derived from that token — there is no imperative state mutation. Login and logout methods update the signal and sync to `localStorage` under the key `ehr_access_token`. The readonly `token` signal exposes the raw token value for use by the interceptor.
+
+`authInterceptor` is a functional `HttpInterceptorFn`. It reads the current token from `AuthService` and attaches an `Authorization: Bearer <token>` header to every outbound request whose URL starts with `/api/`, except `/api/login` which is always passed through unauthenticated. Requests to non-API paths are also left unchanged.
 
 Route access is enforced at the router level by two functional guards:
 
@@ -15,12 +17,13 @@ Both guards are pure functions that compose directly with Angular's `canActivate
 
 ## Public API
 
-| Export                  | Description                                                                                                                     |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `AuthService`           | Manages auth state via signals. Exposes `isLoggedIn` (computed), `login(email, password)` (returns Observable), and `logout()`. |
-| `authGuard`             | `CanActivateFn` — redirects unauthenticated users to `/login`.                                                                  |
-| `noAuthGuard`           | `CanActivateFn` — redirects authenticated users to `/dashboard`.                                                                |
-| `LogoutButtonComponent` | Standalone button (`ehr-logout-button`) that calls `AuthService.logout()` and navigates to `/login`.                            |
+| Export                  | Description                                                                                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AuthService`           | Manages auth state via signals. Exposes `isLoggedIn` (computed), `token` (readonly signal), `login(email, password)` (returns Observable), and `logout()`. |
+| `authInterceptor`       | `HttpInterceptorFn` — attaches `Authorization: Bearer <token>` to all `/api/*` requests except `/api/login`.                                               |
+| `authGuard`             | `CanActivateFn` — redirects unauthenticated users to `/login`.                                                                                             |
+| `noAuthGuard`           | `CanActivateFn` — redirects authenticated users to `/dashboard`.                                                                                           |
+| `LogoutButtonComponent` | Standalone button (`ehr-logout-button`) that calls `AuthService.logout()` and navigates to `/login`.                                                       |
 
 ## Running unit tests
 

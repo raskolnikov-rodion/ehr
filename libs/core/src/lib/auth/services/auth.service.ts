@@ -12,6 +12,7 @@ export class AuthService {
   );
 
   readonly isLoggedIn = computed(() => this.accessToken() !== null);
+  readonly token = this.accessToken.asReadonly();
 
   login(email: string, password: string) {
     return this.http

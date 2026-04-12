@@ -89,6 +89,22 @@ describe('AuthService', () => {
     });
   });
 
+  describe('token', () => {
+    it('is null when not logged in', () => {
+      localStorage.clear();
+      testSetup();
+      expect(service.token()).toBeNull();
+    });
+
+    it('exposes the access token after a successful login', () => {
+      localStorage.clear();
+      testSetup();
+      service.login('user@ehr.demo', 'password123').subscribe();
+      httpTesting.expectOne('/api/login').flush(MOCK_RESPONSE);
+      expect(service.token()).toBe(MOCK_RESPONSE.accessToken);
+    });
+  });
+
   describe('logout', () => {
     beforeEach(() => {
       localStorage.clear();
