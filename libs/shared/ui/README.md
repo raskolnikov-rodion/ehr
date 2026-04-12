@@ -87,14 +87,28 @@ Reusable dialog shell built on the native `<dialog>` element. Manages open/close
 </ehr-modal>
 ```
 
+---
+
+### `SkeletonComponent` — `ehr-skeleton`
+
+Animated shimmer placeholder used while content is loading.
+
+**Inputs:**
+
+| Name     | Type     | Default  | Description                    |
+| -------- | -------- | -------- | ------------------------------ |
+| `width`  | `string` | `'100%'` | CSS width of the skeleton bar  |
+| `height` | `string` | `'1rem'` | CSS height of the skeleton bar |
+
 ## Public API
 
-| Export           | Selector    | Description                                 |
-| ---------------- | ----------- | ------------------------------------------- |
-| `AlertComponent` | `ehr-alert` | Accessible alert with configurable type     |
-| `CardComponent`  | `ehr-card`  | Generic card container                      |
-| `ModalComponent` | `ehr-modal` | Native dialog shell with content projection |
-| `AlertType`      | —           | Enum: `ERROR`, `WARNING`, `SUCCESS`, `INFO` |
+| Export              | Selector       | Description                                 |
+| ------------------- | -------------- | ------------------------------------------- |
+| `AlertComponent`    | `ehr-alert`    | Accessible alert with configurable type     |
+| `CardComponent`     | `ehr-card`     | Generic card container                      |
+| `ModalComponent`    | `ehr-modal`    | Native dialog shell with content projection |
+| `SkeletonComponent` | `ehr-skeleton` | Animated shimmer loading placeholder        |
+| `AlertType`         | —              | Enum: `ERROR`, `WARNING`, `SUCCESS`, `INFO` |
 
 ## Running unit tests
 
