@@ -11,7 +11,7 @@ import { Appointment } from './models';
   templateUrl: './appointment-item.component.html',
   styleUrl: './appointment-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { role: 'listitem', class: 'appt' },
+  host: { role: 'listitem', class: 'appt highlight-on-hover' },
 })
 export class AppointmentItemComponent {
   readonly appointment = input.required<Appointment>();
