@@ -6,7 +6,7 @@ import { Patient } from './models';
   templateUrl: './patient-item.component.html',
   styleUrl: './patient-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { role: 'listitem', class: 'patient-item' },
+  host: { role: 'listitem', class: 'patient-item highlight-on-hover' },
 })
 export class PatientItemComponent {
   readonly patient = input.required<Patient>();

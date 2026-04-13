@@ -11,7 +11,7 @@ import { Action } from './models';
   templateUrl: './action-item.component.html',
   styleUrl: './action-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { role: 'listitem', class: 'action-item' },
+  host: { role: 'listitem', class: 'action-item highlight-on-hover' },
 })
 export class ActionItemComponent {
   readonly action = input.required<Action>();
