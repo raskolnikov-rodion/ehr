@@ -42,6 +42,18 @@ describe('appRoutes', () => {
       expect(getUrl()).toBe('/login');
     });
 
+    it('is redirected from /patients to /login', async () => {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/patients');
+      expect(getUrl()).toBe('/login');
+    });
+
+    it('is redirected from /patient/:id to /login', async () => {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/patient/123');
+      expect(getUrl()).toBe('/login');
+    });
+
     it('is redirected from / to /login', async () => {
       const harness = await RouterTestingHarness.create();
       await harness.navigateByUrl('/');
@@ -68,6 +80,18 @@ describe('appRoutes', () => {
       const harness = await RouterTestingHarness.create();
       await harness.navigateByUrl('/dashboard');
       expect(getUrl()).toBe('/dashboard');
+    });
+
+    it('can navigate to /patients', async () => {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/patients');
+      expect(getUrl()).toBe('/patients');
+    });
+
+    it('can navigate to /patient/:id', async () => {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/patient/123');
+      expect(getUrl()).toBe('/patient/123');
     });
 
     it('is redirected from / to /dashboard', async () => {

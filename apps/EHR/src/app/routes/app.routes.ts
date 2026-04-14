@@ -24,6 +24,18 @@ export const appRoutes: Route[] = [
           import('@ehr/dashboard').then((m) => m.PageComponent),
       },
       {
+        path: 'patients',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import('@ehr/patient-list').then((m) => m.PatientList),
+      },
+      {
+        path: 'patient/:id',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import('@ehr/patient-profile').then((m) => m.PatientProfile),
+      },
+      {
         path: 'docs/design-system',
         loadComponent: () =>
           import('@ehr/design-system').then((m) => m.DesignSystemComponent),
