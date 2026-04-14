@@ -1,21 +1,21 @@
 {
   "name": "mock-api",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/mock-api/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mock-api/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["type:shared"],
+  "tags": ["type:api"],
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/shared/mock-api/ng-package.json",
-        "tsConfig": "libs/shared/mock-api/tsconfig.lib.json"
+        "project": "libs/mock-api/ng-package.json",
+        "tsConfig": "libs/mock-api/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/shared/mock-api/tsconfig.lib.prod.json"
+          "tsConfig": "libs/mock-api/tsconfig.lib.prod.json"
         },
         "development": {}
       },

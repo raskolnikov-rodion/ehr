@@ -22,6 +22,7 @@ export default [
                 'type:feature',
                 'type:core',
                 'type:shared',
+                'type:api',
               ],
             },
             {
