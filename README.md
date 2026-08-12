@@ -172,16 +172,17 @@ The Lint, Test, and Build jobs use `nrwl/nx-set-shas` to calculate the affected 
 
 ## Tech Stack
 
-| Concern     | Tool                                     |
-| ----------- | ---------------------------------------- |
-| Framework   | Angular (signals, standalone components) |
-| Monorepo    | Nx                                       |
-| Styling     | SCSS                                     |
-| Unit / int. | Vitest + Angular Testing Library         |
-| E2E         | Playwright                               |
-| Linting     | ESLint + `@angular-eslint` + Stylelint   |
-| CI          | GitHub Actions                           |
-| Deployment  | Netlify                                  |
+| Concern      | Tool                                     |
+| ------------ | ---------------------------------------- |
+| Framework    | Angular (signals, standalone components) |
+| Monorepo     | Nx                                       |
+| Styling      | SCSS                                     |
+| Unit / int.  | Vitest + Angular Testing Library         |
+| E2E          | Playwright                               |
+| Linting      | ESLint + `@angular-eslint` + Stylelint   |
+| CI           | GitHub Actions                           |
+| Deployment   | Netlify                                  |
+| Code Reviews | CodeRabbit                               |
 
 ---
 
