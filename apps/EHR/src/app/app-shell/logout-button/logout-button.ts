@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from '../../services/auth';
+import { Auth } from '@ehr/core';
 
 @Component({
-  selector: 'ehr-logout-button',
+  selector: 'app-logout-button',
   templateUrl: './logout-button.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

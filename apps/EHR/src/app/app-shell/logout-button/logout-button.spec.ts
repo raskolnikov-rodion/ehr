@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router } from '@angular/router';
 import { LogoutButton } from './logout-button';
-import { Auth } from '../../services/auth';
+import { Auth } from '@ehr/core';
 import { axe } from 'vitest-axe';
 
 describe('LogoutButton', () => {
