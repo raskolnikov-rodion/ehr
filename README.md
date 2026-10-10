@@ -55,6 +55,23 @@ This separation accomplishes the following:
 - shared UI is never coupled to business logic
 - the dependency graph stays acyclic
 
+Every lib carries two tags, and lint enforces both:
+
+| Tag axis | Values                                                             | Rule                                                                                                                                     |
+| -------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `scope`  | `scope:auth`, `scope:patient`, `scope:dashboard`, `scope:shared`   | A scope may depend only on itself and `scope:shared`                                                                                     |
+| `type`   | `app`, `feature`, `core`, `api`, `shared`, `data-access`, `domain` | `feature` → `shared`, `core`, `data-access`, `domain`; `data-access` → `data-access`, `domain`; `domain` → `domain`; `shared` → `shared` |
+
+| Lib                               | Tags                              |
+| --------------------------------- | --------------------------------- |
+| `core`                            | `scope:auth`, `type:core`         |
+| `login`                           | `scope:auth`, `type:feature`      |
+| `dashboard`                       | `scope:dashboard`, `type:feature` |
+| `patient-list`, `patient-profile` | `scope:patient`, `type:feature`   |
+| `theme`, `layout`, `ui`           | `scope:shared`, `type:shared`     |
+| `design-system`                   | `scope:shared`, `type:feature`    |
+| `mock-api`                        | `scope:shared`, `type:api`        |
+
 These constraints keep the codebase from developing improper couplings, enhance maintainability and facilitate addition of new features.
 
 ### Nx vs a flat workspace
