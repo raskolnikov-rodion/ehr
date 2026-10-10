@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { authGuard, noAuthGuard } from '@ehr/core';
-import { ShellLayout } from '@ehr/layout';
+import { AppShell } from '../app-shell/app-shell';
 
 export const appRoutes: Route[] = [
   {
@@ -10,7 +10,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: '',
-    component: ShellLayout,
+    component: AppShell,
     children: [
       {
         path: '',
