@@ -35,7 +35,7 @@ export default [
             },
             {
               sourceTag: 'type:shared',
-              onlyDependOnLibsWithTags: ['type:shared', 'type:core'],
+              onlyDependOnLibsWithTags: ['type:shared'],
             },
           ],
         },
