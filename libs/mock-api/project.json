@@ -4,7 +4,7 @@
   "sourceRoot": "libs/mock-api/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["type:api"],
+  "tags": ["type:api", "scope:shared"],
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",

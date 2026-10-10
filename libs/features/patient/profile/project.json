@@ -4,7 +4,7 @@
   "sourceRoot": "libs/features/patient/profile/src",
   "prefix": "ehr",
   "projectType": "library",
-  "tags": ["type:feature"],
+  "tags": ["type:feature", "scope:patient"],
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
