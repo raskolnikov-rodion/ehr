@@ -2,8 +2,8 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
-import { AuthService } from '@ehr/core';
-import { ThemeService } from '@ehr/theme';
+import { Auth } from '@ehr/core';
+import { Theme } from '@ehr/theme';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { appRoutes } from './app.routes';
 
@@ -15,11 +15,11 @@ describe('appRoutes', () => {
     await TestBed.configureTestingModule({
       providers: [
         {
-          provide: AuthService,
+          provide: Auth,
           useValue: { isLoggedIn, login: vi.fn(), logout: vi.fn() },
         },
         {
-          provide: ThemeService,
+          provide: Theme,
           useValue: { darkTheme: () => false, toggleTheme: vi.fn() },
         },
         provideRouter(appRoutes),

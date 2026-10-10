@@ -38,16 +38,16 @@ npm install && npm start   # → http://localhost:4200
 
 The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
 
-| Alias                | Location                      | Purpose                                                |
-| -------------------- | ----------------------------- | ------------------------------------------------------ |
-| `@ehr/core`          | `libs/core`                   | Route guards and auth service                          |
-| `@ehr/theme`         | `libs/shared/theme`           | ThemeService, ThemeToggleComponent, theme initialiser  |
-| `@ehr/mock-api`      | `libs/mock-api`               | Mock API provider, interceptor, route handlers         |
-| `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayoutComponent |
-| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)           |
-| `@ehr/login`         | `libs/features/login`         | Login page + form                                      |
-| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                         |
-| `@ehr/design-system` | `libs/features/design-system` | Design-system reference                                |
+| Alias                | Location                      | Purpose                                        |
+| -------------------- | ----------------------------- | ---------------------------------------------- |
+| `@ehr/core`          | `libs/core`                   | Route guards and auth service                  |
+| `@ehr/theme`         | `libs/shared/theme`           | Theme, ThemeToggle, theme initialiser          |
+| `@ehr/mock-api`      | `libs/mock-api`               | Mock API provider, interceptor, route handlers |
+| `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayout  |
+| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
+| `@ehr/login`         | `libs/features/login`         | Login page + form                              |
+| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
+| `@ehr/design-system` | `libs/features/design-system` | Design-system reference                        |
 
 This separation accomplishes the following:
 
@@ -69,7 +69,7 @@ For a project of this size the monorepo tooling is heavier than strictly necessa
 
 ### Signal-based state management
 
-Auth state is managed with Angular signals rather than a third-party store. `isLoggedIn` is a `computed` signal derived from an `accessToken` signal in `AuthService`, persisted to `localStorage`. There is no imperative mutation — state flows reactively from a single source of truth.
+Auth state is managed with Angular signals rather than a third-party store. `isLoggedIn` is a `computed` signal derived from an `accessToken` signal in `Auth`, persisted to `localStorage`. There is no imperative mutation — state flows reactively from a single source of truth.
 
 Route access is controlled by two functional guards: `authGuard` (blocks unauthenticated access) and `noAuthGuard` (redirects authenticated users away from the login page). Both are pure functions that compose cleanly with Angular's `canActivate` API — no class-based guards, no service wrapping.
 
@@ -105,7 +105,7 @@ LHCI runs the audit three times and averages the results to reduce noise from va
 
 ### Theme system
 
-`ThemeService` manages light/dark mode by reading and writing a `data-theme` attribute on `<html>`, with the user's preference persisted to `localStorage`. A `provideAppInitializer` call applies the saved theme synchronously before the first render, preventing a flash of the wrong theme on page load. `ThemeToggleComponent` is the sole UI entry point, keeping the service decoupled from layout concerns.
+`Theme` manages light/dark mode by reading and writing a `data-theme` attribute on `<html>`, with the user's preference persisted to `localStorage`. A `provideAppInitializer` call applies the saved theme synchronously before the first render, preventing a flash of the wrong theme on page load. `ThemeToggle` is the sole UI entry point, keeping the service decoupled from layout concerns.
 
 ---
 

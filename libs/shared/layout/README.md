@@ -2,25 +2,25 @@
 
 Shared layout library. Provides the application shell and its structural components. Import alias: `@ehr/layout`.
 
-`ShellLayoutComponent` is used as a layout route wrapper in the router config — it renders the header and footer around a `<router-outlet>`, so all authenticated pages share a consistent shell without each page needing to declare it.
+`ShellLayout` is used as a layout route wrapper in the router config — it renders the header and footer around a `<router-outlet>`, so all authenticated pages share a consistent shell without each page needing to declare it.
 
 ## Components
 
-| Component              | Selector           | Description                                                                                                    |
-| ---------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------- |
-| `ShellLayoutComponent` | `ehr-shell-layout` | Top-level route wrapper: renders `HeaderComponent`, `<router-outlet>`, and `FooterComponent`                   |
-| `HeaderComponent`      | `ehr-header`       | App bar with home link, `LogoutButtonComponent` from `@ehr/core`, and `ThemeToggleComponent` from `@ehr/theme` |
-| `FooterComponent`      | `ehr-footer`       | Bottom bar with site-wide navigation links                                                                     |
+| Component     | Selector           | Description                                                                                  |
+| ------------- | ------------------ | -------------------------------------------------------------------------------------------- |
+| `ShellLayout` | `ehr-shell-layout` | Top-level route wrapper: renders `Header`, `<router-outlet>`, and `Footer`                   |
+| `Header`      | `ehr-header`       | App bar with home link, `LogoutButton` from `@ehr/core`, and `ThemeToggle` from `@ehr/theme` |
+| `Footer`      | `ehr-footer`       | Bottom bar with site-wide navigation links                                                   |
 
 ## Usage
 
 ```typescript
-import { ShellLayoutComponent } from '@ehr/layout';
+import { ShellLayout } from '@ehr/layout';
 
 // In your route config:
 {
   path: '',
-  component: ShellLayoutComponent,
+  component: ShellLayout,
   children: [
     { path: 'dashboard', canActivate: [authGuard], loadComponent: () => ... },
   ],

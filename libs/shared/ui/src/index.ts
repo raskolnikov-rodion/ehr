@@ -1,6 +1,6 @@
 export type { AlertType } from './lib/alert/models';
-export { AlertComponent } from './lib/alert/alert.component';
-export { CardComponent } from './lib/card/card.component';
-export { FormInputComponent } from './lib/form-input/form-input.component';
-export { ModalComponent } from './lib/modal/modal.component';
-export { SkeletonComponent } from './lib/skeleton/skeleton.component';
+export { Alert } from './lib/alert/alert';
+export { Card } from './lib/card/card';
+export { FormInput } from './lib/form-input/form-input';
+export { Modal } from './lib/modal/modal';
+export { Skeleton } from './lib/skeleton/skeleton';

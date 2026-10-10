@@ -1,1 +1,1 @@
-export { PageComponent } from './lib/page/page.component';
+export { LoginPage } from './lib/page/page';

@@ -1,0 +1,91 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { axe } from 'vitest-axe';
+
+import { ActionItem } from './action-item';
+import { Action } from './models';
+
+const BASE: Action = {
+  severity: 'info',
+  title: 'Test action',
+  meta: 'Some context',
+  actionLabel: 'Review',
+};
+
+describe('ActionItem', () => {
+  let fixture: ComponentFixture<ActionItem>;
+
+  function createComponent(overrides: Partial<Action> = {}) {
+    fixture = TestBed.createComponent(ActionItem);
+    fixture.componentRef.setInput('action', { ...BASE, ...overrides });
+    return fixture;
+  }
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ActionItem],
+    }).compileComponents();
+  });
+
+  it('should create', async () => {
+    createComponent();
+    await fixture.whenStable();
+    expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('should render the title', async () => {
+    createComponent({ title: 'Lab results — Jane Doe' });
+    await fixture.whenStable();
+    expect(fixture.nativeElement.textContent).toContain(
+      'Lab results — Jane Doe',
+    );
+  });
+
+  it('should render the meta', async () => {
+    createComponent({ meta: 'Abnormal CBC · flagged 18h ago' });
+    await fixture.whenStable();
+    expect(fixture.nativeElement.textContent).toContain(
+      'Abnormal CBC · flagged 18h ago',
+    );
+  });
+
+  it('should render the action label', async () => {
+    createComponent({ actionLabel: 'Authorise' });
+    await fixture.whenStable();
+    expect(fixture.nativeElement.textContent).toContain('Authorise');
+  });
+
+  it('should apply urgent dot class for urgent severity', async () => {
+    createComponent({ severity: 'urgent' });
+    await fixture.whenStable();
+    const dot = fixture.nativeElement.querySelector('.action-item__dot');
+    expect(dot.classList).toContain('action-item__dot--urgent');
+  });
+
+  it('should apply warning dot class for warning severity', async () => {
+    createComponent({ severity: 'warning' });
+    await fixture.whenStable();
+    const dot = fixture.nativeElement.querySelector('.action-item__dot');
+    expect(dot.classList).toContain('action-item__dot--warning');
+  });
+
+  it('should apply info dot class for info severity', async () => {
+    createComponent({ severity: 'info' });
+    await fixture.whenStable();
+    const dot = fixture.nativeElement.querySelector('.action-item__dot');
+    expect(dot.classList).toContain('action-item__dot--info');
+  });
+
+  it('should have no accessibility violations', async () => {
+    createComponent();
+    await fixture.whenStable();
+    // Parent-context rules disabled: component is always used inside a <ul> (role="list"),
+    // verified in DashboardPage's accessibility test.
+    expect(
+      await axe(fixture.nativeElement, {
+        rules: {
+          'aria-required-parent': { enabled: false },
+        },
+      }),
+    ).toHaveNoViolations();
+  });
+});

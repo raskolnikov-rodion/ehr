@@ -1,1 +1,1 @@
-export { ShellLayoutComponent } from './lib/shell-layout/shell-layout.component';
+export { ShellLayout } from './lib/shell-layout/shell-layout';
