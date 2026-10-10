@@ -10,9 +10,9 @@ Design-system reference library. Import alias: `@ehr/design-system`.
 
 ## Public API
 
-| Export                  | Selector            | Description                                                 |
-| ----------------------- | ------------------- | ----------------------------------------------------------- |
-| `DesignSystemComponent` | `ehr-design-system` | Standalone component. Lazy-loaded at `/docs/design-system`. |
+| Export         | Selector            | Description                                                 |
+| -------------- | ------------------- | ----------------------------------------------------------- |
+| `DesignSystem` | `ehr-design-system` | Standalone component. Lazy-loaded at `/docs/design-system`. |
 
 ## Running unit tests
 

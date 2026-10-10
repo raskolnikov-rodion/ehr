@@ -6,19 +6,19 @@ Lazy-loaded at `/dashboard` and protected by `authGuard`. The page composes four
 
 ## Components
 
-### `PageComponent` (smart, public)
+### `DashboardPage` (smart, public)
 
-Fetches data via `DashboardService` and converts the observable to a signal with `toSignal`. Derives `isLoading` (signal is `undefined`) and `hasError` (signal is `null`) computed signals. Wires the response fields to the presentational components below. Manages alert dismissal state via a signal.
+Fetches data via `Dashboard` and converts the observable to a signal with `toSignal`. Derives `isLoading` (signal is `undefined`) and `hasError` (signal is `null`) computed signals. Wires the response fields to the presentational components below. Manages alert dismissal state via a signal.
 
 ### Internal presentational components
 
-| Component                  | Selector                 | Input                      | Description                                                     |
-| -------------------------- | ------------------------ | -------------------------- | --------------------------------------------------------------- |
-| `GreetingComponent`        | `ehr-dashboard-greeting` | `name: string`             | Header with time-aware greeting and formatted date badge        |
-| `StatCardComponent`        | `ehr-stat-card`          | `statistic: Statistic`     | Summary card with value, trend text, trend direction, and icon  |
-| `AppointmentItemComponent` | `ehr-appointment-item`   | `appointment: Appointment` | List row with time, patient name, type, and status badge        |
-| `ActionItemComponent`      | `ehr-action-item`        | `action: PendingAction`    | List row with severity dot, title, meta text, and action button |
-| `PatientItemComponent`     | `ehr-patient-item`       | `patient: Patient`         | List row with avatar, name, detail, and last-visit date         |
+| Component         | Selector                 | Input                      | Description                                                     |
+| ----------------- | ------------------------ | -------------------------- | --------------------------------------------------------------- |
+| `Greeting`        | `ehr-dashboard-greeting` | `name: string`             | Header with time-aware greeting and formatted date badge        |
+| `StatCard`        | `ehr-stat-card`          | `statistic: Statistic`     | Summary card with value, trend text, trend direction, and icon  |
+| `AppointmentItem` | `ehr-appointment-item`   | `appointment: Appointment` | List row with time, patient name, type, and status badge        |
+| `ActionItem`      | `ehr-action-item`        | `action: PendingAction`    | List row with severity dot, title, meta text, and action button |
+| `PatientItem`     | `ehr-patient-item`       | `patient: Patient`         | List row with avatar, name, detail, and last-visit date         |
 
 ### Data models
 
@@ -31,7 +31,7 @@ Fetches data via `DashboardService` and converts the observable to a signal with
 
 ## Services
 
-### `DashboardService` (internal)
+### `Dashboard` (internal)
 
 Calls `GET /api/dashboard` via `HttpClient`. Returns `Observable<DashboardResponse | null>` — errors are caught and mapped to `null`.
 
@@ -50,7 +50,7 @@ Calls `GET /api/dashboard` via `HttpClient`. Returns `Observable<DashboardRespon
 
 | Export          | Description                         |
 | --------------- | ----------------------------------- |
-| `PageComponent` | Standalone dashboard page component |
+| `DashboardPage` | Standalone dashboard page component |
 
 ## Running unit tests
 

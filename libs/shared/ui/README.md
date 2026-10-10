@@ -6,7 +6,7 @@ All components use `ChangeDetectionStrategy.OnPush` and signal-based inputs. The
 
 ## Components
 
-### `AlertComponent` — `ehr-alert`
+### `Alert` — `ehr-alert`
 
 Accessible alert box that adapts its ARIA role and live region based on severity.
 
@@ -30,7 +30,7 @@ Accessible alert box that adapts its ARIA role and live region based on severity
 
 ---
 
-### `CardComponent` — `ehr-card`
+### `Card` — `ehr-card`
 
 Generic card container that projects content via named slots.
 
@@ -53,7 +53,7 @@ Generic card container that projects content via named slots.
 
 ---
 
-### `ModalComponent` — `ehr-modal`
+### `Modal` — `ehr-modal`
 
 Reusable dialog shell built on the native `<dialog>` element. Manages open/close lifecycle, backdrop-click dismissal, and Escape-key handling. Content is projected freely — the consumer owns all interior layout.
 
@@ -89,7 +89,7 @@ Reusable dialog shell built on the native `<dialog>` element. Manages open/close
 
 ---
 
-### `SkeletonComponent` — `ehr-skeleton`
+### `Skeleton` — `ehr-skeleton`
 
 Animated shimmer placeholder used while content is loading.
 
@@ -102,13 +102,13 @@ Animated shimmer placeholder used while content is loading.
 
 ## Public API
 
-| Export              | Selector       | Description                                 |
-| ------------------- | -------------- | ------------------------------------------- |
-| `AlertComponent`    | `ehr-alert`    | Accessible alert with configurable type     |
-| `CardComponent`     | `ehr-card`     | Generic card container                      |
-| `ModalComponent`    | `ehr-modal`    | Native dialog shell with content projection |
-| `SkeletonComponent` | `ehr-skeleton` | Animated shimmer loading placeholder        |
-| `AlertType`         | —              | Enum: `ERROR`, `WARNING`, `SUCCESS`, `INFO` |
+| Export      | Selector       | Description                                 |
+| ----------- | -------------- | ------------------------------------------- |
+| `Alert`     | `ehr-alert`    | Accessible alert with configurable type     |
+| `Card`      | `ehr-card`     | Generic card container                      |
+| `Modal`     | `ehr-modal`    | Native dialog shell with content projection |
+| `Skeleton`  | `ehr-skeleton` | Animated shimmer loading placeholder        |
+| `AlertType` | —              | Enum: `ERROR`, `WARNING`, `SUCCESS`, `INFO` |
 
 ## Running unit tests
 

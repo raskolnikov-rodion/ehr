@@ -1,16 +1,16 @@
 import { Route } from '@angular/router';
 import { authGuard, noAuthGuard } from '@ehr/core';
-import { ShellLayoutComponent } from '@ehr/layout';
+import { ShellLayout } from '@ehr/layout';
 
 export const appRoutes: Route[] = [
   {
     path: 'login',
     canActivate: [noAuthGuard],
-    loadComponent: () => import('@ehr/login').then((m) => m.PageComponent),
+    loadComponent: () => import('@ehr/login').then((m) => m.LoginPage),
   },
   {
     path: '',
-    component: ShellLayoutComponent,
+    component: ShellLayout,
     children: [
       {
         path: '',
@@ -21,7 +21,7 @@ export const appRoutes: Route[] = [
         path: 'dashboard',
         canActivate: [authGuard],
         loadComponent: () =>
-          import('@ehr/dashboard').then((m) => m.PageComponent),
+          import('@ehr/dashboard').then((m) => m.DashboardPage),
       },
       {
         path: 'patients',
@@ -38,7 +38,7 @@ export const appRoutes: Route[] = [
       {
         path: 'docs/design-system',
         loadComponent: () =>
-          import('@ehr/design-system').then((m) => m.DesignSystemComponent),
+          import('@ehr/design-system').then((m) => m.DesignSystem),
       },
     ],
   },

@@ -1,1 +1,1 @@
-export { DesignSystemComponent } from './lib/design-system.component';
+export { DesignSystem } from './lib/design-system';

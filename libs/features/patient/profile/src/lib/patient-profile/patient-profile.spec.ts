@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PatientProfile } from './patient-profile';
+import { By } from '@angular/platform-browser';
 import { axe } from 'vitest-axe';
 
+import { PatientProfile } from './patient-profile';
+
 describe('PatientProfile', () => {
-  let component: PatientProfile;
   let fixture: ComponentFixture<PatientProfile>;
 
   beforeEach(async () => {
@@ -12,16 +13,17 @@ describe('PatientProfile', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PatientProfile);
-    component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders the page heading', () => {
+    const heading = fixture.debugElement.query(
+      By.css("[test-id='patient-profile-heading']"),
+    );
+    expect(heading.nativeElement.textContent.trim()).toBe('Patient profile');
   });
 
   it('should have no accessibility violations', async () => {
-    await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });

@@ -36,7 +36,7 @@ Nx monorepo. App shell lives in `apps/EHR`.
 
 ### List-item component pattern
 
-Components that render as list rows (e.g. `ActionItemComponent`) apply `role="listitem"` and their root CSS class to the Angular host element via `host: { role: 'listitem', class: '...' }`. Their templates contain no `<li>` wrapper — the host element _is_ the list item.
+Components that render as list rows (e.g. `ActionItem`) apply `role="listitem"` and their root CSS class to the Angular host element via `host: { role: 'listitem', class: '...' }`. Their templates contain no `<li>` wrapper — the host element _is_ the list item.
 
 ## Test Conventions
 

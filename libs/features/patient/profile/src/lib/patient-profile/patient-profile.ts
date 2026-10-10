@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'ehr-patient-profile',
-  imports: [],
   templateUrl: './patient-profile.html',
   styleUrl: './patient-profile.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatientProfile {}
