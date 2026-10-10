@@ -23,7 +23,6 @@ Both guards are pure functions that compose directly with Angular's `canActivate
 | `authInterceptor` | `HttpInterceptorFn` — attaches `Authorization: Bearer <token>` to all `/api/*` requests except `/api/login`.                                               |
 | `authGuard`       | `CanActivateFn` — redirects unauthenticated users to `/login`.                                                                                             |
 | `noAuthGuard`     | `CanActivateFn` — redirects authenticated users to `/dashboard`.                                                                                           |
-| `LogoutButton`    | Standalone button (`ehr-logout-button`) that calls `Auth.logout()` and navigates to `/login`.                                                              |
 
 ## Running unit tests
 

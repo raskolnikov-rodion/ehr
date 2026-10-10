@@ -1,4 +1,6 @@
-<ehr-header class="header" />
+<ehr-header class="header">
+  <ng-content select="[headerActions]" ngProjectAs="[headerActions]" />
+</ehr-header>
 <main class="main">
   <router-outlet />
 </main>
