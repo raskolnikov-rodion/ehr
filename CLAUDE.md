@@ -34,6 +34,8 @@ Nx monorepo. App shell lives in `apps/EHR`.
 
 `@nx/enforce-module-boundaries` is enforced via lint. Check `depConstraints` property in [ESLint config](./eslint.config.mjs) in case of errors.
 
+Every lib has one `scope:*` tag and one `type:*` tag (see `project.json`); both axes are enforced.
+
 ### List-item component pattern
 
 Components that render as list rows (e.g. `ActionItem`) apply `role="listitem"` and their root CSS class to the Angular host element via `host: { role: 'listitem', class: '...' }`. Their templates contain no `<li>` wrapper — the host element _is_ the list item.
