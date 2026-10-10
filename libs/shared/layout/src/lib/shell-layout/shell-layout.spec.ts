@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { Auth } from '@ehr/core';
 import { axe } from 'vitest-axe';
 import { ShellLayout } from './shell-layout';
 import { Theme } from '@ehr/theme';
@@ -15,10 +14,6 @@ describe('ShellLayout', () => {
       imports: [ShellLayout],
       providers: [
         provideRouter([]),
-        {
-          provide: Auth,
-          useValue: { isLoggedIn: () => false, logout: vi.fn() },
-        },
         {
           provide: Theme,
           useValue: { darkTheme: () => false, toggleTheme: vi.fn() },

@@ -6,11 +6,11 @@ Shared layout library. Provides the application shell and its structural compone
 
 ## Components
 
-| Component     | Selector           | Description                                                                                  |
-| ------------- | ------------------ | -------------------------------------------------------------------------------------------- |
-| `ShellLayout` | `ehr-shell-layout` | Top-level route wrapper: renders `Header`, `<router-outlet>`, and `Footer`                   |
-| `Header`      | `ehr-header`       | App bar with home link, `LogoutButton` from `@ehr/core`, and `ThemeToggle` from `@ehr/theme` |
-| `Footer`      | `ehr-footer`       | Bottom bar with site-wide navigation links                                                   |
+| Component     | Selector           | Description                                                                                                          |
+| ------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `ShellLayout` | `ehr-shell-layout` | Top-level route wrapper: renders `Header`, `<router-outlet>`, and `Footer`; projects `[headerActions]` into `Header` |
+| `Header`      | `ehr-header`       | App bar with home link, `ThemeToggle` from `@ehr/theme`, and a `[headerActions]` slot                                |
+| `Footer`      | `ehr-footer`       | Bottom bar with site-wide navigation links                                                                           |
 
 ## Usage
 
