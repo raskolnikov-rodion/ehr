@@ -36,7 +36,7 @@ npm install && npm start   # → http://localhost:4200
 
 ### Monorepo structure with enforced module boundaries
 
-The app shell in `apps/EHR` is intentionally thin. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
+The app shell in `apps/EHR` is intentionally thin. `AppShell` wraps `ShellLayout` and supplies the auth-aware logout button, so `type:shared` libraries never depend on `type:core`. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
 
 | Alias                | Location                      | Purpose                                        |
 | -------------------- | ----------------------------- | ---------------------------------------------- |
