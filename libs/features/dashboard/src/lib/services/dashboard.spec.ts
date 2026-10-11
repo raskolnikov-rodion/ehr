@@ -4,9 +4,9 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { Dashboard } from './dashboard';
-import { DashboardResponse, DashboardView } from './models';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { BASE_RETRY_DELAY_MS, Dashboard, MAX_RETRIES } from './dashboard';
+import { DashboardResponse, DashboardResult } from './models';
 
 describe('Dashboard', () => {
   let service: Dashboard;
@@ -44,23 +44,70 @@ describe('Dashboard', () => {
     });
 
     it('maps the response to view models on success', () => {
-      let result: DashboardView | null | undefined;
+      let result: DashboardResult | undefined;
       service.getDashboard().subscribe((res) => (result = res));
 
       httpTesting.expectOne('/api/dashboard').flush(MOCK_RESPONSE);
 
-      expect(result).toEqual({ ...MOCK_RESPONSE });
+      expect(result).toEqual({ data: { ...MOCK_RESPONSE }, error: null });
     });
 
-    it('returns null on HTTP error', () => {
-      let result: DashboardView | null | undefined;
+    it.each([
+      [401, 'unauthorized'],
+      [404, 'not-found'],
+      [500, 'unknown'],
+    ])('maps HTTP %i to "%s" without retrying', (status, error) => {
+      let result: DashboardResult | undefined;
       service.getDashboard().subscribe((res) => (result = res));
 
       httpTesting
         .expectOne('/api/dashboard')
-        .flush(null, { status: 500, statusText: 'Server Error' });
+        .flush(null, { status, statusText: 'Error' });
 
-      expect(result).toBeNull();
+      expect(result).toEqual({ data: null, error });
+    });
+
+    describe('retry on 503', () => {
+      beforeEach(() => vi.useFakeTimers());
+      afterEach(() => vi.useRealTimers());
+
+      const fail503 = () =>
+        httpTesting
+          .expectOne('/api/dashboard')
+          .flush(null, { status: 503, statusText: 'Unavailable' });
+
+      it('retries with exponential backoff and succeeds', () => {
+        let result: DashboardResult | undefined;
+        service.getDashboard().subscribe((res) => (result = res));
+
+        fail503();
+        httpTesting.expectNone('/api/dashboard');
+        vi.advanceTimersByTime(BASE_RETRY_DELAY_MS - 1);
+        httpTesting.expectNone('/api/dashboard');
+        vi.advanceTimersByTime(1);
+
+        fail503();
+        vi.advanceTimersByTime(BASE_RETRY_DELAY_MS * 2 - 1);
+        httpTesting.expectNone('/api/dashboard');
+        vi.advanceTimersByTime(1);
+
+        httpTesting.expectOne('/api/dashboard').flush(MOCK_RESPONSE);
+
+        expect(result).toEqual({ data: { ...MOCK_RESPONSE }, error: null });
+      });
+
+      it('returns "unavailable" once retries are exhausted', () => {
+        let result: DashboardResult | undefined;
+        service.getDashboard().subscribe((res) => (result = res));
+
+        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+          fail503();
+          vi.advanceTimersByTime(BASE_RETRY_DELAY_MS * 2 ** attempt);
+        }
+        fail503();
+
+        expect(result).toEqual({ data: null, error: 'unavailable' });
+      });
     });
   });
 });
