@@ -1,6 +1,7 @@
 <ehr-header class="header">
   <ng-content select="[headerActions]" ngProjectAs="[headerActions]" />
 </ehr-header>
+<ehr-sidebar-nav class="nav" [items]="navItems()" />
 <main class="main">
   <router-outlet />
 </main>
