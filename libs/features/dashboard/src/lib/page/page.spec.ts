@@ -82,16 +82,16 @@ const mockDashboard: DashboardView = {
   ],
   recentVisits: [
     {
-      initials: 'PA',
+      patientInitials: 'PA',
       avatarColor: 'blue',
-      name: 'Patient A',
+      patientName: 'Patient A',
       detail: 'F, 40',
       lastVisit: 'Today',
     },
     {
-      initials: 'PB',
+      patientInitials: 'PB',
       avatarColor: 'teal',
-      name: 'Patient B',
+      patientName: 'Patient B',
       detail: 'M, 55',
       lastVisit: 'Yesterday',
     },

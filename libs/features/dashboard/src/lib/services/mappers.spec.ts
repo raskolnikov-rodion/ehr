@@ -48,9 +48,9 @@ describe('toAppointmentView', () => {
 describe('toVisitView', () => {
   it('builds initials, detail and visit label', () => {
     expect(toVisitView(VISIT, 0, NOW)).toEqual({
-      initials: 'JD',
+      patientInitials: 'JD',
       avatarColor: 'blue',
-      name: 'Jane Doe',
+      patientName: 'Jane Doe',
       detail: 'F, 51 · Annual check-up',
       lastVisit: 'Today',
     });

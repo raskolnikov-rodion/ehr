@@ -22,12 +22,12 @@ Fetches data via `Dashboard` and converts the observable to a signal with `toSig
 
 ### Data models
 
-| Model             | Location                     | Key fields                                                            |
-| ----------------- | ---------------------------- | --------------------------------------------------------------------- |
-| `Statistic`       | `stat-card/models.ts`        | `label`, `value`, `trend`, `trendDirection`, `iconUrl`                |
-| `AppointmentView` | `appointment-item/models.ts` | `time`, `patient`, `type`, `status: AppointmentStatus`                |
-| `PendingAction`   | `action-item/models.ts`      | `severity: ActionSeverity`, `title`, `meta`, `actionLabel`            |
-| `VisitView`       | `visit-item/models.ts`       | `initials`, `avatarColor: AvatarColor`, `name`, `detail`, `lastVisit` |
+| Model             | Location                     | Key fields                                                                          |
+| ----------------- | ---------------------------- | ----------------------------------------------------------------------------------- |
+| `Statistic`       | `stat-card/models.ts`        | `label`, `value`, `trend`, `trendDirection`, `iconUrl`                              |
+| `AppointmentView` | `appointment-item/models.ts` | `time`, `patient`, `type`, `status: AppointmentStatus`                              |
+| `PendingAction`   | `action-item/models.ts`      | `severity: ActionSeverity`, `title`, `meta`, `actionLabel`                          |
+| `VisitView`       | `visit-item/models.ts`       | `patientInitials`, `avatarColor: AvatarColor`, `patientName`, `detail`, `lastVisit` |
 
 ## Services
 

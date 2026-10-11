@@ -5,9 +5,9 @@ import { AvatarColor, VisitView } from './models';
 import { VisitItem } from './visit-item';
 
 const BASE: VisitView = {
-  initials: 'JD',
+  patientInitials: 'JD',
   avatarColor: 'blue',
-  name: 'Jane Doe',
+  patientName: 'Jane Doe',
   detail: 'F, 45 · Annual check-up',
   lastVisit: 'Today',
 };
@@ -34,7 +34,7 @@ describe('VisitItem', () => {
   });
 
   it('should render the patient name', async () => {
-    createComponent({ name: 'Sarah Thompson' });
+    createComponent({ patientName: 'Sarah Thompson' });
     await fixture.whenStable();
     expect(fixture.nativeElement.textContent).toContain('Sarah Thompson');
   });
@@ -54,7 +54,7 @@ describe('VisitItem', () => {
   });
 
   it('should render the initials in the avatar', async () => {
-    createComponent({ initials: 'ST' });
+    createComponent({ patientInitials: 'ST' });
     await fixture.whenStable();
     const avatar = fixture.nativeElement.querySelector('.visit-item__avatar');
     expect(avatar.textContent.trim()).toBe('ST');

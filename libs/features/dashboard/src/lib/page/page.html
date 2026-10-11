@@ -95,7 +95,7 @@
             class="patient-list"
             aria-label="Recent patients"
           >
-            @for (visit of recentVisits(); track visit.name) {
+            @for (visit of recentVisits(); track visit.patientName) {
               <ehr-visit-item [visit]="visit" class="patient-list__item" />
             }
           </ul>
