@@ -1,6 +1,9 @@
 <header class="header">
   <h1 class="header__home-link">
-    <a routerLink="/">EHR</a>
+    <a routerLink="/" class="header__brand">
+      <span class="header__logo" aria-hidden="true"></span>
+      EHR
+    </a>
   </h1>
   <ehr-theme-toggle />
   <ng-content select="[headerActions]" />
