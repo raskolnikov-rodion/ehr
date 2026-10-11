@@ -6,12 +6,13 @@ import {
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Alert, Card, Skeleton } from '@ehr/ui';
+import { Alert, Card } from '@ehr/ui';
 import { ActionItem } from '../components/action-item/action-item';
 import { AppointmentItem } from '../components/appointment-item/appointment-item';
 import { Greeting } from '../components/greeting/greeting';
-import { VisitItem } from '../components/visit-item/visit-item';
+import { DashboardSkeleton } from '../components/skeleton/skeleton';
 import { StatCard } from '../components/stat-card/stat-card';
+import { VisitItem } from '../components/visit-item/visit-item';
 import { Dashboard } from '../services/dashboard';
 
 @Component({
@@ -22,7 +23,7 @@ import { Dashboard } from '../services/dashboard';
   imports: [
     Alert,
     Card,
-    Skeleton,
+    DashboardSkeleton,
     Greeting,
     StatCard,
     AppointmentItem,
