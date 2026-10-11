@@ -1,0 +1,44 @@
+<div class="error" [attr.test-id]="'dashboard-error-' + error()">
+  <ehr-alert
+    type="error"
+    [title]="content().title"
+    [message]="content().message"
+  />
+  @switch (content().action) {
+    @case ('retry') {
+      <ng-container
+        *ngTemplateOutlet="
+          actionButton;
+          context: {
+            $implicit: 'retry',
+            label: 'Try again',
+            testId: 'dashboard-retry-button',
+          }
+        "
+      />
+    }
+    @case ('sign-in') {
+      <ng-container
+        *ngTemplateOutlet="
+          actionButton;
+          context: {
+            $implicit: 'sign-in',
+            label: 'Sign in again',
+            testId: 'dashboard-sign-in-button',
+          }
+        "
+      />
+    }
+  }
+</div>
+
+<ng-template #actionButton let-type let-label="label" let-testId="testId">
+  <button
+    type="button"
+    class="btn-primary error__action"
+    [attr.test-id]="testId"
+    (click)="action.emit(type)"
+  >
+    {{ label }}
+  </button>
+</ng-template>
