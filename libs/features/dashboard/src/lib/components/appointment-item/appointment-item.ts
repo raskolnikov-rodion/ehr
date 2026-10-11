@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { Appointment } from './models';
+import { AppointmentView } from './models';
 
 @Component({
   selector: 'ehr-appointment-item',
@@ -14,7 +14,7 @@ import { Appointment } from './models';
   host: { role: 'listitem', class: 'appt highlight-on-hover' },
 })
 export class AppointmentItem {
-  readonly appointment = input.required<Appointment>();
+  readonly appointment = input.required<AppointmentView>();
 
   readonly badgeCssClass = computed(
     () => `badge badge--${this.appointment().status}`,
