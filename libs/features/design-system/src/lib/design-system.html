@@ -83,3 +83,42 @@
     }
   </div>
 </section>
+
+<section class="group">
+  <h3 class="group__heading" [attr.test-id]="'type-group-heading'">
+    Typography
+  </h3>
+  @for (type of typography; track type.label) {
+    <div class="type-row" [attr.test-id]="'type-row'">
+      <span class="type-row__label">{{ type.label }}</span>
+      <span
+        class="type-row__sample"
+        [style.font-family]="type.family"
+        [style.font-weight]="type.weight"
+        [style.font-size]="
+          type.var.startsWith('--font-size') ? 'var(' + type.var + ')' : null
+        "
+        >{{ type.sample }}</span
+      >
+      <code class="type-row__var">{{ type.var }}</code>
+    </div>
+  }
+</section>
+
+<section class="group">
+  <h3 class="group__heading" [attr.test-id]="'radius-group-heading'">
+    Corner Radius
+  </h3>
+  <div class="group__grid">
+    @for (radius of radii; track radius.var) {
+      <div
+        class="radius__card"
+        [style.border-radius]="'var(' + radius.var + ')'"
+        [attr.test-id]="'radius-card'"
+      >
+        <span class="radius__label">{{ radius.label }}</span>
+        <code class="radius__var">{{ radius.var }}</code>
+      </div>
+    }
+  </div>
+</section>

@@ -68,6 +68,20 @@ describe('DesignSystem', () => {
     expect(cards.length).toBe(component.shadows.length);
   });
 
+  it('should render a row for every type sample', async () => {
+    await fixture.whenStable();
+    const rows = fixture.debugElement.queryAll(By.css("[test-id='type-row']"));
+    expect(rows.length).toBe(component.typography.length);
+  });
+
+  it('should render a card for every corner radius', async () => {
+    await fixture.whenStable();
+    const cards = fixture.debugElement.queryAll(
+      By.css("[test-id='radius-card']"),
+    );
+    expect(cards.length).toBe(component.radii.length);
+  });
+
   it('should have no accessibility violations', async () => {
     await fixture.whenStable();
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
