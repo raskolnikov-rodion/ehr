@@ -26,7 +26,12 @@
       "@ehr/patient-list": ["libs/features/patient/list/src/index.ts"],
       "@ehr/patient-profile": ["libs/features/patient/profile/src/index.ts"],
       "@ehr/domain": ["libs/domain/src/index.ts"]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }

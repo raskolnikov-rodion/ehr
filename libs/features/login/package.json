@@ -2,12 +2,12 @@
   "name": "@ehr/login",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^21.2.0",
-    "@angular/platform-browser": "~21.2.0",
+    "@angular/core": "22.1.8",
+    "@angular/platform-browser": "22.1.8",
     "vitest": "^4.0.8",
     "vitest-axe": "^0.1.0",
-    "@angular/forms": "~21.2.0",
-    "@angular/router": "~21.2.0",
+    "@angular/forms": "22.1.8",
+    "@angular/router": "22.1.8",
     "@ehr/core": "0.0.1",
     "@ehr/ui": "0.0.1",
     "rxjs": "~7.8.0"
