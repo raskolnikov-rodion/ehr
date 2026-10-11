@@ -1,21 +1,22 @@
 // Self-hosted fonts
-@use '@fontsource-variable/inter';
-@use '@fontsource/lora/400' as lora-400;
-@use '@fontsource/lora/400-italic' as lora-400-italic;
-@use '@fontsource/lora/500' as lora-500;
-@use '@fontsource/lora/600' as lora-600;
-@use '@fontsource/lora/700' as lora-700;
+@use '@fontsource/ibm-plex-sans/400' as plex-400;
+@use '@fontsource/ibm-plex-sans/500' as plex-500;
+@use '@fontsource/ibm-plex-sans/600' as plex-600;
+@use '@fontsource/ibm-plex-sans/700' as plex-700;
+@use '@fontsource/ibm-plex-mono/400' as plex-mono-400;
+@use '@fontsource/ibm-plex-mono/500' as plex-mono-500;
 
 // Reset
 @use './styles/reset';
 
 // Breakpoints
-@use './styles/breakpoints';
+@use 'breakpoints';
 
 // Variables
 @use './styles/border';
 @use './styles/colors';
 @use './styles/dimensions';
+@use './styles/shadows';
 @use './styles/spacing';
 @use './styles/typography';
 

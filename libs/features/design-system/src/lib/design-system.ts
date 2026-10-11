@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Theme } from '@ehr/theme';
-import { ColorGroup, GroupItem } from './models';
+import { ColorGroup, GroupItem, TypeSample } from './models';
 
 @Component({
   selector: 'ehr-design-system',
@@ -105,5 +105,42 @@ export class DesignSystem {
     { label: 'Small', var: '--shadow-sm' },
     { label: 'Medium', var: '--shadow-md' },
     { label: 'Large', var: '--shadow-lg' },
+  ];
+
+  readonly typography: TypeSample[] = [
+    {
+      label: 'Heading',
+      var: '--font-size-600',
+      family: 'var(--font-family-heading)',
+      weight: 'var(--font-weight-semibold)',
+      sample: 'Patient care updates',
+    },
+    {
+      label: 'Body',
+      var: '--font-size-400',
+      family: 'var(--font-family-body)',
+      weight: 'var(--font-weight-regular)',
+      sample: 'Annual check-up · 30 min',
+    },
+    {
+      label: 'Caption',
+      var: '--font-size-300',
+      family: 'var(--font-family-body)',
+      weight: 'var(--font-weight-regular)',
+      sample: 'Abnormal CBC · flagged 18h ago',
+    },
+    {
+      label: 'Mono (times, values)',
+      var: '--font-family-mono',
+      family: 'var(--font-family-mono)',
+      weight: 'var(--font-weight-medium)',
+      sample: '08:30  MRN 004821',
+    },
+  ];
+
+  readonly radii: GroupItem[] = [
+    { label: 'Small', var: '--border-radius-sm' },
+    { label: 'Medium', var: '--border-radius-md' },
+    { label: 'Large', var: '--border-radius-lg' },
   ];
 }

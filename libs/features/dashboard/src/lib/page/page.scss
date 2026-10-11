@@ -9,7 +9,7 @@
 
 .dashboard {
   display: grid;
-  gap: var(--space-700);
+  gap: var(--space-500);
   width: 100%;
   padding-block: var(--space-200) var(--space-700);
 }
@@ -17,7 +17,7 @@
 .stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-400);
+  gap: var(--space-300);
 
   @include bp.up(lg) {
     grid-template-columns: repeat(4, 1fr);
@@ -26,7 +26,7 @@
 
 .columns {
   display: grid;
-  gap: var(--space-500);
+  gap: var(--space-400);
 
   @include bp.up(lg) {
     grid-template-columns: 1fr 1fr;
@@ -36,7 +36,7 @@
 
 .right-col {
   display: grid;
-  gap: var(--space-500);
+  gap: var(--space-400);
 }
 
 .appt-list,

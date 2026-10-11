@@ -1,15 +1,16 @@
 import { Route } from '@angular/router';
 import { authGuard, logoutGuard, noAuthGuard } from '@ehr/core';
 import { AppShell } from '../app-shell/app-shell';
+import { ROUTE_PATHS } from './route-paths';
 
 export const appRoutes: Route[] = [
   {
-    path: 'login',
+    path: ROUTE_PATHS.login,
     canActivate: [noAuthGuard],
     loadComponent: () => import('@ehr/login').then((m) => m.LoginPage),
   },
   {
-    path: 'logout',
+    path: ROUTE_PATHS.logout,
     canActivate: [logoutGuard],
     children: [],
   },
@@ -19,29 +20,29 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: ROUTE_PATHS.dashboard,
         pathMatch: 'full',
       },
       {
-        path: 'dashboard',
+        path: ROUTE_PATHS.dashboard,
         canActivate: [authGuard],
         loadComponent: () =>
           import('@ehr/dashboard').then((m) => m.DashboardPage),
       },
       {
-        path: 'patients',
+        path: ROUTE_PATHS.patients,
         canActivate: [authGuard],
         loadComponent: () =>
           import('@ehr/patient-list').then((m) => m.PatientList),
       },
       {
-        path: 'patient/:id',
+        path: ROUTE_PATHS.patientProfile,
         canActivate: [authGuard],
         loadComponent: () =>
           import('@ehr/patient-profile').then((m) => m.PatientProfile),
       },
       {
-        path: 'docs/design-system',
+        path: ROUTE_PATHS.designSystem,
         loadComponent: () =>
           import('@ehr/design-system').then((m) => m.DesignSystem),
       },
@@ -49,6 +50,6 @@ export const appRoutes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: '/login',
+    redirectTo: `/${ROUTE_PATHS.login}`,
   },
 ];

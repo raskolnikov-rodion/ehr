@@ -25,7 +25,7 @@
         ],
         "styles": ["apps/EHR/src/styles.scss"],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/EHR/src/styles"]
+          "includePaths": ["apps/EHR/src/styles", "libs/shared/styles"]
         }
       },
       "configurations": {

@@ -23,6 +23,7 @@ describe('ShellLayout', () => {
 
     fixture = TestBed.createComponent(ShellLayout);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('navItems', []);
   });
 
   it('should create', () => {

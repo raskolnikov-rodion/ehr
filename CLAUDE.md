@@ -31,6 +31,10 @@ Nx monorepo. App shell lives in `apps/EHR`.
 | `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                |
 | `@ehr/design-system` | `libs/features/design-system` | Design system reference                       |
 
+### Styles
+
+Global design tokens (colors, shadows, spacing, typography, borders) live in `apps/EHR/src/styles`. `_breakpoints.scss` lives in `libs/shared/styles` so standalone-built libs can `@use 'breakpoints'`; it is on the Sass include path of the app and of each lib's `ng-package.json` (`styleIncludePaths`).
+
 ### Module boundaries
 
 `@nx/enforce-module-boundaries` is enforced via lint. Check `depConstraints` property in [ESLint config](./eslint.config.mjs) in case of errors.

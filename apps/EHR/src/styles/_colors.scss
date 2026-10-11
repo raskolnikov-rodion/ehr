@@ -11,8 +11,8 @@
   // Themed Blue values
   --color-primary-100: #dbeafe;
   --color-primary-300: #93bbfd;
-  --color-primary-500: #2563eb;
-  --color-primary-700: #1d4ed8;
+  --color-primary-500: #0b5cad;
+  --color-primary-700: #084a8d;
   --color-primary-900: var(--color-primary-900-default);
 
   // ── Secondary (Teal) ───────────────────────────────────────────────────
@@ -47,14 +47,14 @@
 
   // ── Semantic — Warning ─────────────────────────────────────────────────
   --color-warning: #b45309;
-  --color-warning-bg: #fef3c7;
+  --color-warning-bg: #fff4d6;
 
   // ── Semantic — Info ────────────────────────────────────────────────────
-  --color-info: #2563eb;
+  --color-info: #0b5cad;
   --color-info-bg: #dbeafe;
 
   // ── Backgrounds ────────────────────────────────────────────────────────
-  --color-bg-app: #f9fafb;
+  --color-bg-app: #eceff3;
   --color-bg-surface: #fff;
   --color-bg-muted: #f3f4f6;
   --color-modal-backdrop: color-mix(
@@ -66,24 +66,23 @@
   // ── Text ───────────────────────────────────────────────────────────────
   --color-text-primary: #111827;
   --color-text-secondary: #4b5563;
-  --color-text-muted: #6b7280;
+  --color-text-muted: #5b6472;
   --color-text-on-primary: #fff;
 
   // ── Borders ────────────────────────────────────────────────────────────
-  --color-border-light: #e5e7eb;
-  --color-border-default: #d1d5db;
+  --color-border-light: #e1e5ea;
+  --color-border-default: #c3cad3;
   --color-border-strong: #9ca3af;
 
+  // ── App chrome (top bar) — dark in both themes ─────────────────────────
+  --color-chrome-bg: #0f2a47;
+  --color-chrome-text: #fff;
+  --color-chrome-border: #0a1f36;
+
   // ── Focus & Interaction ────────────────────────────────────────────────
-  --color-focus-ring: #2563eb;
+  --color-focus-ring: #0b5cad;
   --color-hover-overlay: rgb(0 0 0 / 4%);
   --color-active-overlay: rgb(0 0 0 / 8%);
-
-  // ── Shadows / Elevation ────────────────────────────────────────────────
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
 }
 
 // ---------------------------------------------------------------------------
@@ -93,7 +92,7 @@
   // ── Primary (Blue) ──────────────────────────────────────────────────────
   --color-primary-100: #1e3a5f;
   --color-primary-300: #2b5ea7;
-  --color-primary-500: #2563eb;
+  --color-primary-500: #1f6fc9;
   --color-primary-700: #93bbfd;
   --color-primary-900: #dbeafe;
 
@@ -126,16 +125,16 @@
 
   // ── Semantic — Warning ─────────────────────────────────────────────────
   --color-warning: #fbbf24;
-  --color-warning-bg: #78350f;
+  --color-warning-bg: #3b2a08;
 
   // ── Semantic — Info ────────────────────────────────────────────────────
   --color-info: #60a5fa;
   --color-info-bg: #1e3a5f;
 
   // ── Backgrounds ────────────────────────────────────────────────────────
-  --color-bg-app: #0f172a;
-  --color-bg-surface: #1e293b;
-  --color-bg-muted: #334155;
+  --color-bg-app: #0d1117;
+  --color-bg-surface: #161b22;
+  --color-bg-muted: #212830;
 
   // ── Text ───────────────────────────────────────────────────────────────
   --color-text-primary: #f1f5f9;
@@ -144,18 +143,17 @@
   --color-text-on-primary: #fff;
 
   // ── Borders ────────────────────────────────────────────────────────────
-  --color-border-light: #334155;
-  --color-border-default: #475569;
+  --color-border-light: #262d36;
+  --color-border-default: #3a434e;
   --color-border-strong: #64748b;
+
+  // ── App chrome (top bar) ───────────────────────────────────────────────
+  --color-chrome-bg: #010409;
+  --color-chrome-text: #f1f5f9;
+  --color-chrome-border: #262d36;
 
   // ── Focus & Interaction ────────────────────────────────────────────────
   --color-focus-ring: #3b82f6;
   --color-hover-overlay: rgb(255 255 255 / 6%);
   --color-active-overlay: rgb(255 255 255 / 12%);
-
-  // ── Shadows / Elevation ────────────────────────────────────────────────
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 30%);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 40%), 0 2px 4px -2px rgb(0 0 0 / 30%);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 50%), 0 4px 6px -4px rgb(0 0 0 / 40%);
 }

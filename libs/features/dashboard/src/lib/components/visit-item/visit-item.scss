@@ -1,9 +1,13 @@
 :host {
   display: grid;
-  grid-template-columns: 2.25rem 1fr auto;
+  grid-template-columns: 2rem 1fr auto;
   gap: var(--space-300);
   align-items: center;
-  padding: var(--space-400) var(--space-600);
+  padding: var(--space-200) var(--space-400);
+
+  &:hover {
+    background: var(--color-hover-overlay);
+  }
 }
 
 .visit-item {
@@ -11,9 +15,9 @@
     display: grid;
     flex-shrink: 0;
     place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: var(--font-size-300);
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--font-size-200);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-on-primary);
     border-radius: 50%;
@@ -46,7 +50,7 @@
 
   &__name {
     font-size: var(--font-size-400);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
   }
 

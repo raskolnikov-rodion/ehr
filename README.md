@@ -10,7 +10,7 @@ Intended to provide a simplified EHR experience. The focus is on **architectural
 - backend-independent data layer
 - deliberate multi-layer testing strategy
 - accessibility as a first-class concern
-- performance through lazy loading and self-hosted fonts, with scores enforced by Lighthouse CI
+- performance through lazy loading and self-hosted fonts (IBM Plex Sans and Mono), with scores enforced by Lighthouse CI
 - automated quality gates and continuous deployment
 
 Internationalisation, server-side rendering, and role-based access control are intentionally out of scope for this demo.
@@ -36,18 +36,18 @@ npm install && npm start   # → http://localhost:4200
 
 ### Monorepo structure with enforced module boundaries
 
-The app shell in `apps/EHR` is intentionally thin. `AppShell` wraps `ShellLayout` and supplies the auth-aware logout button, so `type:shared` libraries never depend on `type:core`. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
+The app shell in `apps/EHR` is intentionally thin. `AppShell` wraps `ShellLayout` and supplies the navigation items (built from the shared `ROUTE_PATHS`) and the auth-aware logout button, so `type:shared` libraries never depend on `type:core`. Feature logic lives in purpose-scoped libraries with import boundaries enforced by Nx:
 
-| Alias                | Location                      | Purpose                                        |
-| -------------------- | ----------------------------- | ---------------------------------------------- |
-| `@ehr/core`          | `libs/core`                   | Route guards and auth service                  |
-| `@ehr/theme`         | `libs/shared/theme`           | Theme, ThemeToggle, theme initialiser          |
-| `@ehr/mock-api`      | `libs/mock-api`               | Mock API provider, interceptor, route handlers |
-| `@ehr/layout`        | `libs/shared/layout`          | App shell layout: header, footer, ShellLayout  |
-| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)   |
-| `@ehr/login`         | `libs/features/login`         | Login page + form                              |
-| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                 |
-| `@ehr/design-system` | `libs/features/design-system` | Design-system reference                        |
+| Alias                | Location                      | Purpose                                           |
+| -------------------- | ----------------------------- | ------------------------------------------------- |
+| `@ehr/core`          | `libs/core`                   | Route guards and auth service                     |
+| `@ehr/theme`         | `libs/shared/theme`           | Theme, ThemeToggle, theme initialiser             |
+| `@ehr/mock-api`      | `libs/mock-api`               | Mock API provider, interceptor, route handlers    |
+| `@ehr/layout`        | `libs/shared/layout`          | App shell: top bar, nav rail, footer, ShellLayout |
+| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components (e.g. Card)      |
+| `@ehr/login`         | `libs/features/login`         | Login page + form                                 |
+| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                    |
+| `@ehr/design-system` | `libs/features/design-system` | Design-system reference                           |
 
 This separation accomplishes the following:
 

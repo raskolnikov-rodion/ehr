@@ -32,6 +32,16 @@ describe('AppShell', () => {
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 
+  it('should pass the navigation items to the sidebar', async () => {
+    await fixture.whenStable();
+    const links = fixture.debugElement.queryAll(
+      By.css("ehr-sidebar-nav [test-id='nav-link']"),
+    );
+    expect(
+      links.map((l) => (l.nativeElement as HTMLElement).textContent?.trim()),
+    ).toEqual(['Dashboard', 'Patients']);
+  });
+
   it('should project the logout button into the header', async () => {
     await fixture.whenStable();
     expect(

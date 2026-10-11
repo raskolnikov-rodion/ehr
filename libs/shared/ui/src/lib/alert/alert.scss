@@ -2,10 +2,11 @@
   display: flex;
   gap: var(--space-300);
   align-items: flex-start;
-  padding: var(--space-300) var(--space-400);
+  padding: var(--space-200) var(--space-400);
   font-size: var(--font-size-300);
   line-height: var(--line-height-snug);
   border: 1px solid;
+  border-left-width: 4px;
   border-radius: var(--border-radius-md);
 
   /* stylelint-disable selector-class-pattern */

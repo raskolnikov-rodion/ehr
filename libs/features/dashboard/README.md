@@ -4,6 +4,10 @@ Feature library for the dashboard page. Import alias: `@ehr/dashboard`.
 
 Lazy-loaded at `/dashboard` and protected by `authGuard`. The page composes four sections — a stats bar, a daily schedule, a pending actions list, and a recent visits list — from purpose-built presentational components backed by typed data models.
 
+## Visual style
+
+The page uses a dense, clinical look: flat cards with hairline borders, compact rows with hover highlight, uppercase status badges and square priority markers, and IBM Plex Mono for times and statistic values. Typography and color come from the global tokens in `apps/EHR/src/styles`.
+
 ## Components
 
 ### `DashboardPage` (smart, public)

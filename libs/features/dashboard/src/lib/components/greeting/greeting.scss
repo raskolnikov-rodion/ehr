@@ -10,14 +10,14 @@
   justify-content: space-between;
 
   &__title {
-    font-size: var(--font-size-700);
+    font-size: var(--font-size-600);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-tight);
     color: var(--color-text-primary);
   }
 
   &__subtitle {
-    margin-top: var(--space-100);
+    margin-top: 0;
     font-size: var(--font-size-300);
     color: var(--color-text-muted);
   }
@@ -26,8 +26,9 @@
     display: flex;
     gap: var(--space-200);
     align-items: center;
-    padding: var(--space-200) var(--space-400);
-    font-size: var(--font-size-300);
+    padding: var(--space-100) var(--space-300);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-200);
     color: var(--color-text-secondary);
     white-space: nowrap;
     background: var(--color-bg-surface);

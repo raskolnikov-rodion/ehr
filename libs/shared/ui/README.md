@@ -32,7 +32,7 @@ Accessible alert box that adapts its ARIA role and live region based on severity
 
 ### `Card` — `ehr-card`
 
-Generic card container that projects content via named slots.
+Generic card container that projects content via named slots. The header renders as a muted strip with a compact uppercase title; the action link uses `--color-primary-700` so it meets AA contrast in both themes.
 
 **Inputs:**
 

@@ -2,7 +2,12 @@
   display: flex;
   gap: var(--space-300);
   align-items: flex-start;
-  padding: var(--space-400) var(--space-600);
+  padding: var(--space-200) var(--space-400);
+  border-left: 3px solid transparent;
+
+  &:hover {
+    background: var(--color-hover-overlay);
+  }
 }
 
 .action-item {
@@ -11,7 +16,7 @@
     width: 8px;
     height: 8px;
     margin-top: 6px;
-    border-radius: 50%;
+    border-radius: 1px;
 
     &--urgent {
       background: var(--color-error);
@@ -37,7 +42,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--font-size-400);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     white-space: nowrap;
   }
@@ -49,7 +54,8 @@
 
   &__btn {
     flex-shrink: 0;
-    font-size: var(--font-size-300);
+    padding: var(--space-100) var(--space-300);
+    font-size: var(--font-size-200);
     font-weight: var(--font-weight-medium);
   }
 }

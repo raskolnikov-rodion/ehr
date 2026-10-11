@@ -6,6 +6,9 @@ Design-system reference library. Import alias: `@ehr/design-system`.
 
 - Color groups: Primary, Secondary, Neutrals, Semantic, Backgrounds, Text, Borders, Focus & Interaction
 - Shadow/elevation tokens: sm, md, lg
+- Typography samples: heading, body, caption and mono (IBM Plex Sans / IBM Plex Mono)
+- Corner radius tokens: sm, md, lg
+- Button variants with default, hover, active, focus and disabled states
 - Responds to the active theme in real time — switching light/dark mode updates all swatches via CSS custom properties
 
 ## Public API

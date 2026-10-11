@@ -1,21 +1,5 @@
-@use 'breakpoints' as bp;
-
 :root {
-  // xs–md: phones and tablets — full width, horizontal padding handles spacing
-  --feature-max-width: 100%;
-
-  // lg: tablets in landscape / small desktops
-  @include bp.up(lg) {
-    --feature-max-width: 960px;
-  }
-
-  // xl: standard clinical workstations
-  @include bp.up(xl) {
-    --feature-max-width: 1120px;
-  }
-
-  // 2xl: large / dual-monitor workstations
-  @include bp.up(2xl) {
-    --feature-max-width: 1280px;
-  }
+  // Clinical workstations are wide and dense — let content use the canvas,
+  // capped so lines stay scannable on ultra-wide monitors.
+  --feature-max-width: 100rem;
 }
