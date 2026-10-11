@@ -6,7 +6,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { Dashboard } from './dashboard';
-import { DashboardResponse } from './models';
+import { DashboardResponse, DashboardView } from './models';
 
 describe('Dashboard', () => {
   let service: Dashboard;
@@ -18,7 +18,7 @@ describe('Dashboard', () => {
     stats: [],
     appointments: [],
     actions: [],
-    patients: [],
+    recentVisits: [],
   };
 
   beforeEach(() => {
@@ -43,17 +43,17 @@ describe('Dashboard', () => {
       req.flush(MOCK_RESPONSE);
     });
 
-    it('returns the response on success', () => {
-      let result: DashboardResponse | null | undefined;
+    it('maps the response to view models on success', () => {
+      let result: DashboardView | null | undefined;
       service.getDashboard().subscribe((res) => (result = res));
 
       httpTesting.expectOne('/api/dashboard').flush(MOCK_RESPONSE);
 
-      expect(result).toEqual(MOCK_RESPONSE);
+      expect(result).toEqual({ ...MOCK_RESPONSE });
     });
 
     it('returns null on HTTP error', () => {
-      let result: DashboardResponse | null | undefined;
+      let result: DashboardView | null | undefined;
       service.getDashboard().subscribe((res) => (result = res));
 
       httpTesting
