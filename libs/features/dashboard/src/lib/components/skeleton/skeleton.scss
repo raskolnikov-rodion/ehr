@@ -1,0 +1,31 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: grid;
+  gap: var(--space-700);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-400);
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-500);
+
+  @include bp.up(lg) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.right-col {
+  display: grid;
+  gap: var(--space-500);
+}
