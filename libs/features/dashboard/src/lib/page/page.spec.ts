@@ -7,9 +7,9 @@ import { vi } from 'vitest';
 
 import { DashboardPage } from './page';
 import { Dashboard } from '../services/dashboard';
-import { DashboardResponse } from '../services/models';
+import { DashboardView } from '../services/models';
 
-const mockDashboard: DashboardResponse = {
+const mockDashboard: DashboardView = {
   greeting: { name: 'Dr. Test' },
   alert: {
     type: 'warning',
@@ -80,7 +80,7 @@ const mockDashboard: DashboardResponse = {
       actionLabel: 'Authorise',
     },
   ],
-  patients: [
+  recentVisits: [
     {
       initials: 'PA',
       avatarColor: 'blue',
@@ -104,7 +104,7 @@ describe('DashboardPage', () => {
   let dashboardService: { getDashboard: ReturnType<typeof vi.fn> };
 
   function setup(
-    response: Observable<DashboardResponse | null> = of(mockDashboard),
+    response: Observable<DashboardView | null> = of(mockDashboard),
   ) {
     dashboardService = { getDashboard: vi.fn().mockReturnValue(response) };
 
@@ -188,10 +188,10 @@ describe('DashboardPage', () => {
       ).toHaveLength(mockDashboard.actions.length);
     });
 
-    it('should render all recent patients', () => {
+    it('should render all recent visits', () => {
       expect(
-        fixture.nativeElement.querySelectorAll('ehr-patient-item'),
-      ).toHaveLength(mockDashboard.patients.length);
+        fixture.nativeElement.querySelectorAll('ehr-visit-item'),
+      ).toHaveLength(mockDashboard.recentVisits.length);
     });
   });
 
