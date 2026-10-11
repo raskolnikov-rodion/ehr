@@ -18,7 +18,6 @@ button {
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.4;
   }
 }
 
@@ -71,6 +70,10 @@ button {
   }
 }
 
+// Disabled: one neutral, dashed treatment shared by every variant. Colors are
+// explicit (no opacity) so the label stays legible:
+//   text-muted on bg-muted → 5.44:1 light / 5.81:1 dark (AA)
+// Hover/active rules are overridden so a disabled button never reacts.
 .btn-primary,
 .btn-secondary,
 .btn-tertiary {
@@ -78,17 +81,26 @@ button {
     outline: 2px solid var(--color-focus-ring);
     outline-offset: 2px;
   }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    color: var(--color-text-muted);
+    background-color: var(--color-bg-muted);
+    background-image: none;
+    border: 1px dashed var(--color-border-strong);
+  }
 }
 
 // In dark mode the primary scale is inverted (light values at high steps),
 // so hover/active must step down toward primary-100 to stay dark enough for white text.
 [data-theme='dark'] {
   .btn-primary {
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--color-primary-300);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: var(--color-primary-100);
     }
   }
