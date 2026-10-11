@@ -1,0 +1,22 @@
+<nav class="sidebar" aria-label="Primary">
+  <ul class="sidebar__list" role="list">
+    @for (item of items(); track item.path) {
+      <li>
+        <a
+          class="sidebar__link"
+          [routerLink]="item.path"
+          routerLinkActive="sidebar__link--active"
+          ariaCurrentWhenActive="page"
+          [attr.test-id]="'nav-link'"
+        >
+          <span
+            class="sidebar__icon"
+            aria-hidden="true"
+            [style.mask-image]="'url(' + item.iconUrl + ')'"
+          ></span>
+          {{ item.label }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
