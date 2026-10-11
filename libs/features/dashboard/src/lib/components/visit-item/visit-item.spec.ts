@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
-import { AvatarColor, Patient } from './models';
-import { PatientItem } from './patient-item';
+import { AvatarColor, VisitView } from './models';
+import { VisitItem } from './visit-item';
 
-const BASE: Patient = {
+const BASE: VisitView = {
   initials: 'JD',
   avatarColor: 'blue',
   name: 'Jane Doe',
@@ -12,18 +12,18 @@ const BASE: Patient = {
   lastVisit: 'Today',
 };
 
-describe('PatientItem', () => {
-  let fixture: ComponentFixture<PatientItem>;
+describe('VisitItem', () => {
+  let fixture: ComponentFixture<VisitItem>;
 
-  function createComponent(overrides: Partial<Patient> = {}) {
-    fixture = TestBed.createComponent(PatientItem);
-    fixture.componentRef.setInput('patient', { ...BASE, ...overrides });
+  function createComponent(overrides: Partial<VisitView> = {}) {
+    fixture = TestBed.createComponent(VisitItem);
+    fixture.componentRef.setInput('visit', { ...BASE, ...overrides });
     return fixture;
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PatientItem],
+      imports: [VisitItem],
     }).compileComponents();
   });
 
@@ -56,7 +56,7 @@ describe('PatientItem', () => {
   it('should render the initials in the avatar', async () => {
     createComponent({ initials: 'ST' });
     await fixture.whenStable();
-    const avatar = fixture.nativeElement.querySelector('.patient-item__avatar');
+    const avatar = fixture.nativeElement.querySelector('.visit-item__avatar');
     expect(avatar.textContent.trim()).toBe('ST');
   });
 
@@ -71,10 +71,8 @@ describe('PatientItem', () => {
     for (const color of avatarColor) {
       createComponent({ avatarColor: color });
       await fixture.whenStable();
-      const avatar = fixture.nativeElement.querySelector(
-        '.patient-item__avatar',
-      );
-      expect(avatar.classList).toContain(`patient-item__avatar--${color}`);
+      const avatar = fixture.nativeElement.querySelector('.visit-item__avatar');
+      expect(avatar.classList).toContain(`visit-item__avatar--${color}`);
     }
   });
 
