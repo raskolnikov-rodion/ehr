@@ -1,13 +1,18 @@
 :host {
   display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
+  grid-template-columns: 3rem 1fr auto;
   gap: var(--space-300);
   align-items: center;
-  padding: var(--space-400) var(--space-600);
+  padding: var(--space-200) var(--space-400);
+
+  &:hover {
+    background: var(--color-hover-overlay);
+  }
 }
 
 .appt {
   &__time {
+    font-family: var(--font-family-mono);
     font-size: var(--font-size-300);
     font-weight: var(--font-weight-medium);
     font-variant-numeric: tabular-nums;
@@ -21,7 +26,7 @@
 
   &__patient {
     font-size: var(--font-size-400);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
   }
 
@@ -35,9 +40,10 @@
   display: inline-flex;
   align-items: center;
   padding: var(--space-50) var(--space-200);
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-medium);
-  text-transform: capitalize;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   white-space: nowrap;
   border-radius: var(--border-radius-sm);
 
