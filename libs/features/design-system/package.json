@@ -2,8 +2,8 @@
   "name": "@ehr/design-system",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^21.2.0",
-    "@angular/platform-browser": "~21.2.0",
+    "@angular/core": "22.1.8",
+    "@angular/platform-browser": "22.1.8",
     "vitest": "^4.0.8",
     "vitest-axe": "^0.1.0",
     "@ehr/theme": "0.0.1"

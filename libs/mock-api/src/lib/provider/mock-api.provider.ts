@@ -1,4 +1,8 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptors,
+  withXhr,
+} from '@angular/common/http';
 import {
   EnvironmentProviders,
   inject,
@@ -11,7 +15,7 @@ import { ROUTES } from './routes';
 
 export function provideMockApi(): EnvironmentProviders {
   return makeEnvironmentProviders([
-    provideHttpClient(withInterceptors([mockApiInterceptor])),
+    provideHttpClient(withXhr(), withInterceptors([mockApiInterceptor])),
     provideAppInitializer(() => {
       const registry = inject(MockRoute);
       ROUTES.forEach(({ method, pattern, handler }) =>

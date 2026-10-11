@@ -56,3 +56,6 @@ __screenshots__/
 .nx/polygraph
 
 .lighthouseci/
+
+.nx/self-healing
+.nx/migrate-runs
