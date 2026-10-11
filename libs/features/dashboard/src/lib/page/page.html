@@ -1,11 +1,10 @@
 <div class="dashboard">
   @if (isLoading()) {
     <ehr-dashboard-skeleton />
-  } @else if (hasError()) {
-    <ehr-alert
-      type="error"
-      title="Failed to load dashboard"
-      message="Something went wrong while loading your dashboard. Please refresh the page, or sign out and sign in again."
+  } @else if (error(); as dashboardError) {
+    <ehr-dashboard-error
+      [error]="dashboardError"
+      (action)="onErrorAction($event)"
     />
   } @else {
     <ehr-dashboard-greeting [name]="greeting().name" />

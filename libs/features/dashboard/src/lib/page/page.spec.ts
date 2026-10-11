@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 import { NEVER, Observable, of } from 'rxjs';
 import { axe } from 'vitest-axe';
 import { vi } from 'vitest';
 
 import { DashboardPage } from './page';
 import { Dashboard } from '../services/dashboard';
-import { DashboardView } from '../services/models';
+import { DashboardResult, DashboardView } from '../services/models';
 
 const mockDashboard: DashboardView = {
   greeting: { name: 'Dr. Test' },
@@ -103,10 +104,16 @@ describe('DashboardPage', () => {
   let fixture: ComponentFixture<DashboardPage>;
   let dashboardService: { getDashboard: ReturnType<typeof vi.fn> };
 
+  let router: { navigate: ReturnType<typeof vi.fn> };
+
   function setup(
-    response: Observable<DashboardView | null> = of(mockDashboard),
+    response: Observable<DashboardResult> = of({
+      data: mockDashboard,
+      error: null,
+    }),
   ) {
     dashboardService = { getDashboard: vi.fn().mockReturnValue(response) };
+    router = { navigate: vi.fn() };
 
     TestBed.configureTestingModule({
       imports: [DashboardPage],
@@ -114,6 +121,7 @@ describe('DashboardPage', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         { provide: Dashboard, useValue: dashboardService },
+        { provide: Router, useValue: router },
       ],
     }).compileComponents();
 
@@ -195,14 +203,23 @@ describe('DashboardPage', () => {
     });
   });
 
-  describe('error state', () => {
+  describe.each([
+    'unauthorized',
+    'unavailable',
+    'not-found',
+    'unknown',
+  ] as const)('error state: %s', (error) => {
     beforeEach(async () => {
-      setup(of(null));
+      setup(of({ data: null, error }));
       await fixture.whenStable();
     });
 
-    it('should render an error alert', () => {
-      expect(fixture.nativeElement.querySelector('ehr-alert')).toBeTruthy();
+    it('should render the error component for that error', () => {
+      expect(
+        fixture.nativeElement.querySelector(
+          `[test-id='dashboard-error-${error}']`,
+        ),
+      ).toBeTruthy();
     });
 
     it('should not render the greeting or dashboard content', () => {
@@ -217,9 +234,35 @@ describe('DashboardPage', () => {
     });
   });
 
+  describe('error actions', () => {
+    it('should refetch when "Try again" is clicked', async () => {
+      setup(of({ data: null, error: 'unavailable' }));
+      await fixture.whenStable();
+      expect(dashboardService.getDashboard).toHaveBeenCalledTimes(1);
+
+      fixture.nativeElement
+        .querySelector("[test-id='dashboard-retry-button']")
+        .click();
+      await fixture.whenStable();
+
+      expect(dashboardService.getDashboard).toHaveBeenCalledTimes(2);
+    });
+
+    it('should navigate to /logout when "Sign in again" is clicked', async () => {
+      setup(of({ data: null, error: 'unauthorized' }));
+      await fixture.whenStable();
+
+      fixture.nativeElement
+        .querySelector("[test-id='dashboard-sign-in-button']")
+        .click();
+
+      expect(router.navigate).toHaveBeenCalledWith(['/logout']);
+    });
+  });
+
   describe('no alert', () => {
     beforeEach(async () => {
-      setup(of({ ...mockDashboard, alert: null }));
+      setup(of({ data: { ...mockDashboard, alert: null }, error: null }));
       await fixture.whenStable();
     });
 

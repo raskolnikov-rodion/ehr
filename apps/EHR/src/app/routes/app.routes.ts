@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { authGuard, noAuthGuard } from '@ehr/core';
+import { authGuard, logoutGuard, noAuthGuard } from '@ehr/core';
 import { AppShell } from '../app-shell/app-shell';
 
 export const appRoutes: Route[] = [
@@ -7,6 +7,11 @@ export const appRoutes: Route[] = [
     path: 'login',
     canActivate: [noAuthGuard],
     loadComponent: () => import('@ehr/login').then((m) => m.LoginPage),
+  },
+  {
+    path: 'logout',
+    canActivate: [logoutGuard],
+    children: [],
   },
   {
     path: '',

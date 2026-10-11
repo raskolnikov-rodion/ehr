@@ -1,7 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import type { Appointment, Visit } from '@ehr/domain';
 import type { AppointmentView } from '../components/appointment-item/models';
 import type { AvatarColor, VisitView } from '../components/visit-item/models';
-import type { DashboardResponse, DashboardView } from './models';
+import type {
+  DashboardErrorType,
+  DashboardResponse,
+  DashboardView,
+} from './models';
 
 const AVATAR_COLORS: AvatarColor[] = ['blue', 'teal', 'amber', 'green', 'gray'];
 
@@ -60,6 +65,20 @@ export function toVisitView(visit: Visit, index: number, now: Date): VisitView {
     detail: `${patient.sex}, ${ageOn(patient.birthDate, now)} · ${visit.reason}`,
     lastVisit: formatVisitDate(visit.date, now),
   };
+}
+
+export function toDashboardError(error: unknown): DashboardErrorType {
+  if (!(error instanceof HttpErrorResponse)) return 'unknown';
+  switch (error.status) {
+    case 401:
+      return 'unauthorized';
+    case 404:
+      return 'not-found';
+    case 503:
+      return 'unavailable';
+    default:
+      return 'unknown';
+  }
 }
 
 export function toDashboardView(

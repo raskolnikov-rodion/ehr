@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.error {
+  display: grid;
+  gap: var(--space-400);
+  justify-items: start;
+
+  ehr-alert {
+    width: 100%;
+  }
+}

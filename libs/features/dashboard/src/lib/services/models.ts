@@ -21,3 +21,13 @@ export interface DashboardView extends DashboardBase {
   appointments: AppointmentView[];
   recentVisits: VisitView[];
 }
+
+export type DashboardErrorType =
+  | 'unauthorized'
+  | 'unavailable'
+  | 'not-found'
+  | 'unknown';
+
+export type DashboardResult =
+  | { data: DashboardView; error: null }
+  | { data: null; error: DashboardErrorType };

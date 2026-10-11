@@ -10,3 +10,8 @@ declare module '@vitest/expect' {
 }
 
 expect.extend(matchers);
+expect.extend(matchers);
+
+// jsdom does not implement canvas; axe-core probes it (icon ligature detection).
+// Returning null avoids the "Not implemented: getContext" error without the `canvas` package.
+HTMLCanvasElement.prototype.getContext = () => null;
