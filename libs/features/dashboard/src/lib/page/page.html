@@ -1,40 +1,6 @@
 <div class="dashboard">
   @if (isLoading()) {
-    <ehr-skeleton height="1.75rem" width="14rem" />
-
-    <div class="stats">
-      @for (_ of [1, 2, 3, 4]; track $index) {
-        <ehr-skeleton height="6rem" />
-      }
-    </div>
-
-    <div class="columns">
-      <ehr-card>
-        <div ngProjectAs="card-content" class="appt-list">
-          @for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track $index) {
-            <ehr-skeleton height="3rem" />
-          }
-        </div>
-      </ehr-card>
-
-      <div class="right-col">
-        <ehr-card>
-          <div ngProjectAs="card-content" class="action-list">
-            @for (_ of [1, 2, 3, 4, 5]; track $index) {
-              <ehr-skeleton height="3.5rem" />
-            }
-          </div>
-        </ehr-card>
-
-        <ehr-card>
-          <div ngProjectAs="card-content" class="patient-list">
-            @for (_ of [1, 2, 3, 4, 5]; track $index) {
-              <ehr-skeleton height="3rem" />
-            }
-          </div>
-        </ehr-card>
-      </div>
-    </div>
+    <ehr-dashboard-skeleton />
   } @else if (hasError()) {
     <ehr-alert
       type="error"
