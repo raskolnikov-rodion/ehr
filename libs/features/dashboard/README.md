@@ -2,7 +2,7 @@
 
 Feature library for the dashboard page. Import alias: `@ehr/dashboard`.
 
-Lazy-loaded at `/dashboard` and protected by `authGuard`. The page composes four sections — a stats bar, a daily schedule, a pending actions list, and a recent patients list — from purpose-built presentational components backed by typed data models.
+Lazy-loaded at `/dashboard` and protected by `authGuard`. The page composes four sections — a stats bar, a daily schedule, a pending actions list, and a recent visits list — from purpose-built presentational components backed by typed data models.
 
 ## Components
 
@@ -12,30 +12,30 @@ Fetches data via `Dashboard` and converts the observable to a signal with `toSig
 
 ### Internal presentational components
 
-| Component         | Selector                 | Input                      | Description                                                     |
-| ----------------- | ------------------------ | -------------------------- | --------------------------------------------------------------- |
-| `Greeting`        | `ehr-dashboard-greeting` | `name: string`             | Header with time-aware greeting and formatted date badge        |
-| `StatCard`        | `ehr-stat-card`          | `statistic: Statistic`     | Summary card with value, trend text, trend direction, and icon  |
-| `AppointmentItem` | `ehr-appointment-item`   | `appointment: Appointment` | List row with time, patient name, type, and status badge        |
-| `ActionItem`      | `ehr-action-item`        | `action: PendingAction`    | List row with severity dot, title, meta text, and action button |
-| `PatientItem`     | `ehr-patient-item`       | `patient: Patient`         | List row with avatar, name, detail, and last-visit date         |
+| Component         | Selector                 | Input                          | Description                                                     |
+| ----------------- | ------------------------ | ------------------------------ | --------------------------------------------------------------- |
+| `Greeting`        | `ehr-dashboard-greeting` | `name: string`                 | Header with time-aware greeting and formatted date badge        |
+| `StatCard`        | `ehr-stat-card`          | `statistic: Statistic`         | Summary card with value, trend text, trend direction, and icon  |
+| `AppointmentItem` | `ehr-appointment-item`   | `appointment: AppointmentView` | List row with time, patient name, type, and status badge        |
+| `ActionItem`      | `ehr-action-item`        | `action: PendingAction`        | List row with severity dot, title, meta text, and action button |
+| `VisitItem`       | `ehr-visit-item`         | `visit: VisitView`             | List row with avatar, name, detail, and last-visit date         |
 
 ### Data models
 
-| Model           | Location                     | Key fields                                                            |
-| --------------- | ---------------------------- | --------------------------------------------------------------------- |
-| `Statistic`     | `stat-card/models.ts`        | `label`, `value`, `trend`, `trendDirection`, `iconUrl`                |
-| `Appointment`   | `appointment-item/models.ts` | `time`, `patient`, `type`, `status: AppointmentStatus`                |
-| `PendingAction` | `action-item/models.ts`      | `severity: ActionSeverity`, `title`, `meta`, `actionLabel`            |
-| `Patient`       | `patient-item/models.ts`     | `initials`, `avatarColor: AvatarColor`, `name`, `detail`, `lastVisit` |
+| Model             | Location                     | Key fields                                                            |
+| ----------------- | ---------------------------- | --------------------------------------------------------------------- |
+| `Statistic`       | `stat-card/models.ts`        | `label`, `value`, `trend`, `trendDirection`, `iconUrl`                |
+| `AppointmentView` | `appointment-item/models.ts` | `time`, `patient`, `type`, `status: AppointmentStatus`                |
+| `PendingAction`   | `action-item/models.ts`      | `severity: ActionSeverity`, `title`, `meta`, `actionLabel`            |
+| `VisitView`       | `visit-item/models.ts`       | `initials`, `avatarColor: AvatarColor`, `name`, `detail`, `lastVisit` |
 
 ## Services
 
 ### `Dashboard` (internal)
 
-Calls `GET /api/dashboard` via `HttpClient`. Returns `Observable<DashboardResponse | null>` — errors are caught and mapped to `null`.
+Calls `GET /api/dashboard` via `HttpClient`. Maps the response to a `DashboardView` (via `services/mappers.ts`) and returns `Observable<DashboardView | null>` — errors are caught and mapped to `null`.
 
-### `DashboardResponse`
+### `DashboardResponse` (wire format; `appointments` and `recentVisits` use `@ehr/domain` types)
 
 | Field          | Type                                                          | Description                    |
 | -------------- | ------------------------------------------------------------- | ------------------------------ |
@@ -44,7 +44,7 @@ Calls `GET /api/dashboard` via `HttpClient`. Returns `Observable<DashboardRespon
 | `stats`        | `Statistic[]`                                                 | Summary stat cards             |
 | `appointments` | `Appointment[]`                                               | Daily schedule rows            |
 | `actions`      | `Action[]`                                                    | Pending action rows            |
-| `patients`     | `Patient[]`                                                   | Recent patient rows            |
+| `recentVisits` | `Visit[]`                                                     | Recent visit rows              |
 
 ## Public API
 
