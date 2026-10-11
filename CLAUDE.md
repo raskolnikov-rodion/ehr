@@ -19,16 +19,17 @@ Nx monorepo. App shell lives in `apps/EHR`.
 
 ### Libraries
 
-| Path alias           | Location                      | Purpose                          |
-| -------------------- | ----------------------------- | -------------------------------- |
-| `@ehr/core`          | `libs/core`                   | Authentication                   |
-| `@ehr/theme`         | `libs/shared/theme`           | Theme management                 |
-| `@ehr/mock-api`      | `libs/mock-api`               | Mock backend                     |
-| `@ehr/layout`        | `libs/shared/layout`          | App shell layout                 |
-| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components |
-| `@ehr/login`         | `libs/features/login`         | Login page                       |
-| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                   |
-| `@ehr/design-system` | `libs/features/design-system` | Design system reference          |
+| Path alias           | Location                      | Purpose                                       |
+| -------------------- | ----------------------------- | --------------------------------------------- |
+| `@ehr/core`          | `libs/core`                   | Authentication                                |
+| `@ehr/theme`         | `libs/shared/theme`           | Theme management                              |
+| `@ehr/mock-api`      | `libs/mock-api`               | Mock backend                                  |
+| `@ehr/layout`        | `libs/shared/layout`          | App shell layout                              |
+| `@ehr/ui`            | `libs/shared/ui`              | Shared presentational components              |
+| `@ehr/domain`        | `libs/domain`                 | Domain entities (Patient, Appointment, Visit) |
+| `@ehr/login`         | `libs/features/login`         | Login page                                    |
+| `@ehr/dashboard`     | `libs/features/dashboard`     | Dashboard page                                |
+| `@ehr/design-system` | `libs/features/design-system` | Design system reference                       |
 
 ### Module boundaries
 

@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { axe } from 'vitest-axe';
 
 import { AppointmentItem } from './appointment-item';
-import { Appointment } from './models';
+import { AppointmentView } from './models';
 
-const BASE: Appointment = {
+const BASE: AppointmentView = {
   time: '09:00',
   patient: 'Jane Doe',
   type: 'Annual check-up · 30 min',
@@ -14,7 +14,7 @@ const BASE: Appointment = {
 describe('AppointmentItem', () => {
   let fixture: ComponentFixture<AppointmentItem>;
 
-  function createComponent(overrides: Partial<Appointment> = {}) {
+  function createComponent(overrides: Partial<AppointmentView> = {}) {
     fixture = TestBed.createComponent(AppointmentItem);
     fixture.componentRef.setInput('appointment', { ...BASE, ...overrides });
     return fixture;

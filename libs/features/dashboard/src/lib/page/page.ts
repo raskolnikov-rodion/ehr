@@ -10,7 +10,7 @@ import { Alert, Card, Skeleton } from '@ehr/ui';
 import { ActionItem } from '../components/action-item/action-item';
 import { AppointmentItem } from '../components/appointment-item/appointment-item';
 import { Greeting } from '../components/greeting/greeting';
-import { PatientItem } from '../components/patient-item/patient-item';
+import { VisitItem } from '../components/visit-item/visit-item';
 import { StatCard } from '../components/stat-card/stat-card';
 import { Dashboard } from '../services/dashboard';
 
@@ -27,7 +27,7 @@ import { Dashboard } from '../services/dashboard';
     StatCard,
     AppointmentItem,
     ActionItem,
-    PatientItem,
+    VisitItem,
   ],
 })
 export class DashboardPage {
@@ -43,7 +43,7 @@ export class DashboardPage {
   readonly stats = computed(() => this.dashboard()?.stats ?? []);
   readonly appointments = computed(() => this.dashboard()?.appointments ?? []);
   readonly pendingActions = computed(() => this.dashboard()?.actions ?? []);
-  readonly recentPatients = computed(() => this.dashboard()?.patients ?? []);
+  readonly recentVisits = computed(() => this.dashboard()?.recentVisits ?? []);
 
   readonly alertDismissed = signal(false);
 }

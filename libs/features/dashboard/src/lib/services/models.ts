@@ -1,14 +1,23 @@
+import type { Appointment, Visit } from '@ehr/domain';
 import type { AlertType } from '@ehr/ui';
 import type { Action } from '../components/action-item/models';
-import type { Appointment } from '../components/appointment-item/models';
-import type { Patient } from '../components/patient-item/models';
+import type { AppointmentView } from '../components/appointment-item/models';
+import type { VisitView } from '../components/visit-item/models';
 import type { Statistic } from '../components/stat-card/models';
 
-export interface DashboardResponse {
+interface DashboardBase {
   greeting: { name: string };
   alert: { type: AlertType; title: string; message: string } | null;
   stats: Statistic[];
-  appointments: Appointment[];
   actions: Action[];
-  patients: Patient[];
+}
+
+export interface DashboardResponse extends DashboardBase {
+  appointments: Appointment[];
+  recentVisits: Visit[];
+}
+
+export interface DashboardView extends DashboardBase {
+  appointments: AppointmentView[];
+  recentVisits: VisitView[];
 }

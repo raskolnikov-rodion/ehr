@@ -1,9 +1,9 @@
 export type AvatarColor = 'blue' | 'teal' | 'amber' | 'green' | 'gray';
 
-export interface Patient {
-  initials: string;
+export interface VisitView {
+  patientInitials: string;
   avatarColor: AvatarColor;
-  name: string;
+  patientName: string;
   detail: string;
   lastVisit: string;
 }

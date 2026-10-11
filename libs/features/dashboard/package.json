@@ -7,7 +7,8 @@
     "@angular/core": "~21.2.0",
     "@ehr/ui": "0.0.1",
     "@angular/common": "~21.2.0",
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "@ehr/domain": "0.0.1"
   },
   "sideEffects": false
 }

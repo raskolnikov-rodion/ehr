@@ -24,7 +24,8 @@
       "@ehr/theme": ["libs/shared/theme/src/index.ts"],
       "@ehr/ui": ["libs/shared/ui/src/index.ts"],
       "@ehr/patient-list": ["libs/features/patient/list/src/index.ts"],
-      "@ehr/patient-profile": ["libs/features/patient/profile/src/index.ts"]
+      "@ehr/patient-profile": ["libs/features/patient/profile/src/index.ts"],
+      "@ehr/domain": ["libs/domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
