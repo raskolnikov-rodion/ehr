@@ -3,6 +3,6 @@
   "dest": "../../../dist/libs/features/login",
   "lib": {
     "entryFile": "src/index.ts",
-    "styleIncludePaths": ["../../../apps/EHR/src/styles"]
+    "styleIncludePaths": ["../../../libs/shared/styles"]
   }
 }
