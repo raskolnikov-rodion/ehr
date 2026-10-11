@@ -1,10 +1,6 @@
-export type AppointmentStatus =
-  | 'confirmed'
-  | 'pending'
-  | 'in-progress'
-  | 'done';
+import type { AppointmentStatus } from '@ehr/domain';
 
-export interface Appointment {
+export interface AppointmentView {
   time: string;
   patient: string;
   type: string;
